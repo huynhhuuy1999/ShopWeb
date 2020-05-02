@@ -1,0 +1,125 @@
+.background{
+    background-color:#EEE;
+}
+.anhbia {
+    height: 780px;
+    width: 100%;
+    background-position: center;
+}
+
+.title-menu {
+    font-family:'Arial';
+    padding-top:10px;
+}
+
+.title-menu a {
+    float: right;
+    position: relative;
+    top: -45px;
+    background-color:#000;
+}
+.title-menu a button {
+    background-color: #000;
+    border: none ;
+    color:#FFF;
+    cursor:pointer;
+    padding:10px 7px;
+    font-weight:bold;
+}
+.title-menu a:hover button {
+    border: 2px solid #000;
+    background-color: #FFF;
+    color: #000;
+    -webkit-transition: background-color 1000ms cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    -ms-transition: background-color 1000ms cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    transition: background-color 500ms cubic-bezier(0.1, 0.7, 1.0, 0.1);
+}
+.title-menu h2 {
+    color: #ea8025;
+    font-weight:bold;
+}
+.list-menu{
+    justify-content:space-between;
+}
+.list-menu .img{
+    overflow:hidden;
+    position:relative;
+    width:350px;
+    height:400px;
+}
+.list-menu .img:hover img{
+    transform:scale(1.1);
+}
+.item-menu{
+    cursor:pointer;
+}
+.item-menu img {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+}
+.name-Item{
+    color:#555;
+    text-transform:uppercase;
+    font-weight:bold;
+    font-size:17px;
+    
+}
+.price-Item {
+    color: #EA8025;
+    font-size:23px;
+    font-weight:bold;
+}
+.info button{
+    text-transform:uppercase;
+    font-size:15px;
+    font-weight:bold;
+    padding:10px 8px;
+    cursor:pointer;
+}
+.buy-now {
+    color: #FFF;
+    background-color: #ea8025;
+    border:none;
+}
+.more-inf {
+    color: #ea8025;
+    border:2px solid #ea8025;
+}
+.store{
+    margin:20px 0;
+}
+.store h2{
+    text-transform: uppercase;
+    color:#ea8025;
+    font-weight: bold;
+}
+.store .row .col-md-6{
+    margin: 0;
+    padding:0;
+}
+.store .signature{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ea8025;
+}
+.store .signature h3,p{
+    margin:20px;
+    color:white;
+}
+.store .signature p{
+    margin-top: 10;
+}
+.store .signature h3{
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+.store .col-md-6 img{
+    background-position: center;
+    width: 100%;
+    height: 350px;
+    background-size: cover;
+}

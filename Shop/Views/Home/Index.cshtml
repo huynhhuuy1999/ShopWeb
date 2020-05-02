@@ -1,0 +1,53 @@
+﻿<link href="~/css/Customer/styleHome.css" rel="stylesheet" />
+@* @model IEnumerable<Shop.Models.Sanpham> *@
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+   
+<div class="background">
+    <img class="img-responsive anhbia" src="~/images/bia1.png" />
+    <div class="container">
+        <div class="title-menu">
+            <h2>Menu</h2>
+            <a href="#" id="x"><button>Xem thêm tất cả sản phẩm</button></a>
+        </div>
+        <div class="list-menu flex-wrap d-flex w-100 ">
+            @foreach (var item in ViewData["x"] as List<Sanpham>)
+            {
+                <div class="item-menu mb-5">
+                    <div class="img">
+                        <a href='/SanPham/ChiTietSanPham/@Html.DisplayFor(modelItem => item.SanPhamId)'>
+                             <img src="~/images/@Html.DisplayFor(modelItem => item.HinhAnh.TenFile)" alt="Alternate Text" class="img-responsive" />
+                        </a>
+                    </div>
+                    <div class="info">
+                        <p class="name-Item">@Html.DisplayFor(modelItem =>item.TenSanPham)</p>
+                        <p class="price-Item">@Html.DisplayFor(modelItem => item.GiaBanLe) Đ</p>
+                        <div class="d-flex">
+                            <button class="buy-now">mua ngay</button>
+                            <a href="sanpham/chitietsanpham/@Html.DisplayFor(modelItem => item.SanPhamId)"><button class="more-inf ml-3">tìm hiểu thêm</button></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="store">
+            <h2>Cửa hàng</h2>
+            <div class="row">
+                <div class="col-md-6 signature">
+                    <h3>ABC house signature</h3>
+                    <p>Với những nghệ nhân rang tâm huyết và đội ngũ
+                         Barista tài năng cùng những câu chuyện cà phê đầy cảm hứng,
+                          ngôi nhà Signature 19B Phạm Ngọc Thạch, Q.3, TP.HCM là không gian dành
+                           riêng cho những ai trót yêu say đắm hương vị của những hạt cà phê tuyệt hảo.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <img src="~/images/3e0a8783_master.jpg" alt="" class="img-responsive">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

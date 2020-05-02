@@ -1,0 +1,107 @@
+html{
+  scroll-behavior: smooth;
+}
+.body .anhbia img{
+  width: 100%;
+  height: 350px;
+}
+.sidenav {
+  width: 200px;
+  position: sticky;
+  z-index: 1;
+  top: 80px;
+  left: 0;
+  background: #eee;
+}
+.sidenav ul{
+  padding: 15px 15px;
+}
+.sidenav ul li{
+  list-style-type: none;
+  margin:25px 0px;
+}
+
+.sidenav a {
+  text-decoration: none;
+  font-size: 12px;
+  color:black;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+
+.main {
+  position: relative;
+  top:-300px;
+  margin-top:0;
+  margin-left: 290px;
+  font-size: 15px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+  text-transform: uppercase;
+  border-left: 2px solid #EA8025;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+/* .list-menu{
+  justify-content:space-between;
+} */
+.list-menu .img{
+  overflow:hidden;
+  position:relative;
+  width:250px;
+  height:280px;
+}
+.list-menu .img:hover img{
+  transform:scale(1.1);
+}
+.item-menu{
+  cursor:pointer;
+  margin-left: 25px;
+}
+.item-menu img {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+}
+.name-Item{
+  color:#555;
+  text-transform:uppercase;
+  font-weight:bold;
+  font-size:14px;
+  
+}
+.price-Item {
+  color: #EA8025;
+  font-size:20px;
+  font-weight:bold;
+}
+.info{
+  padding-left: 10px;
+}
+.info button{
+  text-transform:uppercase;
+  font-size:13px;
+  font-weight:bold;
+  padding:8px 6px;
+  cursor:pointer;
+}
+.buy-now {
+  color: #FFF;
+  background-color: #ea8025;
+  border:none;
+}
+.main .name-category:after{
+  background:#EA8025;
+}
+.name-category:after{
+  content: '';
+  height: 4px;
+  width: 25%;
+  display: block;
+}

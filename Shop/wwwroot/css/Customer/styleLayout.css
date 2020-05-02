@@ -1,0 +1,38 @@
+.header {
+	background-color: #000000;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+    display:block;
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    z-index:99999;
+}
+.header ul li a{
+    text-decoration:none;
+    color:#FFF;
+}
+.menu {
+	display: flex;
+    justify-content: center;
+    margin:0;
+}
+.menu li {
+	padding: 20px 35px;
+	list-style-type: none;
+}
+.menu li:hover {
+    color:red;
+}
+.footer {
+    background-color: #000;
+    color:#FFF;
+}
+.container{
+    padding-top:80px;
+}
+.col-md-3 h3{
+    font-size:22px;
+}

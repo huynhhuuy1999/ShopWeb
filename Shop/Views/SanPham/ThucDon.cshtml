@@ -1,0 +1,47 @@
+<link href="~/css/Customer/SanPham/styleThucDon.css" rel="stylesheet" />
+
+@model IEnumerable<Shop.Models.Phanloai>
+
+<div class="body bg-light">
+  <div class="anhbia">
+    <img src="~/images/coffee.jpg" alt="">
+  </div>
+  <div class="container">
+    <div class="sidenav bg-white">
+      <ul>
+      @foreach(var item in Model){
+        <li><a href="#@Html.DisplayFor(itemModel => item.PhanLoaiId)">@Html.DisplayFor(itemModel => item.TenLoai)</a></li>
+      }
+      </ul>
+    </div>
+    <div class="main">
+      @foreach (var item in Model)
+      {
+          <h2 class="mb-4 name-category" id="@Html.DisplayFor(itemModel => item.PhanLoaiId)">@Html.DisplayFor(itemModel => item.TenLoai)</h2>
+          <div class="list-menu flex-wrap d-flex w-70 mb-5">
+            @foreach (var item2 in ViewData["listSP"] as List<Sanpham>)
+            {
+                if(item.PhanLoaiId==item2.PhanLoaiId){
+                    <div class="item-menu">
+                      <div class="img">
+                          <a href='/sanpham/chitietsanpham/@Html.DisplayFor(modelItem=>item2.SanPhamId)'>
+                              <img src="~/images/@Html.DisplayFor(modelItem => item2.HinhAnh.TenFile)" alt="Alternate Text" class="img-responsive" />
+                          </a>
+                      </div>
+                      <div class="info">
+                          <p class="name-Item">@Html.DisplayFor(modelItem =>item2.TenSanPham)</p>
+                          <p class="price-Item">@Html.DisplayFor(modelItem => item2.GiaBanLe) Đ</p>
+                          <div class="d-flex">
+                              <button class="buy-now">mua ngay</button>
+                          </div>
+                      </div>
+                    </div>
+                }
+            }
+          </div>
+      }
+
+    </div>  
+    
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<link href="~/css/Customer/SanPham/styleChitiet.css" rel="stylesheet" />
+
+<div class="container mb-5">
+    @foreach (var item in ViewData["sanpham"] as List<Sanpham>)
+    {
+        <div class="list pt-4 pb-4">
+            <a href="">menu </a><span class="pl-2 pr-2">/</span>
+            <span>@Html.DisplayFor(modelItem => item.TenSanPham)</span>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="~/images/@Html.DisplayFor(modelItem => item.HinhAnh.TenFile)" alt="anhsanpham" class="img-responsive">
+            </div>
+            <div class="col-md-6">
+                <div class="detail">
+                    <p class="name">@Html.DisplayFor(modelItem => item.TenSanPham)</p>
+                    <p class="gia">@Html.DisplayFor(modelItem => item.GiaBanLe) Đ</p><br>
+                    <a href=""><button>Mua ngay</button></a>
+                    <p class="mt-5">Giao hàng tận nơi <span>1800 9061</span></p>
+                </div>
+                
+            </div>
+        </div>
+    }
+    
+</div>
