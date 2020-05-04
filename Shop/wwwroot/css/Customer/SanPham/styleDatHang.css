@@ -1,0 +1,133 @@
+html{
+  scroll-behavior: smooth;
+}
+body{
+  background:#EEE;
+}
+.listCategory {
+    width: 280px;
+    position: sticky;
+    z-index: 1;
+    top: 100px;
+    left: 10px;
+    background: #FFF;
+}
+.listCategory ul{
+  padding-left: 35px;
+  padding-top: 10px;
+  padding-bottom: 25px;
+}
+
+.listCategory ul li{
+  margin-top:20px;
+  list-style-type: none;
+}
+.listCategory ul li a{
+  color: #AAA;
+  font-size: 16px;
+  text-transform: uppercase;
+  display: block;
+  text-decoration: none;
+}
+  .listCategory a:hover {
+    color: black;
+  }
+  
+  .main {
+    position: relative;
+    top:-340px;
+    width: 700px;
+    /* left: 100px; */
+    margin-left: 290px; /* Same width as the sidebar + left position in px */
+    /* font-size: 28px; Increased text to enable scrolling */
+    padding: 0px 10px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .listCategory {padding-top: 15px;}
+    .listCategory a {font-size: 18px;}
+  }
+
+.order {
+    width: 430px;
+    position: sticky;
+    z-index: 1;
+    top: 100px;
+    left: 1040px;
+    background: #eee;
+    margin-top:-150px;
+}
+  @media screen and (max-height: 450px) {
+    .order {padding-top: 15px;}
+    .order a {font-size: 18px;}
+  }
+
+.main input{
+  padding:5px 0;
+}
+.main .fa-search{
+  position: relative;
+  top: 32px;
+  left: 15px;
+  font-size: 18px;
+}
+.main .tenloai{
+  text-transform: uppercase;
+  padding-bottom:5px;
+}
+.main .sanpham{
+  border-bottom:1px solid #EEE;
+}
+.main .sanpham:hover{
+  border-right: 2px solid #EA8025;
+}
+.main .sanpham .img{
+  width: 80px;
+  height: 90px;
+  overflow: hidden;
+}
+.sanpham .img img{
+  background-position: center;
+  width: 100%;
+  height:100%;
+}
+.sanpham .tensp{
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.fa-plus-circle{
+  float: right;
+  margin-right: 25px;
+  font-size: 30px;
+  color:#EA8025 ;
+  cursor: pointer;
+}
+.btn-cart{
+  border:none;
+  background-color: #EA8025;
+  color: #FFF;
+  padding: 7px;
+}
+.input-giamgia{
+  padding:7px 0px;
+}
+.dialog{
+  width: 628px;
+  display: none;
+  position: absolute;
+  overflow: hidden;
+  top: 10%;
+  left: 50%;
+  z-index: 99999999;
+}
+.dialog .sanpham .img{
+  height: 90px;
+  width: 80px;
+  overflow: hidden;
+}
+.dialog .sanpham .img img{
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+}

@@ -32,7 +32,7 @@
                           <p class="name-Item">@Html.DisplayFor(modelItem =>item2.TenSanPham)</p>
                           <p class="price-Item">@Html.DisplayFor(modelItem => item2.GiaBanLe) Đ</p>
                           <div class="d-flex">
-                              <button class="buy-now">mua ngay</button>
+                              <a href="/sanpham/dathang/@Html.DisplayFor(itemData => item2.SanPhamId)"><button class="buy-now">mua ngay</button></a>
                           </div>
                       </div>
                     </div>
@@ -40,7 +40,6 @@
             }
           </div>
       }
-
     </div>  
     
   </div>

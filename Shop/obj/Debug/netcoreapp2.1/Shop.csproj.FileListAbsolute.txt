@@ -30,3 +30,4 @@ E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\
 E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LayoutCustomer.g.cshtml.cs
 E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\SanPham\ChiTietSanPham.g.cshtml.cs
 E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\SanPham\ThucDon.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\SanPham\DatHang.g.cshtml.cs

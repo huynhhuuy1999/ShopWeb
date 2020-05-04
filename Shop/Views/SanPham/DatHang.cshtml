@@ -1,0 +1,106 @@
+<link href="~/css/Customer/SanPham/styleDatHang.css" rel="stylesheet" />
+<div class="ml-5 mr-5">
+  <div class="listCategory">
+    <ul>
+      @foreach(var item in ViewData["listPL"] as List<Phanloai>){
+        <li><a href="#@Html.DisplayFor(modelItem => item.PhanLoaiId)">@Html.DisplayFor(modelItem => item.TenLoai)</a></li>
+        }
+    </ul>
+  </div>
+  <div class="order bg-white p-3">
+    <div class="div-cart">
+      <button class="w-100 btn-cart">XEM GIỎ HÀNG</button>
+    </div><hr>
+    <div class="cart">
+      <p>Cộng</p>
+      <p>Vận chuyển</p>
+      <form action="" class="d-flex">
+        <input class="w-75 input-giamgia pl-3" type="text" name="GiamGia" placeholder="Nhập mã giảm giá tại đây">
+        <button class="w-25 btn-cart">Áp dụng</button>
+      </form>
+    </div><hr>
+    <div class="tongcong">
+        <span>Tổng cộng</span>
+    </div>
+  </div>
+  <div class="main">
+    <form action="">
+      <i class="fal fa-search"></i>
+      <input class="pl-5 w-100" type="text" name="search" placeholder="Tìm kiếm sản phẩm">
+    </form>
+    @foreach (var item in ViewData["listPL"] as List<Phanloai>)
+    {
+        <br><span class="tenloai" id="@Html.DisplayFor(itemModel => item.PhanLoaiId)">@Html.DisplayFor(ModelItem => item.TenLoai)</span><br>
+        foreach(var item2 in ViewData["listSP"] as List<Sanpham>){
+          if(item.PhanLoaiId==item2.PhanLoaiId){
+            <div class="sanpham p-1 bg-white">
+              <div class="row">
+                <div class="col-md-2 img">
+                    <img src="~/images/@Html.DisplayFor(modelItem => item2.HinhAnh.TenFile)" alt="">
+                </div>
+                <div class="col-md-10">
+                  <span class="tensp">
+                    @Html.DisplayFor(itemdata => item2.TenSanPham)
+                  </span><br>
+                  <span>@Html.DisplayFor(itemData => item2.GiaBanLe) đ</span><br>
+                  <i class="fal fa-plus-circle add-cart" id="icon+@Html.DisplayFor(itemData => item2.SanPhamId)"></i>
+                </div>
+              </div>
+            </div>
+          }
+        }
+    }
+  </div>
+</div>
+
+<div class="dialog">
+  <div class="sanpham d-flex">
+    <div class="img">
+      
+    </div>
+    <div class="mota">
+
+    </div>
+  </div>
+  <div class="size">
+
+  </div>
+  <div class="more">
+
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+    $(".add-cart").click(function(){
+      let masp= $(this).attr("id");
+      let bien = masp.slice(5);
+      $.ajax({
+        type:"POST",
+        url:"@Url.Action("ThemGioHang")",
+        data:{maspp:bien},
+        success:function(data){
+          for(let i=0;i<data.length;i++){
+            $(".dialog .sanpham .img").append("<img src='/images/"+ data[i].hinhAnh.tenFile +"' alt=''>");
+            $('.dialog .sanpham .mota').append("<span>"+data[i].tenSanPham+"</span><br>\
+            <span>"+data[i].giaBanLe+"</span>");
+          }
+            $('body').append("<div id='over' style='display:none;width:100%;height:100%;background:#342e2e;position:absolute;top:0;left:0;opacity:0.6;z-index:999999' onclick=clickCloseDialog()></div>");
+            $('#over').fadeIn(300);
+            $('.dialog').fadeIn(300,function(){
+              $('.dialog').css('visibility','visible');
+            });
+            $('body').css('overflow','hidden');
+        },
+        error:function(err){
+          alert(err);
+        }
+      });
+      
+    });
+  });
+  function clickCloseDialog(){
+	  $('#over, .dialog').fadeOut(300 , function() {
+	    $('#over,.dialog').remove();
+	  });
+  }
+</script>

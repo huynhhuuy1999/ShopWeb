@@ -21,6 +21,8 @@ namespace Shop.Models
         public virtual DbSet<Hoadon> Hoadon { get; set; }
         public virtual DbSet<Khachhang> Khachhang { get; set; }
         public virtual DbSet<Khuyenmai> Khuyenmai { get; set; }
+        public virtual DbSet<Kichthuoc> Kichthuoc { get; set; }
+        public virtual DbSet<Magiamgia> Magiamgia { get; set; }
         public virtual DbSet<Nhanvien> Nhanvien { get; set; }
         public virtual DbSet<Phanloai> Phanloai { get; set; }
         public virtual DbSet<Phiship> Phiship { get; set; }
@@ -196,6 +198,32 @@ namespace Shop.Models
                 entity.Property(e => e.TenKhuyenMai).HasColumnType("varchar(100)");
 
                 entity.Property(e => e.TrangThai).HasColumnType("int(11)");
+            });
+
+            modelBuilder.Entity<Kichthuoc>(entity =>
+            {
+                entity.ToTable("kichthuoc");
+
+                entity.HasIndex(e => e.SanPhamId)
+                    .HasName("FK_kichthuoc_SanPham");
+
+                entity.Property(e => e.KichThuocid).HasColumnType("int(11)");
+
+                entity.Property(e => e.SanPhamId).HasColumnType("int(11)");
+
+                entity.Property(e => e.TenKichThuoc).HasColumnType("varchar(50)");
+
+                entity.HasOne(d => d.SanPham)
+                    .WithMany(p => p.Kichthuoc)
+                    .HasForeignKey(d => d.SanPhamId)
+                    .HasConstraintName("FK_kichthuoc_SanPham");
+            });
+
+            modelBuilder.Entity<Magiamgia>(entity =>
+            {
+                entity.ToTable("magiamgia");
+
+                entity.Property(e => e.MaGiamGiaId).HasColumnType("int(11)");
             });
 
             modelBuilder.Entity<Nhanvien>(entity =>

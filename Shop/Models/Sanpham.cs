@@ -8,6 +8,7 @@ namespace Shop.Models
         public Sanpham()
         {
             Chitiethoadon = new HashSet<Chitiethoadon>();
+            Kichthuoc = new HashSet<Kichthuoc>();
         }
 
         public int SanPhamId { get; set; }
@@ -25,5 +26,6 @@ namespace Shop.Models
         public Khuyenmai KhuyenMai { get; set; }
         public Phanloai PhanLoai { get; set; }
         public ICollection<Chitiethoadon> Chitiethoadon { get; set; }
+        public ICollection<Kichthuoc> Kichthuoc { get; set; }
     }
 }

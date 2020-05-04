@@ -60,6 +60,12 @@ namespace Shop
                 routes.MapRoute(
                     name: "ChiTietSanPham",
                     template: "{controller=SanPham}/{action=ChiTietSanPham}/{id}");
+                routes.MapRoute(
+                    name:"ThucDon",
+                    template:"{controller=SanPham}/{action=ThucDon}");
+                routes.MapRoute(
+                    name:"DatHang",
+                    template:"{controller=SanPham}/{action=DatHang}/{id}");
             });
         }
     }
