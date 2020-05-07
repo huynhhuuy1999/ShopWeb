@@ -1,25 +1,41 @@
+@model IEnumerable<Shop.Models.Sanpham>
 <link href="~/css/Customer/SanPham/styleDatHang.css" rel="stylesheet" />
 <div class="ml-5 mr-5">
   <div class="listCategory">
     <ul>
       @foreach(var item in ViewData["listPL"] as List<Phanloai>){
-        <li><a href="#@Html.DisplayFor(modelItem => item.PhanLoaiId)">@Html.DisplayFor(modelItem => item.TenLoai)</a></li>
+        <li><a href="#loai+@Html.DisplayFor(modelItem => item.PhanLoaiId)">@Html.DisplayFor(modelItem => item.TenLoai)</a></li>
         }
     </ul>
   </div>
   <div class="order bg-white p-3">
     <div class="div-cart">
       <button class="w-100 btn-cart">XEM GIỎ HÀNG</button>
-    </div><hr>
-    <div class="cart">
-      <p>Cộng</p>
+    </div>
+    <div class="cart"><hr>
+      <div class="list-product-cart">
+        @foreach(var item in Model){
+          <div class='d-flex div-sp' id="@Html.DisplayFor(itemModel => item.SanPhamId)">
+            <div class='sl rounded-circle'>1</div>
+            <div class='inf ml-3'>
+              <span class='name'>@Html.DisplayFor(itemModel => item.TenSanPham)</span><br>
+              <span class='kichthuoc'>Nhỏ<span></div>
+            <div class='gia' id="+soluong*radioValue+">
+              <span>@Html.DisplayFor(itemModel => item.GiaBanLe) Đ</span>
+            </div>
+          </div>
+        }
+      </div>
+      <div class="sum d-flex">
+        <p>Cộng</p>
+      </div>
       <p>Vận chuyển</p>
       <form action="" class="d-flex">
         <input class="w-75 input-giamgia pl-3" type="text" name="GiamGia" placeholder="Nhập mã giảm giá tại đây">
         <button class="w-25 btn-cart">Áp dụng</button>
       </form>
     </div><hr>
-    <div class="tongcong">
+    <div class="super-sum d-flex">
         <span>Tổng cộng</span>
     </div>
   </div>
@@ -28,28 +44,30 @@
       <i class="fal fa-search"></i>
       <input class="pl-5 w-100" type="text" name="search" placeholder="Tìm kiếm sản phẩm">
     </form>
-    @foreach (var item in ViewData["listPL"] as List<Phanloai>)
-    {
-        <br><span class="tenloai" id="@Html.DisplayFor(itemModel => item.PhanLoaiId)">@Html.DisplayFor(ModelItem => item.TenLoai)</span><br>
-        foreach(var item2 in ViewData["listSP"] as List<Sanpham>){
-          if(item.PhanLoaiId==item2.PhanLoaiId){
-            <div class="sanpham p-1 bg-white">
-              <div class="row">
-                <div class="col-md-2 img">
-                    <img src="~/images/@Html.DisplayFor(modelItem => item2.HinhAnh.TenFile)" alt="">
-                </div>
-                <div class="col-md-10">
-                  <span class="tensp">
-                    @Html.DisplayFor(itemdata => item2.TenSanPham)
-                  </span><br>
-                  <span>@Html.DisplayFor(itemData => item2.GiaBanLe) đ</span><br>
-                  <i class="fal fa-plus-circle add-cart" id="icon+@Html.DisplayFor(itemData => item2.SanPhamId)"></i>
+    <div class="main-item">
+      @foreach (var item in ViewData["listPL"] as List<Phanloai>)
+      {
+          <br><span class="tenloai" id="loai+@Html.DisplayFor(itemModel => item.PhanLoaiId)">@Html.DisplayFor(ModelItem => item.TenLoai)</span><br>
+          foreach(var item2 in ViewData["listSP"] as List<Sanpham>){
+            if(item.PhanLoaiId==item2.PhanLoaiId){
+              <div class="sanpham p-1 bg-white">
+                <div class="row">
+                  <div class="col-md-2 img">
+                      <img src="~/images/@Html.DisplayFor(modelItem => item2.HinhAnh.TenFile)" alt="">
+                  </div>
+                  <div class="col-md-10">
+                    <span class="tensp">
+                      @Html.DisplayFor(itemdata => item2.TenSanPham)
+                    </span><br>
+                    <span>@Html.DisplayFor(itemData => item2.GiaBanLe) đ</span><br>
+                    <i class="fal fa-plus-circle add-cart" id="icon+@Html.DisplayFor(itemData => item2.SanPhamId)"></i>
+                  </div>
                 </div>
               </div>
-            </div>
+            }
           }
-        }
-    }
+      }
+    </div>
   </div>
 </div>
 
@@ -63,28 +81,36 @@
     </div>
   </div>
   <div class="size">
-
+    <p>Size</p>
   </div>
   <div class="more">
+    <span>Số lượng</span><br>
+    <div class="footerr d-flex">
+      <div class="quanlity d-flex">
+        
+      </div>
+      <div class="btn-add-cart">
 
+      </div>
+    </div>
   </div>
 </div>
 <script>
-  $(document).ready(function(){
-    $(".add-cart").click(function(){
-      let masp= $(this).attr("id");
-      let bien = masp.slice(5);
-      $.ajax({
+  $(document).on('click',".add-cart, .list-product-cart .div-sp",function(){
+    let masp= $(this).attr("id");
+    let bien=masp;
+    if(masp.indexOf("icon")!==-1)
+      bien = masp.slice(5);
+    $.ajax({
         type:"POST",
         url:"@Url.Action("ThemGioHang")",
         data:{maspp:bien},
         success:function(data){
           for(let i=0;i<data.length;i++){
             $(".dialog .sanpham .img").append("<img src='/images/"+ data[i].hinhAnh.tenFile +"' alt=''>");
-            $('.dialog .sanpham .mota').append("<span>"+data[i].tenSanPham+"</span><br>\
-            <span>"+data[i].giaBanLe+"</span>");
+            $('.dialog .sanpham .mota').append("<span>"+data[i].tenSanPham+"</span>");
           }
-            $('body').append("<div id='over' style='display:none;width:100%;height:100%;background:#342e2e;position:absolute;top:0;left:0;opacity:0.6;z-index:999999' onclick=clickCloseDialog()></div>");
+            $('.xxx').append("<div id='over' style='display:none;width:100%;height:300%;background:#342e2e;position:absolute;top:0;left:0;opacity:0.6;z-index:999999' onclick=clickCloseDialog()></div>");
             $('#over').fadeIn(300);
             $('.dialog').fadeIn(300,function(){
               $('.dialog').css('visibility','visible');
@@ -94,13 +120,146 @@
         error:function(err){
           alert(err);
         }
-      });
-      
     });
-  });
+
+      $.ajax({
+        type:"POST",
+        url:"@Url.Action("LayKichThuoc")",
+        data:{maspp:bien},
+        success:function(data){
+          for(let j=0;j<data.length;j++){
+            let giaBanLe= data[j].sanPham.giaBanLe;
+            let giaThem= data[j].giaThem;
+            let tong=giaBanLe+giaThem;
+            if(giaThem!==0){
+              $(".dialog .size").append("<div><input type='radio' id="+data[j].kichThuocid+" value="+tong+" name='size' onclick=clickAddCart()>\
+                <label id='label"+data[j].kichThuocid+"'>"+data[j].tenKichThuoc+" (+"+giaThem+" đ)</label><div>");
+            }
+            else{
+              $(".dialog .size").append("<div><input type='radio' id="+data[j].kichThuocid+" value="+tong+" name='size' checked onclick=clickAddCart()>\
+                <label id='label"+data[j].kichThuocid+"'>"+data[j].tenKichThuoc+"</label><div>");
+            }
+          }
+          let radioValue = $("input[name='size']:checked").val();
+          $(".more .footerr .btn-add-cart").append("<button id="+data[0].sanPham.sanPhamId+" class='btn-add'><span>THÊM VÀO GIỎ</span><span class='ml-4 price'>"+radioValue+" Đ</span></button>");
+          $(".more .footerr .quanlity").append("\
+            <i class='fal fa-minus-circle' onclick=clickSubtractQuanlity()></i>\
+            <input type='number' name='soluong' value=1 min=1 readonly>\
+            <i class='fal fa-plus-circle' onclick=clickPlusQuanlity()></i>");
+        },
+        error:function(err){
+          alert(err);
+        }
+      });
+    });
   function clickCloseDialog(){
 	  $('#over, .dialog').fadeOut(300 , function() {
-	    $('#over,.dialog').remove();
+      $('.dialog').css('visibility','hidden');
+      $('body').css('overflow','visible');
 	  });
+     $('#over, .dialog .sanpham .img img, .dialog .sanpham .mota span').remove();
+     $('.dialog .sanpham .mota br').remove();
+     $(".dialog .size div").remove();
+     $(".more .footerr .btn-add-cart button").remove();
+     $(".more .footerr .quanlity i,.more .footerr .quanlity input").remove();
   }
+  function clickAddCart(){
+      let radioValue = $("input[name='size']:checked").val();
+      let soluong= $("input[name='soluong']").val();
+      let gia = radioValue*soluong;
+      $(".price").text(gia+" Đ");
+  }
+  function clickPlusQuanlity(){
+    let radioValue = $("input[name='size']:checked").val();
+    let soluong= $("input[name='soluong']").val();
+    let changeSoluong=Number(soluong)+1;
+    $("input[name='soluong']").val(changeSoluong);
+    let gia = radioValue*changeSoluong;
+    $(".price").text(gia+" Đ");
+  }
+  function clickSubtractQuanlity(){
+    let radioValue = $("input[name='size']:checked").val();
+    let soluong= $("input[name='soluong']").val();
+    let changeSoluong = Number(soluong);
+    if(Number(soluong)!==1)
+      changeSoluong=Number(soluong)-1;
+    $("input[name='soluong']").val(changeSoluong);
+    let gia = radioValue*changeSoluong;
+    $(".price").text(gia+" Đ");
+  }
+  $(document).on('click','.btn-add',function(){
+    let idSP= Number($(this).attr("id"));
+    let soluong= $("input[name='soluong']").val();
+    let radioValue = $("input[name='size']:checked").val();
+    let idRadioValue=$("input[name='size']:checked").attr("id");
+    let idLabel= "label"+idRadioValue;
+    let tenKichThuoc= $("#"+idLabel).text();
+    $.ajax({
+      type:"POST",
+      url:"@Url.Action("LayKichThuoc")",
+      data:{maspp:idSP},
+      success:function(data){
+        $(".list-product-cart #"+data[0].sanPham.sanPhamId).remove();
+        $(".list-product-cart").append("<div class='d-flex div-sp' id="+data[0].sanPham.sanPhamId+"><div class='sl rounded-circle'>"+soluong+"</div>\
+          <div class='inf ml-3'><span class='name'>"+data[0].sanPham.tenSanPham+"</span><br>\
+          <span class='kichthuoc'>"+tenKichThuoc+"<span></div>\
+          <div class='gia' id="+soluong*radioValue+"><span>"+soluong*radioValue+" Đ</span></div></div>");
+        let arrGia=$('.gia').map(function(){
+          return Number($(this).attr("id"));
+        });
+        let tongCong=0;
+        for(let i=0;i<arrGia.length;i++){
+          tongCong=tongCong+arrGia[i];
+        }
+        $('.sum .tongcong').remove();
+        $('.order .super-sum .final-sum').remove();
+        $('.sum').append("<span class='tongcong'>"+tongCong+" Đ</span>");
+        $('.order .super-sum').append("<p class='final-sum'>"+tongCong+" ₫</p>");
+      },
+      error:function(err){
+        alert(err);
+      }
+    });
+    $('#over, .dialog').fadeOut(300 , function() {
+      $('.dialog').css('visibility','hidden');
+      $('body').css('overflow','visible');
+	  });
+     $('#over, .dialog .sanpham .img img, .dialog .sanpham .mota span').remove();
+     $('.dialog .sanpham .mota br').remove();
+     $(".dialog .size div").remove();
+     $(".more .footerr .btn-add-cart button").remove();
+     $(".more .footerr .quanlity i,.more .footerr .quanlity input").remove();
+  });
+  $("input[name='search']").change(function(){
+    let char= $(this).val();
+    if(char===""){
+      char="xxx";
+    }
+    $.ajax({
+      type:"POST",
+      url:"@Url.Action("TimKiemSanPham")",
+      data:{key:char},
+      success:function(data){
+        $(".main-item").empty();
+        for(let i=0;i<data.length;i++){
+          $(".main-item").append("<div class='sanpham p-1 bg-white'>\
+            <div class='row'>\
+              <div class='col-md-2 img'>\
+                <img src='/images/"+data[i].hinhAnh.tenFile+"' alt=''>\
+              </div>\
+              <div class='col-md-10'>\
+                <span class='tensp'>"+data[i].tenSanPham+"</span><br>\
+                <span>"+data[i].giaBanLe+" đ </span><br>\
+                <i class='fal fa-plus-circle add-cart' id='icon+"+data[i].sanPhamId+"'></i>\
+              </div>\
+            </div>\
+          </div>");
+        }
+        
+      },
+      error:function(err){
+        alert(err);
+      }
+    });
+  });
 </script>

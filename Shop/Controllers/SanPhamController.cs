@@ -138,11 +138,90 @@ namespace Shop.Controllers
                     ListSP.Add(sp);
                 }
             
-            // ViewData["ListSP2"]= ListSP;
-            // System.Console.WriteLine(ListSP);
+            
             return ListSP;
         }
-        
+        public List<Kichthuoc> LayKichThuoc(int maspp){
+            var dbContext = new shopContext();
+            var kichthuoc = (from kt in dbContext.Kichthuoc
+                            join sp in dbContext.Sanpham 
+                            on kt.SanPhamId equals sp.SanPhamId
+                            where kt.SanPhamId == maspp
+                            select new{
+                                SanPhamId = sp.SanPhamId,
+                                TenSanPham= sp.TenSanPham,
+                                KichThuocId = kt.KichThuocid,
+                                TenKichThuoc = kt.TenKichThuoc,
+                                GiaBanLe = sp.GiaBanLe,
+                                GiaThem = kt.GiaThem,
+                            });
+            List<Kichthuoc> ListKT = new List<Kichthuoc>();
+                foreach(var item in kichthuoc){
+                    Sanpham sp = new Sanpham();
+                    sp.SanPhamId = item.SanPhamId;
+                    sp.GiaBanLe = item.GiaBanLe;
+                    sp.TenSanPham=item.TenSanPham;
+                    Kichthuoc kt = new Kichthuoc();
+                    kt.TenKichThuoc= item.TenKichThuoc;
+                    kt.KichThuocid= item.KichThuocId;
+                    kt.GiaThem= item.GiaThem;
+                    kt.SanPham=sp;
+                    ListKT.Add(kt);
+                }
+            return ListKT;
+        }
+        public List<Sanpham> TimKiemSanPham(string key){
+            List<Sanpham> List= new List<Sanpham>();
+            var dbContext = new shopContext();
+            if(key == "xxx"){
+                var sanpham= (from sp in dbContext.Sanpham
+                        join h in dbContext.Hinhanh
+                        on sp.HinhAnhId equals h.HinhAnhId
+                        select new {
+                            SanPhamId = sp.SanPhamId,
+                            TenSanPham = sp.TenSanPham,
+                            GiaBanLe = sp.GiaBanLe,
+                            HinhAnh = h.TenFile,
+                            PhanLoaiId = sp.PhanLoaiId
+                        });
+                foreach(var item in sanpham){
+                    Sanpham sp = new Sanpham();
+                    sp.SanPhamId = item.SanPhamId;
+                    sp.TenSanPham= item.TenSanPham;
+                    sp.GiaBanLe= item.GiaBanLe;
+                    sp.PhanLoaiId= item.PhanLoaiId;
+                    Hinhanh h = new Hinhanh();
+                    h.TenFile= item.HinhAnh;
+                    sp.HinhAnh=h;
+                    List.Add(sp);
+                }
+            }
+            else{
+                var sanpham= (from sp in dbContext.Sanpham
+                        join h in dbContext.Hinhanh
+                        on sp.HinhAnhId equals h.HinhAnhId
+                        where sp.TenSanPham.StartsWith(key)
+                        select new {
+                            SanPhamId = sp.SanPhamId,
+                            TenSanPham = sp.TenSanPham,
+                            GiaBanLe = sp.GiaBanLe,
+                            HinhAnh = h.TenFile,
+                            PhanLoaiId = sp.PhanLoaiId
+                        });
+                foreach(var item in sanpham){
+                    Sanpham sp = new Sanpham();
+                    sp.SanPhamId = item.SanPhamId;
+                    sp.TenSanPham= item.TenSanPham;
+                    sp.GiaBanLe= item.GiaBanLe;
+                    sp.PhanLoaiId= item.PhanLoaiId;
+                    Hinhanh h = new Hinhanh();
+                    h.TenFile= item.HinhAnh;
+                    sp.HinhAnh=h;
+                    List.Add(sp);
+                }
+            }
+            return List;
+        }
     }
 
 }

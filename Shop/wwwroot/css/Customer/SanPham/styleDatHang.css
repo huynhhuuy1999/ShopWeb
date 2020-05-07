@@ -35,8 +35,9 @@ body{
   
   .main {
     position: relative;
-    top:-340px;
+    /* top:-340px; */
     width: 700px;
+    top:-270px;
     /* left: 100px; */
     margin-left: 290px; /* Same width as the sidebar + left position in px */
     /* font-size: 28px; Increased text to enable scrolling */
@@ -48,7 +49,7 @@ body{
     .listCategory a {font-size: 18px;}
   }
 
-.order {
+/* .order {
     width: 430px;
     position: sticky;
     z-index: 1;
@@ -56,6 +57,27 @@ body{
     left: 1040px;
     background: #eee;
     margin-top:-150px;
+} */
+.order {
+  width: 430px;
+  /* max-height: 500px; */
+  /* overflow-y: scroll; */
+  position: fixed;
+  /* z-index: 1; */
+  /* top: 230px; */
+  left: 1040px;
+  background: #eee;
+  margin-top:-250px;
+}
+
+.order .div-cart{
+  position: fixed;
+  width: 400px;
+}
+.order .cart{
+  max-height: 450px;
+  margin-top: 30px;
+  overflow-y: scroll;
 }
   @media screen and (max-height: 450px) {
     .order {padding-top: 15px;}
@@ -114,20 +136,121 @@ body{
 .dialog{
   width: 628px;
   display: none;
-  position: absolute;
+  position: fixed;
   overflow: hidden;
   top: 10%;
   left: 50%;
+  margin-left:-300px;
   z-index: 99999999;
+  background-color: #FFF;
+}
+.dialog .sanpham{
+  border-bottom: 1px solid #AAA;
 }
 .dialog .sanpham .img{
   height: 90px;
   width: 80px;
   overflow: hidden;
+  padding:10px;
 }
 .dialog .sanpham .img img{
   width: 100%;
   height: 100%;
   background-position: center;
   background-size: cover;
+}
+.dialog .sanpham .mota{
+  padding: 10px;
+}
+.dialog .sanpham .mota span{
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.dialog .size{
+  padding: 10px;
+  border-bottom: 1px solid #AAA;
+}
+.dialog .size div{
+  margin-left: 20px;
+}
+.more{
+  background-color: #FFF;
+  padding:10px;
+}
+.more .footerr{
+  align-items: center;
+}
+.more .footerr .btn-add-cart{
+  padding:10px;
+  margin-left: 190px;
+}
+.more .footerr .btn-add-cart button{
+  border:none;
+  background-color: #EA8025;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 13px;
+  text-align: center;
+  padding-left: 15px;
+  width: 200px;
+  height: 40px;
+}
+.more .footerr .quanlity input[name='soluong']{
+  width: 40px;
+  border: none;
+  font-size: 25px;
+}
+.more .footerr .quanlity{
+  align-items: center;
+  margin-left: 20px;
+}
+.more .footerr .quanlity .fa-minus-circle{
+  margin-right: 25px;
+  font-size: 40px;
+  color: #EA8025;
+  cursor: pointer;
+}
+.more .footerr .quanlity .fa-plus-circle{
+  margin-left: 15px;
+  font-size: 40px;
+  color: #EA8025;
+}
+.list-product-cart .sl{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+  color:#FFF;
+  background-color: #EA8025;
+  align-items: center;
+}
+
+.list-product-cart .inf .name{
+  font-weight: bold;
+  font-size: 15px;
+  text-transform: capitalize;
+}
+.list-product-cart .inf .kichthuoc{
+  font-size: 12px;
+}
+.list-product-cart .div-sp{
+  border-bottom: 1px solid #AAA;
+}
+.list-product-cart .gia{
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  margin: 10px 0;
+  margin-right: 30px;
+  align-items: center;
+}
+.sum .tongcong{
+  margin-left: 250px;
+}
+.order .super-sum .final-sum{
+  margin-left: 190px;
+  font-size: 25px;
+  font-weight: bold;
+  align-items: center;
 }
