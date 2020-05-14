@@ -1,17 +1,16 @@
 ﻿<link href="~/css/Customer/styleHome.css" rel="stylesheet" />
-@* @model IEnumerable<Shop.Models.Sanpham> *@
-
+@model IEnumerable<Shop.Models.Sanpham>
+@using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "Home Page";
 }
-
    
 <div class="background">
     <img class="img-responsive anhbia" src="~/images/bia1.png" />
     <div class="container">
         <div class="title-menu">
             <h2>Menu</h2>
-            <a href="#" id="x"><button>Xem thêm tất cả sản phẩm</button></a>
+            <a href="/sanpham/thucdon" id="x"><button>Xem thêm tất cả sản phẩm</button></a>
         </div>
         <div class="list-menu flex-wrap d-flex w-100 ">
             @foreach (var item in ViewData["x"] as List<Sanpham>)
@@ -26,8 +25,8 @@
                         <p class="name-Item">@Html.DisplayFor(modelItem =>item.TenSanPham)</p>
                         <p class="price-Item">@Html.DisplayFor(modelItem => item.GiaBanLe) Đ</p>
                         <div class="d-flex">
-                            <button class="buy-now">mua ngay</button>
-                            <a href="sanpham/chitietsanpham/@Html.DisplayFor(modelItem => item.SanPhamId)"><button class="more-inf ml-3">tìm hiểu thêm</button></a>
+                            <a href="/sanpham/dathang/@Html.DisplayFor(modelItem => item.SanPhamId)"><button class="buy-now">mua ngay</button></a>
+                            <a href="/sanpham/chitietsanpham/@Html.DisplayFor(modelItem => item.SanPhamId)"><button class="more-inf ml-3">tìm hiểu thêm</button></a>
                         </div>
                     </div>
                 </div>

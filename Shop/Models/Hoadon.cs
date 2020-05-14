@@ -15,13 +15,16 @@ namespace Shop.Models
         public DateTime? NgayGiao { get; set; }
         public string SoNha { get; set; }
         public string Quan { get; set; }
-        public string Huyen { get; set; }
-        public string Tinh { get; set; }
         public int? PhiShipId { get; set; }
         public float? TongTienThanhToan { get; set; }
         public string TrangThai { get; set; }
         public int? NhanVienId { get; set; }
         public int? KhachHangId { get; set; }
+        public string TenNguoiNhan { get; set; }
+        public string Sdt { get; set; }
+        public float? TongTienChuaShip { get; set; }
+        public float? TienGiamGia { get; set; }
+        public string SessionId { get; set; }
 
         public Khachhang KhachHang { get; set; }
         public Nhanvien NhanVien { get; set; }

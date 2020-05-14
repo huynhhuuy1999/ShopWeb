@@ -1,4 +1,5 @@
 <link href="~/css/Customer/SanPham/styleChitiet.css" rel="stylesheet" />
+@using Microsoft.AspNetCore.Http;
 
 <div class="container mb-5">
     @foreach (var item in ViewData["sanpham"] as List<Sanpham>)
@@ -15,7 +16,7 @@
                 <div class="detail">
                     <p class="name">@Html.DisplayFor(modelItem => item.TenSanPham)</p>
                     <p class="gia">@Html.DisplayFor(modelItem => item.GiaBanLe) Đ</p><br>
-                    <a href=""><button>Mua ngay</button></a>
+                    <a href="/sanpham/dathang/@Html.DisplayFor(modelItem => item.SanPhamId)"><button>Mua ngay</button></a>
                     <p class="mt-5">Giao hàng tận nơi <span>1800 9061</span></p>
                 </div>
             </div>

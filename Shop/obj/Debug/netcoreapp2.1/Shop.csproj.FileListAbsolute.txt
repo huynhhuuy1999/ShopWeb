@@ -31,3 +31,8 @@ E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\
 E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\SanPham\ChiTietSanPham.g.cshtml.cs
 E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\SanPham\ThucDon.g.cshtml.cs
 E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\SanPham\DatHang.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\SanPham\XacNhanDatHang.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\TaiKhoan\DangNhap.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\TaiKhoan\ThanhCong.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\TaiKhoan\DangKy.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\SanPham\DatHangThanhCong.g.cshtml.cs

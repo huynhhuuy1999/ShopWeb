@@ -1,0 +1,87 @@
+@model Shop.Models.Taikhoan
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/css/Customer/TaiKhoan/styleDangNhap.css" rel="stylesheet" />
+    <link href="~/bootrap4/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+    <div class="header w-100 d-flex">
+        <span class="ml-2">ABCShop</span>
+    </div>
+    <div class="login d-flex">
+       <form method="POST" asp-controller="taikhoan" asp-action="dangnhap">
+            <div class="form-group">
+                <label for="Username">User</label>
+                <input type="text" class="form-control" id="Username" placeholder="Tên tài khoản" name="Username" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="password" class="form-control" id="Password" placeholder="Mật khẩu" name="Password">
+            </div>
+            <div class="button d-flex">
+                <button type="submit" class="btn">Đăng nhập</button>
+                <a href="/taikhoan/dangky"><button type="button" class="btn ml-5">Tạo tài khoản</button></a>
+            </div>
+            @if(ViewBag.error!=null){
+                <div class="alert alert-danger mt-3" role="alert">
+                    @ViewBag.error
+                </div>
+            }
+        </form>
+    </div>
+    <div class="footer">
+        <div class="container pb-2">
+            <div class="row w-100">
+                <div class="col-md-3">
+                    <h2>ABC Shop</h2>
+                </div>
+                <div class="col-md-3">
+                    <h3>About</h3>
+                    <div class="mt-2">
+                        <p>Về chúng tôi</p>
+                        <p>Hạt cà phê..</p>
+                        <p>Blog</p>
+                        <p>Cơ hội nghề nghiệp</p>
+                        <p>Cửa hàng</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h3>ALWAYS-ON SUPPORT</h3>
+                    <div class="mt-2">
+                        <p>Delivery 1800 6936 (07:00-21:00)</p>
+                        <p>Support 02871 087 088 (07:00-21:00)</p>
+                    </div>
+                    <h3 class="mt-2">ADDRESS</h3>
+                    <div class="mt-2">
+                        <p>62 Tran Quang Khai, Tan Dinh, Quan 1 Ho Chi Minh, Vietnam</p>
+                        <p>02871 087 088</p>
+                        <p>hi@abcshop.vn</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h3>DELIVERY</h3>
+                    <div class="mt-2">
+                        <p>Shipping methods</p>
+                        <p>Payment</p>
+                        <p>Cash voucher</p>
+                        <p>Return</p>
+                        <p>Exchange</p>
+                    </div>
+                </div>
+            </div>
+            <div style="border-bottom:1px solid white;width:100%" class="mt-3"></div>
+            <div class="row pt-2">
+                <div class="col-md-6">Copyright &copy 2020 The MilkTea House. All rights reserved.</div>
+                <div class="col-md-6">
+                    Privacy Policy | Terms of Use
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

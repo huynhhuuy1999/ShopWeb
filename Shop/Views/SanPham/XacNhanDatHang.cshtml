@@ -1,0 +1,139 @@
+@model Shop.Models.Hoadon;
+@using Microsoft.AspNetCore.Http;
+
+
+<link href="~/css/Customer/SanPham/styleXacNhanDatHang.css" rel="stylesheet" />
+<div>
+    <div class="inf-receiver">
+        <h3>Xác nhận thông tin đơn hàng</h3>
+        <hr>
+        <form asp-controller="sanpham" asp-action="xacnhandathang" method="POST" class="ml-5" id="myform">
+            <label for="SoNha">Số nhà</label><br>
+            <i class="far fa-map-marker-alt"></i>
+            <input type="text" id="SoNha" name="SoNha"><br>
+            <label for="PhiShipId">Quận</label><br>
+            <select name="PhiShipId" id="PhiShipId">
+                <option value="" disabled selected></option>
+                <option value="8">Thủ Đức</option>
+                <option value="1">Quận 1</option>
+                <option value="2">Quận 2</option>
+                <option value="3">Quận 3</option>
+                <option value="4">Quận 4</option>
+                <option value="5">Quận 5</option>
+                <option value="6">Quận 6</option>t
+                <option value="7">Quận 7</option>
+            </select><br>
+            <label for="TenNguoiNhan">Tên người nhận</label><br>
+            <i class="fas fa-user"></i>
+            @if(@Context.Session.GetString("username")!=null){
+                <input type="text" id="TenNguoiNhan" name="TenNguoiNhan" value="@ViewBag.ten"><br>
+            }
+            else{
+                <input type="text" id="TenNguoiNhan" name="TenNguoiNhan"><br>
+            }
+            <label for="Sdt">Số điện thoại</label><br>
+            <i class="fas fa-phone-alt"></i>
+            @if(@Context.Session.GetString("username")!=null){
+                <input type="text" id="Sdt" name="Sdt" value="@ViewBag.sdt"><br>
+            }
+            else{
+                <input type="text" id="Sdt" name="Sdt"><br>
+            }
+            @if(ViewBag.error!=null){
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.error
+                </div>
+            }
+            @if(ViewBag.errorCart!=null){
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.errorCart
+                </div>
+            }
+        </form>
+    </div>
+    <div class="order bg-white p-3">
+        <div class="div-cart">
+            <button class="w-100 btn-cart" id="submit">XÁC NHẬN ĐẶT HÀNG</button>
+        </div>
+        <div class="cart"><hr>
+            <div class="list-product-cart">
+                @foreach(var item in ViewBag.listCart as List<Cart>){
+                <div class='d-flex div-sp' id="@Html.DisplayFor(itemModel => item.SanPhamId)">
+                    <div class='sl rounded-circle'>@Html.DisplayFor(itemModel => item.Soluong)</div>
+                    <div class='inf ml-3'>
+                    <span class='name'>@Html.DisplayFor(itemModel => item.SanPham.TenSanPham)</span><br>
+                    <span class='kichthuoc'>@Html.DisplayFor(itemModel => item.Kichthuoc.TenKichThuoc)<span></div>
+                    <div class='gia' id="@Html.DisplayFor(itemModel => item.SanPham.GiaBanLe)">
+                        <span>@Html.DisplayFor(itemModel => item.Tongtien) ₫</span>
+                    </div>
+                </div>
+                }
+            </div>
+            <div class="sum d-flex">
+                <p>Cộng</p>
+                <span class="tongcong" id=@ViewBag.tongtien>@ViewBag.tongtien ₫</span>
+            </div>
+            <div class="transport d-flex">
+                <p>Vận chuyển</p>
+            </div>
+            <div class="giamgia d-flex">
+                <p>Giảm giá</p>
+                <span class="span-giamgia">0</span>
+            </div>
+            <form asp-controller="sanpham" asp-action="xacnhandathang" method="POST" id="myform" class="d-flex">
+                <input class="w-75 input-giamgia pl-3" type="text" name="GiamGia" placeholder="Nhập mã giảm giá tại đây">
+                <input class="w-25 btn-cart apdung" value="Áp dụng" type="button">
+            </form>
+        </div><hr>
+        <div class="super-sum d-flex">
+            <span>Tổng cộng</span>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $("#submit").click(function(){
+            $("#myform").submit();
+        });
+
+        $("#PhiShipId").change(function(){
+            let phiship = $(this).val();
+            let tongtien = Number($(".tongcong").attr("id"));
+            $.ajax({
+                type:"POST",
+                url:"@Url.Action("CapNhatTongTienHoaDon")",
+                data:{phiship:phiship,tong:tongtien},
+                success:function(data){
+                    let x = Number(data)+Number(tongtien);
+                    $(".transport .phiship").remove();
+                    $(".super-sum p").remove();
+                    $(".transport").append("<span class='phiship'>"+data+" ₫</span>");
+                    $(".super-sum").append("<p class='final-sum'>"+x+" ₫</p>");
+                },
+                error:function(err){
+                    alert(err);
+                }
+            });
+        });
+
+        $(".apdung").click(function(){
+            let magiamgia=$(".input-giamgia").val();
+            $.ajax({
+                type:"POST",
+                url:"@Url.Action("KiemTraMaGiamGia")",
+                data:{magiamgia:magiamgia},
+                success:function(data){
+                    if(data==0){
+                        alert("mã giảm giá không hợp lệ");
+                    }
+                    else{
+                        $(".giamgia .span-giamgia").text(data);
+                    }
+                },
+                error:function(err){
+                    alert(err);
+                }
+            })
+        });
+    });
+</script>

@@ -1,53 +1,57 @@
-html{
+html {
   scroll-behavior: smooth;
 }
-body{
-  background:#EEE;
+body {
+  background: #eee;
 }
 .listCategory {
-    width: 280px;
-    position: sticky;
-    z-index: 1;
-    top: 100px;
-    left: 10px;
-    background: #FFF;
+  width: 280px;
+  position: sticky;
+  z-index: 1;
+  top: 100px;
+  left: 10px;
+  background: #fff;
 }
-.listCategory ul{
+.listCategory ul {
   padding-left: 35px;
   padding-top: 10px;
   padding-bottom: 25px;
 }
 
-.listCategory ul li{
-  margin-top:20px;
+.listCategory ul li {
+  margin-top: 20px;
   list-style-type: none;
 }
-.listCategory ul li a{
-  color: #AAA;
+.listCategory ul li a {
+  color: #aaa;
   font-size: 16px;
   text-transform: uppercase;
   display: block;
   text-decoration: none;
 }
-  .listCategory a:hover {
-    color: black;
+.listCategory a:hover {
+  color: black;
+}
+
+.main {
+  position: relative;
+  /* top:-340px; */
+  width: 700px;
+  top: -270px;
+  /* left: 100px; */
+  margin-left: 290px; /* Same width as the sidebar + left position in px */
+  /* font-size: 28px; Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .listCategory {
+    padding-top: 15px;
   }
-  
-  .main {
-    position: relative;
-    /* top:-340px; */
-    width: 700px;
-    top:-270px;
-    /* left: 100px; */
-    margin-left: 290px; /* Same width as the sidebar + left position in px */
-    /* font-size: 28px; Increased text to enable scrolling */
-    padding: 0px 10px;
+  .listCategory a {
+    font-size: 18px;
   }
-  
-  @media screen and (max-height: 450px) {
-    .listCategory {padding-top: 15px;}
-    .listCategory a {font-size: 18px;}
-  }
+}
 
 /* .order {
     width: 430px;
@@ -67,127 +71,131 @@ body{
   /* top: 230px; */
   left: 1040px;
   background: #eee;
-  margin-top:-250px;
+  margin-top: -250px;
 }
 
-.order .div-cart{
+.order .div-cart {
   position: fixed;
   width: 400px;
 }
-.order .cart{
+.order .cart {
   max-height: 450px;
   margin-top: 30px;
   overflow-y: scroll;
 }
-  @media screen and (max-height: 450px) {
-    .order {padding-top: 15px;}
-    .order a {font-size: 18px;}
+@media screen and (max-height: 450px) {
+  .order {
+    padding-top: 15px;
   }
-
-.main input{
-  padding:5px 0;
+  .order a {
+    font-size: 18px;
+  }
 }
-.main .fa-search{
+
+.main input {
+  padding: 5px 0;
+}
+.main .fa-search {
   position: relative;
   top: 32px;
   left: 15px;
   font-size: 18px;
 }
-.main .tenloai{
+.main .tenloai {
   text-transform: uppercase;
-  padding-bottom:5px;
+  padding-bottom: 5px;
 }
-.main .sanpham{
-  border-bottom:1px solid #EEE;
+.main .sanpham {
+  border-bottom: 1px solid #eee;
 }
-.main .sanpham:hover{
-  border-right: 2px solid #EA8025;
+.main .sanpham:hover {
+  border-right: 2px solid #ea8025;
 }
-.main .sanpham .img{
+.main .sanpham .img {
   width: 80px;
   height: 90px;
   overflow: hidden;
 }
-.sanpham .img img{
+.sanpham .img img {
   background-position: center;
   width: 100%;
-  height:100%;
+  height: 100%;
 }
-.sanpham .tensp{
+.sanpham .tensp {
   font-weight: bold;
   text-transform: uppercase;
 }
-.fa-plus-circle{
+.fa-plus-circle {
   float: right;
   margin-right: 25px;
   font-size: 30px;
-  color:#EA8025 ;
+  color: #ea8025;
   cursor: pointer;
 }
-.btn-cart{
-  border:none;
-  background-color: #EA8025;
-  color: #FFF;
+.btn-cart {
+  border: none;
+  background-color: #ea8025;
+  color: #fff;
   padding: 7px;
 }
-.input-giamgia{
+/* .input-giamgia{
   padding:7px 0px;
-}
-.dialog{
+} */
+.dialog {
   width: 628px;
   display: none;
   position: fixed;
   overflow: hidden;
   top: 10%;
   left: 50%;
-  margin-left:-300px;
+  margin-left: -300px;
   z-index: 99999999;
-  background-color: #FFF;
+  background-color: #fff;
 }
-.dialog .sanpham{
-  border-bottom: 1px solid #AAA;
+.dialog .sanpham {
+  border-bottom: 1px solid #aaa;
 }
-.dialog .sanpham .img{
+.dialog .sanpham .img {
   height: 90px;
   width: 80px;
   overflow: hidden;
-  padding:10px;
+  padding: 10px;
 }
-.dialog .sanpham .img img{
+.dialog .sanpham .img img {
   width: 100%;
   height: 100%;
   background-position: center;
   background-size: cover;
 }
-.dialog .sanpham .mota{
+.dialog .sanpham .mota {
   padding: 10px;
 }
-.dialog .sanpham .mota span{
+.dialog .sanpham .mota span {
   font-weight: bold;
   text-transform: capitalize;
 }
-.dialog .size{
+.dialog .size {
   padding: 10px;
-  border-bottom: 1px solid #AAA;
+  border-bottom: 1px solid #aaa;
 }
-.dialog .size div{
+.dialog .size div {
   margin-left: 20px;
 }
-.more{
-  background-color: #FFF;
-  padding:10px;
+.more {
+  background-color: #fff;
+  padding: 10px;
 }
-.more .footerr{
+.more .footerr {
   align-items: center;
 }
-.more .footerr .btn-add-cart{
-  padding:10px;
+.more .footerr .btn-add-cart {
+  padding: 10px;
   margin-left: 190px;
 }
-.more .footerr .btn-add-cart button{
-  border:none;
-  background-color: #EA8025;
-  color: #FFF;
+.more .footerr .btn-add-cart button {
+  border: none;
+  background-color: #ea8025;
+  color: #fff;
   font-weight: bold;
   font-size: 13px;
   text-align: center;
@@ -195,49 +203,49 @@ body{
   width: 200px;
   height: 40px;
 }
-.more .footerr .quanlity input[name='soluong']{
+.more .footerr .quanlity input[name="soluong"] {
   width: 40px;
   border: none;
   font-size: 25px;
 }
-.more .footerr .quanlity{
+.more .footerr .quanlity {
   align-items: center;
   margin-left: 20px;
 }
-.more .footerr .quanlity .fa-minus-circle{
+.more .footerr .quanlity .fa-minus-circle {
   margin-right: 25px;
   font-size: 40px;
-  color: #EA8025;
+  color: #ea8025;
   cursor: pointer;
 }
-.more .footerr .quanlity .fa-plus-circle{
+.more .footerr .quanlity .fa-plus-circle {
   margin-left: 15px;
   font-size: 40px;
-  color: #EA8025;
+  color: #ea8025;
 }
-.list-product-cart .sl{
+.list-product-cart .sl {
   width: 30px;
   height: 30px;
   display: flex;
   justify-content: center;
   margin: 10px 0;
-  color:#FFF;
-  background-color: #EA8025;
+  color: #fff;
+  background-color: #ea8025;
   align-items: center;
 }
 
-.list-product-cart .inf .name{
+.list-product-cart .inf .name {
   font-weight: bold;
   font-size: 15px;
   text-transform: capitalize;
 }
-.list-product-cart .inf .kichthuoc{
+.list-product-cart .inf .kichthuoc {
   font-size: 12px;
 }
-.list-product-cart .div-sp{
-  border-bottom: 1px solid #AAA;
+.list-product-cart .div-sp {
+  border-bottom: 1px solid #aaa;
 }
-.list-product-cart .gia{
+.list-product-cart .gia {
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
@@ -245,10 +253,10 @@ body{
   margin-right: 30px;
   align-items: center;
 }
-.sum .tongcong{
+.sum .tongcong {
   margin-left: 250px;
 }
-.order .super-sum .final-sum{
+.order .super-sum .final-sum {
   margin-left: 190px;
   font-size: 25px;
   font-weight: bold;

@@ -10,33 +10,26 @@
   </div>
   <div class="order bg-white p-3">
     <div class="div-cart">
-      <button class="w-100 btn-cart">XEM GIỎ HÀNG</button>
+      <a href="/sanpham/XacNhanDatHang/"><button class="w-100 btn-cart">ĐẶT HÀNG</button></a>
     </div>
     <div class="cart"><hr>
       <div class="list-product-cart">
-        @foreach(var item in Model){
-          <div class='d-flex div-sp' id="@Html.DisplayFor(itemModel => item.SanPhamId)">
-            <div class='sl rounded-circle'>1</div>
-            <div class='inf ml-3'>
-              <span class='name'>@Html.DisplayFor(itemModel => item.TenSanPham)</span><br>
-              <span class='kichthuoc'>Nhỏ<span></div>
-            <div class='gia' id="+soluong*radioValue+">
-              <span>@Html.DisplayFor(itemModel => item.GiaBanLe) Đ</span>
-            </div>
-          </div>
-        }
+        @foreach(var item in ViewBag.listCart as List<Cart>){
+                <div class='d-flex div-sp' id="@Html.DisplayFor(itemModel => item.SanPham.SanPhamId)">
+                    <div class='sl rounded-circle'>@Html.DisplayFor(itemModel => item.Soluong)</div>
+                    <div class='inf ml-3'>
+                    <span class='name'>@Html.DisplayFor(itemModel => item.SanPham.TenSanPham)</span><br>
+                    <span class='kichthuoc'>@Html.DisplayFor(itemModel => item.Kichthuoc.TenKichThuoc)<span></div>
+                    <div class='gia' id="@Html.DisplayFor(itemModel => item.SanPham.GiaBanLe)">
+                        <span>@Html.DisplayFor(itemModel => item.Tongtien) ₫</span>
+                    </div>
+                </div>
+                }
       </div>
-      <div class="sum d-flex">
-        <p>Cộng</p>
-      </div>
-      <p>Vận chuyển</p>
-      <form action="" class="d-flex">
-        <input class="w-75 input-giamgia pl-3" type="text" name="GiamGia" placeholder="Nhập mã giảm giá tại đây">
-        <button class="w-25 btn-cart">Áp dụng</button>
-      </form>
     </div><hr>
     <div class="super-sum d-flex">
         <span>Tổng cộng</span>
+        <p class="final-sum">@ViewBag.tongtien ₫</p>
     </div>
   </div>
   <div class="main">
@@ -59,7 +52,7 @@
                     <span class="tensp">
                       @Html.DisplayFor(itemdata => item2.TenSanPham)
                     </span><br>
-                    <span>@Html.DisplayFor(itemData => item2.GiaBanLe) đ</span><br>
+                    <span>@Html.DisplayFor(itemData => item2.GiaBanLe) ₫</span><br>
                     <i class="fal fa-plus-circle add-cart" id="icon+@Html.DisplayFor(itemData => item2.SanPhamId)"></i>
                   </div>
                 </div>
@@ -96,7 +89,7 @@
   </div>
 </div>
 <script>
-  $(document).on('click',".add-cart, .list-product-cart .div-sp",function(){
+  $(document).on('click','.add-cart, .list-product-cart .div-sp',function(){
     let masp= $(this).attr("id");
     let bien=masp;
     if(masp.indexOf("icon")!==-1)
@@ -133,7 +126,7 @@
             let tong=giaBanLe+giaThem;
             if(giaThem!==0){
               $(".dialog .size").append("<div><input type='radio' id="+data[j].kichThuocid+" value="+tong+" name='size' onclick=clickAddCart()>\
-                <label id='label"+data[j].kichThuocid+"'>"+data[j].tenKichThuoc+" (+"+giaThem+" đ)</label><div>");
+                <label id='label"+data[j].kichThuocid+"'>"+data[j].tenKichThuoc+" (+"+giaThem+" ₫)</label><div>");
             }
             else{
               $(".dialog .size").append("<div><input type='radio' id="+data[j].kichThuocid+" value="+tong+" name='size' checked onclick=clickAddCart()>\
@@ -141,10 +134,10 @@
             }
           }
           let radioValue = $("input[name='size']:checked").val();
-          $(".more .footerr .btn-add-cart").append("<button id="+data[0].sanPham.sanPhamId+" class='btn-add'><span>THÊM VÀO GIỎ</span><span class='ml-4 price'>"+radioValue+" Đ</span></button>");
+          $(".more .footerr .btn-add-cart").append("<button id="+data[0].sanPham.sanPhamId+" class='btn-add'><span>THÊM VÀO GIỎ</span><span class='ml-4 price'>"+radioValue+" ₫</span></button>");
           $(".more .footerr .quanlity").append("\
             <i class='fal fa-minus-circle' onclick=clickSubtractQuanlity()></i>\
-            <input type='number' name='soluong' value=1 min=1 readonly>\
+            <input type='number' name='soluong' value=1 min=0 readonly>\
             <i class='fal fa-plus-circle' onclick=clickPlusQuanlity()></i>");
         },
         error:function(err){
@@ -181,7 +174,7 @@
     let radioValue = $("input[name='size']:checked").val();
     let soluong= $("input[name='soluong']").val();
     let changeSoluong = Number(soluong);
-    if(Number(soluong)!==1)
+    if(Number(soluong)!==0)
       changeSoluong=Number(soluong)-1;
     $("input[name='soluong']").val(changeSoluong);
     let gia = radioValue*changeSoluong;
@@ -190,36 +183,29 @@
   $(document).on('click','.btn-add',function(){
     let idSP= Number($(this).attr("id"));
     let soluong= $("input[name='soluong']").val();
-    let radioValue = $("input[name='size']:checked").val();
     let idRadioValue=$("input[name='size']:checked").attr("id");
-    let idLabel= "label"+idRadioValue;
-    let tenKichThuoc= $("#"+idLabel).text();
+    let TongTien=0;
     $.ajax({
       type:"POST",
-      url:"@Url.Action("LayKichThuoc")",
-      data:{maspp:idSP},
+      url:"@Url.Action("LuuGioHang")",
+      data:{maspp:idSP,soluong:soluong,kichthuocId:idRadioValue},
       success:function(data){
-        $(".list-product-cart #"+data[0].sanPham.sanPhamId).remove();
-        $(".list-product-cart").append("<div class='d-flex div-sp' id="+data[0].sanPham.sanPhamId+"><div class='sl rounded-circle'>"+soluong+"</div>\
-          <div class='inf ml-3'><span class='name'>"+data[0].sanPham.tenSanPham+"</span><br>\
-          <span class='kichthuoc'>"+tenKichThuoc+"<span></div>\
-          <div class='gia' id="+soluong*radioValue+"><span>"+soluong*radioValue+" Đ</span></div></div>");
-        let arrGia=$('.gia').map(function(){
-          return Number($(this).attr("id"));
-        });
-        let tongCong=0;
-        for(let i=0;i<arrGia.length;i++){
-          tongCong=tongCong+arrGia[i];
-        }
-        $('.sum .tongcong').remove();
-        $('.order .super-sum .final-sum').remove();
-        $('.sum').append("<span class='tongcong'>"+tongCong+" Đ</span>");
-        $('.order .super-sum').append("<p class='final-sum'>"+tongCong+" ₫</p>");
+        $(".list-product-cart").empty();
+        $(".super-sum p").remove();
+          for(let i=0;i<data.length;i++){
+            $(".list-product-cart").append("<div class='d-flex div-sp' id="+data[i].sanPham.sanPhamId+"><div class='sl rounded-circle'>"+data[i].soluong+"</div>\
+            <div class='inf ml-3'><span class='name'>"+data[i].sanPham.tenSanPham+"</span><br>\
+            <span class='kichthuoc'>"+data[i].kichthuoc.tenKichThuoc+"<span></div>\
+            <div class='gia' id="+data[i].tongtien+"><span>"+data[i].tongtien+" ₫</span></div></div>");
+            TongTien=TongTien+data[i].tongtien;
+          }
+        $(".super-sum").append("<p class='final-sum'>"+TongTien+" ₫<p>");
       },
       error:function(err){
         alert(err);
       }
     });
+    
     $('#over, .dialog').fadeOut(300 , function() {
       $('.dialog').css('visibility','hidden');
       $('body').css('overflow','visible');

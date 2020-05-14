@@ -7,5 +7,6 @@ namespace Shop.Models
     {
         public int MaGiamGiaId { get; set; }
         public float? PhanTram { get; set; }
+        public string MaGiamGia1 { get; set; }
     }
 }

@@ -5,13 +5,37 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Models;
+using Microsoft.AspNetCore.Http;
+using System.Text;
 
 namespace Shop.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        // private readonly ISession session;
+        // public HomeController(IHttpContextAccessor httpContextAccessor)
+        // {
+        //     this.session = httpContextAccessor.HttpContext.Session;
+        // }
+        private string RandomString(int size, bool lowerCase)
         {
+            StringBuilder builder = new StringBuilder();
+            Random random = new Random();
+            char ch ;
+            for(int i=0; i<size; i++)
+            {
+            ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65))) ;
+            builder.Append(ch); 
+            }
+            if(lowerCase)
+            return builder.ToString().ToLower();
+            return builder.ToString();
+        }
+        public IActionResult Index()
+        {   
+            if(HttpContext.Session.GetString("idSession")==null){
+                HttpContext.Session.SetString("idSession",RandomString(9,true));
+            }
             var dbContext=new shopContext();
             var SanPhamm= (from sp in dbContext.Sanpham
                             join h in dbContext.Hinhanh
