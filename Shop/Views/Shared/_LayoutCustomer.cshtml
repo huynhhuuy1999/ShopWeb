@@ -16,8 +16,20 @@
             <li><a href="/">ABC Shop</a></li>
             <li><a href="/home/index">Trang chủ</a></li>
             <li><a href="/sanpham/thucdon">Thực đơn</a></li>
-            <li><a href="/taikhoan/dangnhap">Đăng nhập</a></li>
-            <li><i class="fas fa-search"></i></li>
+
+            @if (Context.Session.GetString("username")!=null)
+            {
+                <li>
+                    <a href="">@Context.Session.GetString("username")</a>
+                    <ul class="submenu">
+                        <li><a href="/khachhang/xemthongtinkhachhang/@Context.Session.GetString("username")">Thông tin cá nhân</a></li>
+                        <li><a href="/taikhoan/logout">Đăng xuất</a></li>
+                    </ul>
+                </li>
+            }
+            else{
+                <li><a href="/taikhoan/dangnhap">Đăng nhập</a></li>
+            }
         </ul>
     </div>
     <div class="abc">

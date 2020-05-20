@@ -70,6 +70,18 @@ namespace Shop
                 routes.MapRoute(
                     name:"DatHang",
                     template:"{controller=SanPham}/{action=DatHang}/{id}");
+                routes.MapRoute(
+                    name:"dangky",
+                    template:"{controller=taikhoan}/{action=Dangky}");
+                routes.MapRoute(
+                    name:"dangnhap",
+                    template:"{controller=taikhoan}/{action=dangnhap}");
+                routes.MapRoute(
+                    name:"dangxuat",
+                    template:"{controller=taikhoan}/{action=logout}");
+                routes.MapRoute(
+                    name:"xemthongtinkhachhang",
+                    template:"{controller=khachhang}/{action=XemThongTinKhachHang}/{id}");
             });
         }
     }

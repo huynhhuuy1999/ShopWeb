@@ -1,4 +1,5 @@
-@model Shop.Models.Khachhang;
+@* @model Shop.Models.Khachhang; *@
+@model Shop.Models.Taikhoan;
 @using Microsoft.AspNetCore.Http;
 @{
     Layout = null;
@@ -19,12 +20,20 @@
        <form method="POST" asp-controller="taikhoan" asp-action="dangky">
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="user">Tên tài khoản</label>
-                    <input type="text" class="form-control" id="user" placeholder="Tên tài khoản" name="user" autocomplete="off">
+                    <label for="username">Tên tài khoản</label>
+                    @* <input type="text" class="form-control" id="user" placeholder="Tên tài khoản" name="user" autocomplete="off"> *@
+                    <input type="text" class="form-control" id="username" placeholder="Tên tài khoản" name="username" autocomplete="off">
+                    @* @if(Html.ValidationMessageFor(model=>model.Username)!=null){
+                       <br><span>@Html.ValidationMessageFor(model=>model.Username)</span>
+                    } *@
+                    @if(ViewBag.errUsername!=null){
+                        <span class="ml-2" style="color: red;font-size:14px">@ViewBag.errUsername</span>
+                    }
+                    
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="pass">Mật khẩu</label>
-                    <input type="password" class="form-control" id="pass" placeholder="Mật khẩu" name="password" autocomplete="off">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" class="form-control" id="password" placeholder="Mật khẩu" name="password" autocomplete="off">
                 </div>
             </div>
             <div class="form-group">

@@ -385,6 +385,10 @@ namespace Shop.Models
             {
                 entity.ToTable("taikhoan");
 
+                entity.HasIndex(e => e.Username)
+                    .HasName("UQ_TAIKHOAN_USERNAME")
+                    .IsUnique();
+
                 entity.Property(e => e.TaiKhoanId).HasColumnType("int(11)");
 
                 entity.Property(e => e.KichHoat).HasColumnType("tinyint(4)");

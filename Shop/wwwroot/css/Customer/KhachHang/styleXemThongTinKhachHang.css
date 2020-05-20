@@ -1,0 +1,12 @@
+.success{
+    color:red;
+    font-size: 12;
+}
+.btn-luu{
+    padding: 10px 15px;
+    background-color: #ea8025;
+    color: #FFF;
+    border: none;
+    border-radius: 7px;
+    margin-top: 10px;
+}

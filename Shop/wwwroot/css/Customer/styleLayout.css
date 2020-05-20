@@ -25,9 +25,13 @@
 .menu li {
 	padding: 20px 35px;
 	list-style-type: none;
+	display: inline-block;
+	position: relative;
+	margin-left: 0;
 }
 .menu li:hover {
     color:red;
+    background-color: #ea8025;
 }
 .footer {
     background-color: #000;
@@ -43,4 +47,27 @@
 }
 .col-md-3 h3{
     font-size:22px;
+}
+
+.submenu{
+    display: none;
+    position: absolute;
+    left: -40px;
+    top: 66px;
+}
+.submenu li{
+    color:#FFF;
+    background-color: #000;
+    font-size: 14px;
+    width: 200px;
+    margin-left: 0;
+}
+.submenu li:hover{
+    background-color: #ea8025;
+}
+.menu a{
+    display: block;
+}
+li:hover .submenu{
+    display: block;
 }

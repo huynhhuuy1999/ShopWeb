@@ -1,0 +1,31 @@
+.thanks{
+    color: #ea8025;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+.voucher{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border:3px solid #ea8025;
+    border-radius: 25px;
+    height: 300px;
+    width: 430px;
+}
+.voucher p{
+    color: #ea8025;
+    font-size:25px;
+    font-weight: bold;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.voucher .x{
+    text-transform: uppercase;
+}
+.magiamgia{
+    text-transform: lowercase;
+}

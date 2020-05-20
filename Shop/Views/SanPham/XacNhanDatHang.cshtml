@@ -80,10 +80,12 @@
                 <p>Giảm giá</p>
                 <span class="span-giamgia">0</span>
             </div>
-            <form asp-controller="sanpham" asp-action="xacnhandathang" method="POST" id="myform" class="d-flex">
-                <input class="w-75 input-giamgia pl-3" type="text" name="GiamGia" placeholder="Nhập mã giảm giá tại đây">
+            @* <form asp-controller="sanpham" asp-action="xacnhandathang" method="POST" id="myform" class="d-flex"> *@
+            <div class="d-flex">
+                <input class="w-75 input-giamgia pl-3" type="text" name="GiamGia" form="myform" placeholder="Nhập mã giảm giá tại đây">
                 <input class="w-25 btn-cart apdung" value="Áp dụng" type="button">
-            </form>
+            </div>
+            @* </form> *@
         </div><hr>
         <div class="super-sum d-flex">
             <span>Tổng cộng</span>
@@ -118,6 +120,8 @@
 
         $(".apdung").click(function(){
             let magiamgia=$(".input-giamgia").val();
+            let textFinalSum = $(".final-sum").text();
+            let sum = Number(textFinalSum.slice(0,textFinalSum.length-2));
             $.ajax({
                 type:"POST",
                 url:"@Url.Action("KiemTraMaGiamGia")",
@@ -127,7 +131,10 @@
                         alert("mã giảm giá không hợp lệ");
                     }
                     else{
-                        $(".giamgia .span-giamgia").text(data);
+                        let finalSum = sum -data;
+                        $(".giamgia .span-giamgia").text(data +" ₫");
+                        $(".super-sum .final-sum").remove();
+                        $(".super-sum").append("<p class='final-sum'>"+finalSum+" ₫</p>");
                     }
                 },
                 error:function(err){

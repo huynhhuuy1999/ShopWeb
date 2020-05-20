@@ -557,6 +557,7 @@ namespace Shop.Controllers
                 }
                 //lay tien giam gia
                 float? TienGiamGia =0;
+                
                 if(GiamGia !=null){
                     var magiamgia = (from gg in dbContext.Magiamgia
                                     where gg.MaGiamGia1==GiamGia
@@ -566,6 +567,10 @@ namespace Shop.Controllers
                     }
                     else{
                         TienGiamGia=tongTienChuaShip*magiamgia[0].PhanTram;
+                        //xóa mã giảm giá khi đã được sử dụng
+                        var discount = dbContext.Magiamgia.First(a=> a.MaGiamGiaId== magiamgia[0].MaGiamGiaId);
+                        dbContext.Magiamgia.Remove(discount);
+                        dbContext.SaveChanges();
                     }
                 }
                 //lay tong tien thanh toan
@@ -622,9 +627,20 @@ namespace Shop.Controllers
                     dbContext.Chitiethoadon.Add(cthd);
                     dbContext.SaveChanges();
                 }
+                // tạo mã giảm giá sau khi mua hàng
+                string randomMaGiamGia= RandomString(6,true);
+                var MaGiamGia = new Magiamgia(){
+                    MaGiamGia1 = randomMaGiamGia,
+                    PhanTram = (float?)0.05
+                };
+                dbContext.Magiamgia.Add(MaGiamGia);
+                dbContext.SaveChanges();
+
                 HttpContext.Session.Remove("idSession");
                 HttpContext.Session.SetString("idSession",RandomString(9,true));
-                return RedirectToAction("DatHangThanhCong","sanpham");
+                // return RedirectToAction("DatHangThanhCong","sanpham");
+                ViewBag.maGiamGia = randomMaGiamGia;
+                return RedirectToAction("DatHangThanhCong","sanpham",new{discountId = randomMaGiamGia});
             }
         }
 
@@ -660,7 +676,8 @@ namespace Shop.Controllers
             }
         }
 
-        public IActionResult DatHangThanhCong(){
+        public IActionResult DatHangThanhCong(string discountId){
+            ViewBag.maGiamGia= discountId;
             return View();
         }
     }
