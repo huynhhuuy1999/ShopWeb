@@ -37,3 +37,10 @@ E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\
 E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\TaiKhoan\DangKy.g.cshtml.cs
 E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\SanPham\DatHangThanhCong.g.cshtml.cs
 E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\KhachHang\XemThongTinKhachHang.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\KhachHang\DanhSachKhachHang.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\KhachHang\SuaKhachHang.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\TaiKhoan\DangNhapAdmin.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\KhuyenMai\XemDanhSachKhuyenMai.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\KhuyenMai\ThemKhuyenMai.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\SanPham\ThemSanPham.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\SanPham\XemDanhSachSanPham.g.cshtml.cs

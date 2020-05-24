@@ -1,0 +1,45 @@
+@{
+    Layout = "_LayoutAdmin";
+}
+<link rel="stylesheet" href="~/css/Admin/KhuyenMai/styleXemDanhSachKhuyenMai.css">
+
+<div class="table1">
+    <table id="verticalScroll" class="table table-sm table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Tên khuyến mãi</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Phần trăm giảm</th>
+                <th scope="col">Ngày bắt đầu</th>
+                <th scope="col">Ngày kết thúc</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Sửa</th>
+                <th scope="col">Xóa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.khuyenmai as List<Khuyenmai>)
+            {   
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.TenKhuyenMai)</td>
+                    <td>@Html.DisplayFor(modelItem => item.MoTa)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PhanTramGiam)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NgayBatDau)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NgayKetThuc)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TrangThai)</td>
+                    <td><a href="/khuyenmai/suakhuyenmai">Sửa</a></td>
+                    <td><a href="/khuyenmai/xoakhuyenmai">Xóa</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+			$('#verticalScroll').DataTable({
+				"scrollY": "380px",
+				"scrollCollapse": true
+			});
+			$('.dataTables_length').addClass('bs-select');
+		});
+</script>

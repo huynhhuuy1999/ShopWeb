@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+	<link rel="stylesheet" href="~/css/Admin/styleLayout.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+	<link rel="stylesheet" href="~/fontawesome-pro-5.12.0-web/css/all.min.css">
+    <link href="~/bootrap4/css/bootstrap.min.css" rel="stylesheet" />
+	
+</head>
+<body>
+	<div id="mySidebar" class="sidebar">
+		<div class="box">
+			<h2>ABC SHOP</h2>
+			  <button class="dropdown-btn menu">
+			  	<i class="fas fa-cheese"></i> Sản phẩm
+			  </button>
+			  <div class="dropdown-container sp menu">
+				<a href="/sanpham/xemdanhsachsanpham">Xem danh sách</a>
+			    <a href="/sanpham/themsanpham">Thêm sản phẩm</a>
+			    <a href="#">Link 3</a>
+			  </div>
+			  <button class="dropdown-btn menu">
+			  	<i class="fas fa-cheese"></i> Khuyến mãi
+			  </button>
+			  <div class="dropdown-container sp menu">
+			    <a href="/khuyenmai/xemdanhsachkhuyenmai">Xem danh sách</a>
+			    <a href="/khuyenmai/themkhuyenmai">Thêm khuyến mãi</a>
+			  </div>
+			  <button class="dropdown-btn menu">
+			  	<i class="fad fa-users"></i> Nhân viên
+			  </button>
+			  <div class="dropdown-container menu">
+			    <a href="#">Link 1</a>
+			    <a href="#">Link 2</a>
+			    <a href="#">Link 3</a>
+			  </div>
+			  <button class="dropdown-btn menu">
+			  	<i class="fas fa-user"></i> Khách hàng
+			  </button>
+			  <div class="dropdown-container menu">
+			    <a href="/khachhang/danhsachkhachhang">Xem danh sách</a>
+			    <a href="#">Link 2</a>
+			    <a href="#">Link 3</a>
+			  </div>
+			  <a href="#" class="menu"><i class="fad fa-money-bill"></i> Hóa đơn</a>
+			  <button class="dropdown-btn menu">
+			  	<i class="fas fa-shield-alt"></i> Tài khoản
+			  </button>
+			  <div class="dropdown-container menu">
+			    <a href="#">Link 1</a>
+			    <a href="#">Link 2</a>
+			    <a href="#">Link 3</a>
+			  </div>
+			  <a href="#" class="menu">Contact</a>
+		</div>
+		
+	</div>
+
+	<div id="main" style="position: fixed;top: 0">
+	  <button class="openbtn"><i class="fas fa-align-left"></i></button>
+	</div>
+	<div id="content" style="margin-top: 50px;transition: margin-left .5s;height: 1000px;">
+		@RenderBody()
+	</div>
+
+	<script>
+		var dropdown = document.getElementsByClassName("dropdown-btn");
+		var i;
+		for (i = 0; i < dropdown.length; i++) {
+		  dropdown[i].addEventListener("click", function() {
+		    this.classList.toggle("active");
+		    var dropdownContent = this.nextElementSibling;
+		    if (dropdownContent.style.display === "block") {
+		      dropdownContent.style.display = "none";
+		    } else {
+		      dropdownContent.style.display = "block";
+		    }
+		  });
+		}
+		$(document).ready(function(){
+			let i =1;
+			$(".openbtn").click(function(){
+				if(i===1){
+					$("#mySidebar").css('width','250px');
+					$("#main,#content").css('margin-left',"250px");
+					i=0;
+				}
+				else{
+					$("#mySidebar").css('width','0');
+					$("#main,#content").css('margin-left',"0");
+					i=1;
+				}
+			});
+			
+		});
+	</script>
+</body>
+</html>

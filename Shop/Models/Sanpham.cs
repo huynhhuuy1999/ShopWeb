@@ -17,7 +17,6 @@ namespace Shop.Models
         public string Mota { get; set; }
         public float? GiaGoc { get; set; }
         public float? GiaBanLe { get; set; }
-        public int? Kho { get; set; }
         public int? TrangThai { get; set; }
         public int? PhanLoaiId { get; set; }
         public int? KhuyenMaiId { get; set; }

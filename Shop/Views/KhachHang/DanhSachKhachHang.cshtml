@@ -1,0 +1,43 @@
+@{
+    Layout = "_LayoutAdmin";
+}
+<link rel="stylesheet" href="~/css/Admin/KhachHang/styleDanhSachKhachHang.css">
+
+<div class="table1">
+    <table id="verticalScroll" class="table table-sm table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Họ tên</th>
+                <th scope="col">Ngày sinh</th>
+                <th scope="col">Email</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col">Địa chỉ</th>
+                <th scope="col">Sửa</th>
+                <th scope="col">Xóa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.khachhang as List<Khachhang>)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.HoTen)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NgaySinh)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Sdt)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DiaChi)</td>
+                    <td><a href="/khachhang/suakhachhang">Sửa</a></td>
+                    <td><a href="">Xóa</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+			$('#verticalScroll').DataTable({
+				"scrollY": "380px",
+				"scrollCollapse": true
+			});
+			$('.dataTables_length').addClass('bs-select');
+		});
+</script>

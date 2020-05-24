@@ -353,8 +353,6 @@ namespace Shop.Models
 
                 entity.Property(e => e.HinhAnhId).HasColumnType("int(11)");
 
-                entity.Property(e => e.Kho).HasColumnType("int(11)");
-
                 entity.Property(e => e.KhuyenMaiId).HasColumnType("int(11)");
 
                 entity.Property(e => e.Mota).HasColumnType("varchar(500)");

@@ -1,0 +1,14 @@
+.table1{
+	margin-top: 30px;
+	margin-right: 50px;
+	margin-left: 50px;
+}
+.table1 table{
+	margin-bottom: 0;
+}
+.dataTables_info{
+	margin-top: 25px;
+}
+.paging_simple_numbers{
+	margin-top: 25px;
+}

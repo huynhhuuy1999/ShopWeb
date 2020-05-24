@@ -20,6 +20,9 @@
                         <a href='/SanPham/ChiTietSanPham/@Html.DisplayFor(modelItem => item.SanPhamId)'>
                              <img src="~/images/@Html.DisplayFor(modelItem => item.HinhAnh.TenFile)" alt="Alternate Text" class="img-responsive" />
                         </a>
+                        @if(item.KhuyenMaiId!=null){
+                            <div class="khuyenmai p-2"><span>-@Html.DisplayFor(modelItem => item.KhuyenMai.PhanTramGiam)%</span></div>
+                        }
                     </div>
                     <div class="info">
                         <p class="name-Item">@Html.DisplayFor(modelItem =>item.TenSanPham)</p>

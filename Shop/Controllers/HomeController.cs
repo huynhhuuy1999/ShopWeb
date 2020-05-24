@@ -40,6 +40,9 @@ namespace Shop.Controllers
             var SanPhamm= (from sp in dbContext.Sanpham
                             join h in dbContext.Hinhanh
                             on sp.HinhAnhId equals h.HinhAnhId
+                            join km in dbContext.Khuyenmai
+                            on sp.KhuyenMaiId equals km.KhuyenMaiId into x
+                            from subkm in x.DefaultIfEmpty()
                             where sp.TrangThai == 1
                             select new{
                                 SanPhamId= sp.SanPhamId,
@@ -47,19 +50,25 @@ namespace Shop.Controllers
                                 Mota = sp.Mota,
                                 GiaBanLe = sp.GiaBanLe,
                                 Hinhanh= h.TenFile,
-                                Kho = sp.Kho
-                            });
+                                KhuyenMaiId = sp.KhuyenMaiId,
+                                PhanTramGiam = subkm.PhanTramGiam
+                            }).Take(7);
             
             List<Sanpham> List = new List<Sanpham>();
             foreach(var sp in SanPhamm){
                 Sanpham s= new Sanpham();
                 Hinhanh h = new Hinhanh();
+                Khuyenmai k = new Khuyenmai();
                 s.SanPhamId= sp.SanPhamId;
                 s.TenSanPham=sp.TenSanPham;
                 s.Mota=sp.Mota;
                 s.GiaBanLe=sp.GiaBanLe;
-                s.Kho=sp.Kho;
+                s.KhuyenMaiId = sp.KhuyenMaiId;
                 h.TenFile=sp.Hinhanh;
+                //xử lý chuyển phần trăm giảm sang %
+                
+                k.PhanTramGiam= sp.PhanTramGiam*100;
+                s.KhuyenMai = k;
                 s.HinhAnh=h;
                 List.Add(s);
             }

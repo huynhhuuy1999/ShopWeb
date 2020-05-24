@@ -123,3 +123,17 @@
     height: 350px;
     background-size: cover;
 }
+.khuyenmai{
+    width: 100px;
+    height: 50px;
+    background-color: red;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.khuyenmai span{
+    color: #FFF;
+    font-weight: bold;
+    float: right;
+    font-size: 25px;
+}

@@ -27,6 +27,10 @@
                           <a href='/sanpham/chitietsanpham/@Html.DisplayFor(modelItem=>item2.SanPhamId)'>
                               <img src="~/images/@Html.DisplayFor(modelItem => item2.HinhAnh.TenFile)" alt="Alternate Text" class="img-responsive" />
                           </a>
+                          @if(item2.KhuyenMaiId!=null){
+                              <div class="khuyenmai"><span>@Html.DisplayFor(itemModel => item2.KhuyenMai.PhanTramGiam)</span></div>
+                          }
+                          
                       </div>
                       <div class="info">
                           <p class="name-Item">@Html.DisplayFor(modelItem =>item2.TenSanPham)</p>
