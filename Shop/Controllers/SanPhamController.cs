@@ -100,6 +100,7 @@ namespace Shop.Controllers
                 sp.KhuyenMaiId=item.KhuyenMaiId;
                  k.PhanTramGiam= item.PhanTramGiam*100;
                  sp.KhuyenMai=k;
+                 sp.GiaGoc = item.GiaBanLe-item.GiaBanLe*item.PhanTramGiam;
                 sp.HinhAnh = h;
                 List.Add(sp);
             }
@@ -116,25 +117,37 @@ namespace Shop.Controllers
             var ListSP = (from sp in dbContext.Sanpham
                           join h in dbContext.Hinhanh
                           on sp.HinhAnhId equals h.HinhAnhId
+                          join km in dbContext.Khuyenmai
+                            on sp.KhuyenMaiId equals km.KhuyenMaiId into x
+                            from subkm in x.DefaultIfEmpty()
                           select new
                           {
                               PhanLoaiId = sp.PhanLoaiId,
                               SanPhamId = sp.SanPhamId,
                               TenSanPham = sp.TenSanPham,
                               GiaBanLe = sp.GiaBanLe,
-                              HinhAnh = h.TenFile
+                              HinhAnh = h.TenFile,
+                              
+                              PhanTramGiam = subkm.PhanTramGiam,
+                              KhuyenmaiId = sp.KhuyenMaiId
                           });
             List<Sanpham> List = new List<Sanpham>();
             foreach (var item in ListSP)
             {
                 var sp = new Sanpham();
                 var h = new Hinhanh();
+                var k = new Khuyenmai();
+                float? giaSauGiam = item.GiaBanLe-item.GiaBanLe*item.PhanTramGiam;
                 sp.PhanLoaiId = item.PhanLoaiId;
                 sp.SanPhamId = item.SanPhamId;
                 sp.TenSanPham = item.TenSanPham;
                 sp.GiaBanLe = item.GiaBanLe;
                 h.TenFile = item.HinhAnh;
+                k.PhanTramGiam = item.PhanTramGiam*100;
+                sp.KhuyenMaiId = item.KhuyenmaiId;
+                sp.GiaGoc = giaSauGiam;
                 sp.HinhAnh = h;
+                sp.KhuyenMai=k;
                 List.Add(sp);
             }
             ViewData["listSP"] = List;
@@ -389,7 +402,11 @@ namespace Shop.Controllers
                     float? phanTramGiam = 0;
                     if (sanPham[0].KhuyenMaiId != null)
                     {
-                        phanTramGiam = sanPham[0].KhuyenMai.PhanTramGiam;
+                        var km = (from x in dbContext.Khuyenmai
+                                    where x.KhuyenMaiId == sanPham[0].KhuyenMaiId
+                                    select x).ToList();
+                        phanTramGiam = km[0].PhanTramGiam;
+                        // phanTramGiam = sanPham[0].KhuyenMai.PhanTramGiam;
                     }
                     var Cart = new Cart()
                     {
@@ -411,11 +428,15 @@ namespace Shop.Controllers
                         float? phanTramGiam = 0;
                         if (sanPham[0].KhuyenMaiId != null)
                         {
-                            phanTramGiam = sanPham[0].KhuyenMai.PhanTramGiam;
+                            // phanTramGiam = sanPham[0].KhuyenMai.PhanTramGiam;
+                            var km = (from x in dbContext.Khuyenmai
+                                        where x.KhuyenMaiId == sanPham[0].KhuyenMaiId
+                                        select x).ToList();
+                            phanTramGiam = km[0].PhanTramGiam;
                         }
                         cart.KichthuocId = kichthuocId;
                         cart.Soluong = soluong;
-                        cart.Tongtien = soluong * sanPham[0].GiaBanLe - soluong * phanTramGiam + soluong * kichthuoc[0].GiaThem;
+                        cart.Tongtien = soluong * sanPham[0].GiaBanLe - soluong * phanTramGiam * sanPham[0].GiaBanLe + soluong * kichthuoc[0].GiaThem;
                         dbContext.SaveChanges();
                     }
                 }
@@ -770,7 +791,7 @@ namespace Shop.Controllers
         [HttpPost]
         public IActionResult ThemSanPham(Sanpham model, string TenAnh,string[] tenKichThuoc,float[] giaThem)
         {
-            /*var dbContext = new shopContext();
+            var dbContext = new shopContext();
             if (ModelState.IsValid)
             {
                 
@@ -811,7 +832,7 @@ namespace Shop.Controllers
                     dbContext.SaveChanges();
                 }
                 return RedirectToAction("Themsanpham", "sanpham", new { success = "Thêm sản phẩm thành công" });
-            }*/
+            }
             return RedirectToAction("Themsanpham", "sanpham", new { error = "Thêm sản phẩm không thành công" });
 
         }

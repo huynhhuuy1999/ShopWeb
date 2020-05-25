@@ -52,7 +52,14 @@
                     <span class="tensp">
                       @Html.DisplayFor(itemdata => item2.TenSanPham)
                     </span><br>
-                    <span>@Html.DisplayFor(itemData => item2.GiaBanLe) ₫</span><br>
+                    @if(item2.KhuyenMaiId!=null){
+                      <span><del>@Html.DisplayFor(itemData => item2.GiaBanLe) ₫</del> &ensp; -@Html.DisplayFor(itemData => item2.KhuyenMai.PhanTramGiam)%</span><br>
+                      <span>@Html.DisplayFor(itemData => item2.GiaGoc) ₫</span>
+                    }
+                    else{
+                      <span>@Html.DisplayFor(itemData => item2.GiaBanLe) ₫</span><br>
+                    }
+                    
                     <i class="fal fa-plus-circle add-cart" id="icon+@Html.DisplayFor(itemData => item2.SanPhamId)"></i>
                   </div>
                 </div>

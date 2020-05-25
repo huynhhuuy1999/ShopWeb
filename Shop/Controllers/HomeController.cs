@@ -62,6 +62,7 @@ namespace Shop.Controllers
                 s.SanPhamId= sp.SanPhamId;
                 s.TenSanPham=sp.TenSanPham;
                 s.Mota=sp.Mota;
+                s.GiaGoc = sp.GiaBanLe-sp.GiaBanLe*sp.PhanTramGiam;
                 s.GiaBanLe=sp.GiaBanLe;
                 s.KhuyenMaiId = sp.KhuyenMaiId;
                 h.TenFile=sp.Hinhanh;

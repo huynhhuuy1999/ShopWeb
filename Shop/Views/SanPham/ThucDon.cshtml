@@ -28,13 +28,19 @@
                               <img src="~/images/@Html.DisplayFor(modelItem => item2.HinhAnh.TenFile)" alt="Alternate Text" class="img-responsive" />
                           </a>
                           @if(item2.KhuyenMaiId!=null){
-                              <div class="khuyenmai"><span>@Html.DisplayFor(itemModel => item2.KhuyenMai.PhanTramGiam)</span></div>
+                              <div class="khuyenmai p-2"><span>-@Html.DisplayFor(itemModel => item2.KhuyenMai.PhanTramGiam)%</span></div>
                           }
                           
                       </div>
                       <div class="info">
                           <p class="name-Item">@Html.DisplayFor(modelItem =>item2.TenSanPham)</p>
-                          <p class="price-Item">@Html.DisplayFor(modelItem => item2.GiaBanLe) Đ</p>
+                          @if(item2.KhuyenMaiId!=null){
+                            <p class="price-Item"><del>@Html.DisplayFor(modelItem => item2.GiaBanLe) Đ</del>&ensp;@Html.DisplayFor(modelItem => item2.GiaGoc) Đ</p>
+                          }
+                          else{
+                            <p class="price-Item">@Html.DisplayFor(modelItem => item2.GiaBanLe) Đ</p>
+                          }
+                          
                           <div class="d-flex">
                               <a href="/sanpham/dathang/@Html.DisplayFor(itemData => item2.SanPhamId)"><button class="buy-now">mua ngay</button></a>
                           </div>
