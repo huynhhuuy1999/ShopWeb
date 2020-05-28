@@ -1,0 +1,46 @@
+@{
+    Layout = "_LayoutAdmin";
+}
+<link rel="stylesheet" href="~/css/Admin/HoaDon/styleXemChiTietHoaDon.css">
+
+<div class="table1 container">
+    <h3>Chi tiết hóa đơn</h3>
+    <table id="verticalScroll" class="table table-sm table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Ảnh sản phẩm</th>
+                <th scope="col">Số lựong</th>
+                <th scope="col">Kích thước</th>
+                <th scope="col">Giá tiền</th>
+                <th scope="col">Tiền khuyến mãi</th>
+                <th scope="col">Tiền sau khuyến mãi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.chitiet as List<Chitiethoadon>)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.SanPham.TenSanPham)</td>
+                    <td>
+                        <div><img src="~/images/@Html.DisplayFor(modelItem => item.SanPham.HinhAnh.TenFile)" alt=""></div>
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.SoLuong)</td>
+                    <td>@Html.DisplayFor(modelItem => item.KichThuoc.TenKichThuoc)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TongTien)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TienKhuyenMai)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TongSauKm)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+			$('#verticalScroll').DataTable({
+				"scrollY": "380px",
+				"scrollCollapse": true
+			});
+			$('.dataTables_length').addClass('bs-select');
+		});
+</script>

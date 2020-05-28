@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Http;
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,8 +37,8 @@
 			  	<i class="fad fa-users"></i> Nhân viên
 			  </button>
 			  <div class="dropdown-container menu">
-			    <a href="#">Link 1</a>
-			    <a href="#">Link 2</a>
+			    <a href="/nhanvien/xemdanhsachnhanvien">Xem danh sách</a>
+			    <a href="/nhanvien/themnhanvien">Thêm nhân viên</a>
 			    <a href="#">Link 3</a>
 			  </div>
 			  <button class="dropdown-btn menu">
@@ -47,7 +49,14 @@
 			    <a href="#">Link 2</a>
 			    <a href="#">Link 3</a>
 			  </div>
-			  <a href="#" class="menu"><i class="fad fa-money-bill"></i> Hóa đơn</a>
+			  <button class="dropdown-btn menu">
+			  	<i class="fas fa-shield-alt"></i> Hóa đơn
+			  </button>
+			  <div class="dropdown-container menu">
+			    <a href="/hoadon/Xemdanhsachhoadon">Xem danh sách</a>
+			    <a href="/hoadon/xemdanhsachhoadonchuaxuly">Danh sách chưa xử lý</a>
+			    <a href="#">Link 3</a>
+			  </div>
 			  <button class="dropdown-btn menu">
 			  	<i class="fas fa-shield-alt"></i> Tài khoản
 			  </button>
@@ -60,11 +69,23 @@
 		</div>
 		
 	</div>
+	<div class="header">
+			<ul>
+				<li class="username">
+					<a href="">@Context.Session.GetString("username")</a>
+					<ul class="submenu">
+						<li><a href="">Thông tin cá nhân</a></li>
+						<li><a href="/taikhoan/logout">Đăng xuất</a></li>
+					</ul>
+				</li>
+			</ul>
+	</div>
 
 	<div id="main" style="position: fixed;top: 0">
 	  <button class="openbtn"><i class="fas fa-align-left"></i></button>
 	</div>
-	<div id="content" style="margin-top: 50px;transition: margin-left .5s;height: 1000px;">
+	
+	<div id="content" style="transition: margin-left .5s;height: 1000px;">
 		@RenderBody()
 	</div>
 
@@ -83,7 +104,7 @@
 		  });
 		}
 		$(document).ready(function(){
-			let i =1;
+			let i =0;
 			$(".openbtn").click(function(){
 				if(i===1){
 					$("#mySidebar").css('width','250px');
@@ -96,8 +117,8 @@
 					i=1;
 				}
 			});
-			
 		});
+		
 	</script>
 </body>
 </html>

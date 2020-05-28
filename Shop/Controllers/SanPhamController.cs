@@ -75,8 +75,8 @@ namespace Shop.Controllers
                           on sp.HinhAnhId equals h.HinhAnhId
                           join km in dbContext.Khuyenmai
                             on sp.KhuyenMaiId equals km.KhuyenMaiId into x
-                            from subkm in x.DefaultIfEmpty()
-                        where sp.TrangThai ==1
+                          from subkm in x.DefaultIfEmpty()
+                          where sp.TrangThai == 1
                           select new
                           {
                               PhanLoaiId = sp.PhanLoaiId,
@@ -85,7 +85,7 @@ namespace Shop.Controllers
                               GiaBanLe = sp.GiaBanLe,
                               HinhAnh = h.TenFile,
                               KhuyenMaiId = sp.KhuyenMaiId,
-                                PhanTramGiam = subkm.PhanTramGiam
+                              PhanTramGiam = subkm.PhanTramGiam
                           });
             foreach (var item in ListSP)
             {
@@ -97,10 +97,10 @@ namespace Shop.Controllers
                 sp.TenSanPham = item.TenSanPham;
                 sp.GiaBanLe = item.GiaBanLe;
                 h.TenFile = item.HinhAnh;
-                sp.KhuyenMaiId=item.KhuyenMaiId;
-                 k.PhanTramGiam= item.PhanTramGiam*100;
-                 sp.KhuyenMai=k;
-                 sp.GiaGoc = item.GiaBanLe-item.GiaBanLe*item.PhanTramGiam;
+                sp.KhuyenMaiId = item.KhuyenMaiId;
+                k.PhanTramGiam = item.PhanTramGiam * 100;
+                sp.KhuyenMai = k;
+                sp.GiaGoc = item.GiaBanLe - item.GiaBanLe * item.PhanTramGiam;
                 sp.HinhAnh = h;
                 List.Add(sp);
             }
@@ -119,7 +119,7 @@ namespace Shop.Controllers
                           on sp.HinhAnhId equals h.HinhAnhId
                           join km in dbContext.Khuyenmai
                             on sp.KhuyenMaiId equals km.KhuyenMaiId into x
-                            from subkm in x.DefaultIfEmpty()
+                          from subkm in x.DefaultIfEmpty()
                           select new
                           {
                               PhanLoaiId = sp.PhanLoaiId,
@@ -127,7 +127,7 @@ namespace Shop.Controllers
                               TenSanPham = sp.TenSanPham,
                               GiaBanLe = sp.GiaBanLe,
                               HinhAnh = h.TenFile,
-                              
+
                               PhanTramGiam = subkm.PhanTramGiam,
                               KhuyenmaiId = sp.KhuyenMaiId
                           });
@@ -137,17 +137,17 @@ namespace Shop.Controllers
                 var sp = new Sanpham();
                 var h = new Hinhanh();
                 var k = new Khuyenmai();
-                float? giaSauGiam = item.GiaBanLe-item.GiaBanLe*item.PhanTramGiam;
+                float? giaSauGiam = item.GiaBanLe - item.GiaBanLe * item.PhanTramGiam;
                 sp.PhanLoaiId = item.PhanLoaiId;
                 sp.SanPhamId = item.SanPhamId;
                 sp.TenSanPham = item.TenSanPham;
                 sp.GiaBanLe = item.GiaBanLe;
                 h.TenFile = item.HinhAnh;
-                k.PhanTramGiam = item.PhanTramGiam*100;
+                k.PhanTramGiam = item.PhanTramGiam * 100;
                 sp.KhuyenMaiId = item.KhuyenmaiId;
                 sp.GiaGoc = giaSauGiam;
                 sp.HinhAnh = h;
-                sp.KhuyenMai=k;
+                sp.KhuyenMai = k;
                 List.Add(sp);
             }
             ViewData["listSP"] = List;
@@ -403,8 +403,8 @@ namespace Shop.Controllers
                     if (sanPham[0].KhuyenMaiId != null)
                     {
                         var km = (from x in dbContext.Khuyenmai
-                                    where x.KhuyenMaiId == sanPham[0].KhuyenMaiId
-                                    select x).ToList();
+                                  where x.KhuyenMaiId == sanPham[0].KhuyenMaiId
+                                  select x).ToList();
                         phanTramGiam = km[0].PhanTramGiam;
                         // phanTramGiam = sanPham[0].KhuyenMai.PhanTramGiam;
                     }
@@ -430,8 +430,8 @@ namespace Shop.Controllers
                         {
                             // phanTramGiam = sanPham[0].KhuyenMai.PhanTramGiam;
                             var km = (from x in dbContext.Khuyenmai
-                                        where x.KhuyenMaiId == sanPham[0].KhuyenMaiId
-                                        select x).ToList();
+                                      where x.KhuyenMaiId == sanPham[0].KhuyenMaiId
+                                      select x).ToList();
                             phanTramGiam = km[0].PhanTramGiam;
                         }
                         cart.KichthuocId = kichthuocId;
@@ -742,6 +742,7 @@ namespace Shop.Controllers
                            from subpet in x.DefaultIfEmpty()
                            select new
                            {
+                               idSanPham = sp.SanPhamId,
                                tensp = sp.TenSanPham,
                                mota = sp.Mota,
                                giabanle = sp.GiaBanLe,
@@ -757,6 +758,7 @@ namespace Shop.Controllers
                 Hinhanh ha = new Hinhanh();
                 Khuyenmai km = new Khuyenmai();
                 Phanloai pl = new Phanloai();
+                sp.SanPhamId = item.idSanPham;
                 sp.TenSanPham = item.tensp;
                 sp.Mota = item.mota;
                 sp.GiaBanLe = item.giabanle;
@@ -773,7 +775,7 @@ namespace Shop.Controllers
 
             return View();
         }
-        public IActionResult ThemSanPham(string success,string error)
+        public IActionResult ThemSanPham(string success, string error)
         {
             var dbContext = new shopContext();
             var khuyenmai = (from km in dbContext.Khuyenmai
@@ -789,14 +791,15 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
-        public IActionResult ThemSanPham(Sanpham model, string TenAnh,string[] tenKichThuoc,float[] giaThem)
+        public IActionResult ThemSanPham(Sanpham model, string TenAnh, string[] tenKichThuoc, float[] giaThem)
         {
             var dbContext = new shopContext();
             if (ModelState.IsValid)
             {
-                
+
                 // thêm ảnh vào table hinhanh
-                var hinhanh = new Hinhanh(){
+                var hinhanh = new Hinhanh()
+                {
                     TenFile = TenAnh
                 };
                 dbContext.Hinhanh.Add(hinhanh);
@@ -820,10 +823,12 @@ namespace Shop.Controllers
                 dbContext.SaveChanges();
                 //thêm kích thước vào bảng kichthuoc
                 var x = (from sp in dbContext.Sanpham
-                            where sp.TenSanPham==model.TenSanPham
-                            select sp).ToList();
-                for(int i=0;i<tenKichThuoc.Length;i++){
-                    var kichthuoc = new Kichthuoc(){
+                         where sp.TenSanPham == model.TenSanPham
+                         select sp).ToList();
+                for (int i = 0; i < tenKichThuoc.Length; i++)
+                {
+                    var kichthuoc = new Kichthuoc()
+                    {
                         SanPhamId = x[0].SanPhamId,
                         TenKichThuoc = tenKichThuoc[i],
                         GiaThem = giaThem[i]
@@ -835,6 +840,90 @@ namespace Shop.Controllers
             }
             return RedirectToAction("Themsanpham", "sanpham", new { error = "Thêm sản phẩm không thành công" });
 
+        }
+
+        public IActionResult SuaSanPham(int id,string success,string err){
+            var dbContext = new shopContext();
+            //lấy sản phẩm cần sửa
+            var sanPham = (from sp in dbContext.Sanpham
+                                where sp.SanPhamId == id
+                                select sp).ToList();
+            ViewBag.sanpham = sanPham;
+            // lấy danh sách phân loại 
+            var phanloai = (from pl in dbContext.Phanloai
+                            select pl).ToList();
+            ViewBag.phanloai = phanloai;
+            // lấy danh sách khuyến mãi đang có
+            var khuyenmai = (from km in dbContext.Khuyenmai
+                            select km).ToList();
+            ViewBag.khuyenmai = khuyenmai;
+            //lấy hình ảnh của sản phẩm
+            var hinhanh = (from ha in dbContext.Hinhanh
+                            where ha.HinhAnhId == sanPham[0].HinhAnhId
+                            select ha).ToList();
+            ViewBag.hinhanh = hinhanh;
+            //lấy danh sách kích thước của sản phẩm
+            var kichthuoc = (from kt in dbContext.Kichthuoc
+                            where kt.SanPhamId == sanPham[0].SanPhamId
+                            select kt).ToList();
+            ViewBag.kichthuoc = kichthuoc;
+            ViewBag.err=err;
+            ViewBag.success =success;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SuaSanPham(Sanpham model,string TenAnh, string[] tenKichThuoc, float[] giaThem){
+            var dbContext = new shopContext();
+            if (ModelState.IsValid)
+            {
+                // kiểm tra hình ảnh đã có trong database chưa
+                var dsHinhAnh = (from dsha in dbContext.Hinhanh
+                                where dsha.TenFile == TenAnh
+                                select dsha).ToList();
+                //  thêm ảnh vào table hinhanh
+                if(dsHinhAnh.Count!=0){
+                    var hinhanh = new Hinhanh()
+                    {
+                        TenFile = TenAnh
+                    };
+                    dbContext.Hinhanh.Add(hinhanh);
+                    dbContext.SaveChanges();
+                }
+                
+                //lấy id của ảnh
+                var anh = (from ha in dbContext.Hinhanh
+                           where ha.TenFile == TenAnh
+                           select ha).ToList();
+                //thêm sản phẩm
+                var sanpham = dbContext.Sanpham.First(a => a.SanPhamId == model.SanPhamId);
+                sanpham.TenSanPham = model.TenSanPham;
+                sanpham.Mota = model.Mota;
+                sanpham.GiaBanLe = model.GiaBanLe;
+                sanpham.TrangThai = model.TrangThai;
+                sanpham.PhanLoaiId = model.PhanLoaiId;
+                sanpham.KhuyenMaiId = model.KhuyenMaiId;
+                sanpham.HinhAnhId = anh[0].HinhAnhId;
+                dbContext.SaveChanges();
+                //thêm kích thước vào bảng kichthuoc
+                var x = (from sp in dbContext.Sanpham
+                         where sp.TenSanPham == model.TenSanPham
+                         select sp).ToList();
+                
+                for (int i = 0; i < tenKichThuoc.Length; i++)
+                {
+                    //lấy id của kích thước tương ứng với tên kích thước
+                    var kichthuoc1 = (from kt in dbContext.Kichthuoc
+                                        where kt.TenKichThuoc == tenKichThuoc[i] && kt.SanPhamId == model.SanPhamId
+                                        select kt).ToList();
+                    var kichthuoc = dbContext.Kichthuoc.First(a => a.KichThuocid == kichthuoc1[0].KichThuocid);
+                    
+                    kichthuoc.GiaThem = giaThem[i];
+                    dbContext.SaveChanges();
+                }
+                return RedirectToAction("Suasanpham", "sanpham", new { id=model.SanPhamId,success = "Sửa sản phẩm thành công" });
+            }
+            return RedirectToAction("Suasanpham", "sanpham", new { id=model.SanPhamId,error = "Sửa sản phẩm không thành công" });
         }
     }
 }

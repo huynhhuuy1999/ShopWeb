@@ -105,8 +105,33 @@ namespace Shop.Controllers
             return View();
         }
 
-        public IActionResult SuaKhachHang(){
+        public IActionResult SuaKhachHang(int id,string err,string success){
+            var dbContext = new shopContext();
+            var khachhang = ( from kh in dbContext.Khachhang
+                                where kh.KhachHangId == id
+                                select kh).ToList();
+            string newDate = khachhang[0].NgaySinh.ToString("yyyy-MM-dd");
+            ViewBag.newDate = newDate;
+            ViewBag.kh = khachhang;
+            ViewBag.err=err;
+            ViewBag.success =success;
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult SuaKhachHang(Khachhang model){
+            var dbContext = new shopContext();
+            if(ModelState.IsValid){
+                var khachhang = dbContext.Khachhang.First(a => a.KhachHangId == model.KhachHangId);
+                khachhang.HoTen = model.HoTen;
+                khachhang.Sdt= model.Sdt;
+                khachhang.DiaChi = model.DiaChi;
+                khachhang.Email = model.Email;
+                khachhang.NgaySinh= model.NgaySinh;
+                dbContext.SaveChanges();
+                return RedirectToAction("suakhachhang","khachhang",new{id=model.KhachHangId,success = "Sửa thông tin khách hàng thành công"});
+            }
+            return RedirectToAction("suakhachhang","khachhang",new{id=model.KhachHangId,err = "Sửa thông tin khách hàng không thành công"});
         }
     }
 }

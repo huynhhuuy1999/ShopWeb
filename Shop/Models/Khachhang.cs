@@ -12,7 +12,7 @@ namespace Shop.Models
 
         public int KhachHangId { get; set; }
         public string HoTen { get; set; }
-        public DateTime? NgaySinh { get; set; }
+        public DateTime NgaySinh { get; set; }
         public string Email { get; set; }
         public string Sdt { get; set; }
         public string DiaChi { get; set; }

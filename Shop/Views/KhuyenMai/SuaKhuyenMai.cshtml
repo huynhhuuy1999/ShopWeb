@@ -1,0 +1,64 @@
+@{
+    Layout = "_LayoutAdmin";
+}
+@model Shop.Models.Khuyenmai;
+<link rel="stylesheet" href="~/css/Admin/KhuyenMai/styleSuaKhuyenMai.css">
+
+<div class="content container">
+    <form asp-action="suakhuyenmai" asp-controller="khuyenmai" method="POST">
+        @foreach (var item in ViewBag.khuyenmai as List<Khuyenmai>)
+        {
+            <input type="text" value="@item.KhuyenMaiId" hidden name="KhuyenMaiId">
+            <div class="form-group">
+                <label for="TenKhuyenMai">Tên khuyến mãi</label>
+                <input type="text" class="form-control w-100" id="TenKhuyenMai" placeholder="Nhập tên khuyến mãi" name="TenKhuyenMai" value="@item.TenKhuyenMai">
+            </div>
+            <div class="form-group">
+                <label for="MoTa">Mô tả</label>
+                <input type="text" class="form-control w-100" id="MoTa" placeholder="Nhập mô tả" name="MoTa" value="@item.MoTa">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="NgayBatDau">Ngày bắt đầu</label>
+                    <input type="date" class="form-control" id="NgayBatDau" name="NgayBatDau" value="@ViewBag.ngBD">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="NgayKetThuc">Ngày kết thúc</label>
+                    <input type="date" class="form-control" id="NgayKetThuc" name="NgayKetThuc" value="@ViewBag.ngKT">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="PhanTramGiam">Phần trăm giảm</label>
+                    <input type="number" class="form-control" id="PhanTramGiam" name="PhanTramGiam" value="@item.PhanTramGiam">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="TrangThai">Trạng thái</label>
+                    <select name="TrangThai" id="TrangThai">
+                        @if(item.TrangThai == 1){
+                            <option value="1" selected>Kích hoạt</option>
+                            <option value="0">Chưa kích hoạt</option>
+                        }
+                        else{
+                            <option value="1">Kích hoạt</option>
+                            <option value="0" selected>Chưa kích hoạt</option>
+                        }
+                        
+                    </select>
+                </div>
+            </div>
+            @if(ViewBag.success!=null){
+                <div class="alert alert-success" role="alert">
+                    @ViewBag.success
+                </div>
+            }
+            @if(ViewBag.err!=null){
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.err
+                </div>
+            }
+            <input type="submit" value="Cập nhật">
+        }
+        
+    </form>
+</div>

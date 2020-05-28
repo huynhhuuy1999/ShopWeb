@@ -44,3 +44,12 @@ E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\
 E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\KhuyenMai\ThemKhuyenMai.g.cshtml.cs
 E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\SanPham\ThemSanPham.g.cshtml.cs
 E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\SanPham\XemDanhSachSanPham.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\NhanVien\ThemNhanVien.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\NhanVien\XemDanhSachNhanVien.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\TaiKhoan\XemDanhSachTaiKhoan.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\SanPham\SuaSanPham.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\NhanVien\SuaNhanVien.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\HoaDon\XemDanhSachHoaDon.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\HoaDon\XemChiTietHoaDon.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\HoaDon\XemDanhSachHoaDonChuaXuLy.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\KhuyenMai\SuaKhuyenMai.g.cshtml.cs

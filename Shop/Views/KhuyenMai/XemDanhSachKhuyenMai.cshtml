@@ -3,7 +3,7 @@
 }
 <link rel="stylesheet" href="~/css/Admin/KhuyenMai/styleXemDanhSachKhuyenMai.css">
 
-<div class="table1">
+<div class="table1 container">
     <table id="verticalScroll" class="table table-sm table-bordered table-striped table-hover">
         <thead>
             <tr>
@@ -14,7 +14,6 @@
                 <th scope="col">Ngày kết thúc</th>
                 <th scope="col">Trạng thái</th>
                 <th scope="col">Sửa</th>
-                <th scope="col">Xóa</th>
             </tr>
         </thead>
         <tbody>
@@ -23,12 +22,11 @@
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.TenKhuyenMai)</td>
                     <td>@Html.DisplayFor(modelItem => item.MoTa)</td>
-                    <td>@Html.DisplayFor(modelItem => item.PhanTramGiam)</td>
-                    <td>@Html.DisplayFor(modelItem => item.NgayBatDau)</td>
-                    <td>@Html.DisplayFor(modelItem => item.NgayKetThuc)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PhanTramGiam)%</td>
+                    <td>@item.NgayBatDau.ToString("dd/MM/yyyy")</td>
+                    <td>@item.NgayKetThuc.ToString("dd/MM/yyyy")</td>
                     <td>@Html.DisplayFor(modelItem => item.TrangThai)</td>
-                    <td><a href="/khuyenmai/suakhuyenmai">Sửa</a></td>
-                    <td><a href="/khuyenmai/xoakhuyenmai">Xóa</a></td>
+                    <td><a href="/khuyenmai/suakhuyenmai/@Html.DisplayFor(modelItem => item.KhuyenMaiId)">Sửa</a></td>
                 </tr>
             }
         </tbody>

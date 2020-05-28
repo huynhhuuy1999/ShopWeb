@@ -20,7 +20,7 @@
             @if (Context.Session.GetString("username")!=null)
             {
                 <li>
-                    <a href="">@Context.Session.GetString("username")</a>
+                    <a href="/khachhang/xemthongtinkhachhang/@Context.Session.GetString("username")">@Context.Session.GetString("username")</a>
                     <ul class="submenu">
                         <li><a href="/khachhang/xemthongtinkhachhang/@Context.Session.GetString("username")">Thông tin cá nhân</a></li>
                         <li><a href="/taikhoan/logout">Đăng xuất</a></li>

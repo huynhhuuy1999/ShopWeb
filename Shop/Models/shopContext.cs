@@ -23,6 +23,7 @@ namespace Shop.Models
         public virtual DbSet<Khachhang> Khachhang { get; set; }
         public virtual DbSet<Khuyenmai> Khuyenmai { get; set; }
         public virtual DbSet<Kichthuoc> Kichthuoc { get; set; }
+        public virtual DbSet<Loaitaikhoan> Loaitaikhoan { get; set; }
         public virtual DbSet<Magiamgia> Magiamgia { get; set; }
         public virtual DbSet<Nhanvien> Nhanvien { get; set; }
         public virtual DbSet<Phanloai> Phanloai { get; set; }
@@ -278,6 +279,15 @@ namespace Shop.Models
                     .HasConstraintName("FK_kichthuoc_SanPham");
             });
 
+            modelBuilder.Entity<Loaitaikhoan>(entity =>
+            {
+                entity.ToTable("loaitaikhoan");
+
+                entity.Property(e => e.LoaiTaiKhoanId).HasColumnType("int(11)");
+
+                entity.Property(e => e.TenLoaiTaiKhoan).HasColumnType("varchar(50)");
+            });
+
             modelBuilder.Entity<Magiamgia>(entity =>
             {
                 entity.ToTable("magiamgia");
@@ -383,6 +393,9 @@ namespace Shop.Models
             {
                 entity.ToTable("taikhoan");
 
+                entity.HasIndex(e => e.LoaiTaiKhoanId)
+                    .HasName("FK_TaiKhoan_LoaiTaiKhoan");
+
                 entity.HasIndex(e => e.Username)
                     .HasName("UQ_TAIKHOAN_USERNAME")
                     .IsUnique();
@@ -390,6 +403,8 @@ namespace Shop.Models
                 entity.Property(e => e.TaiKhoanId).HasColumnType("int(11)");
 
                 entity.Property(e => e.KichHoat).HasColumnType("tinyint(4)");
+
+                entity.Property(e => e.LoaiTaiKhoanId).HasColumnType("int(11)");
 
                 entity.Property(e => e.NgayTao).HasColumnType("date");
 
@@ -400,6 +415,11 @@ namespace Shop.Models
                 entity.Property(e => e.Username)
                     .HasColumnName("username")
                     .HasColumnType("varchar(50)");
+
+                entity.HasOne(d => d.LoaiTaiKhoan)
+                    .WithMany(p => p.Taikhoan)
+                    .HasForeignKey(d => d.LoaiTaiKhoanId)
+                    .HasConstraintName("FK_TaiKhoan_LoaiTaiKhoan");
             });
         }
     }

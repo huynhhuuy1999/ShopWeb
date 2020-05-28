@@ -1,0 +1,127 @@
+@{
+    Layout = "_LayoutAdmin";
+}
+@model Shop.Models.Sanpham;
+<link href="~/css/Admin/SanPham/styleSuaSanPham.css" rel="stylesheet" />
+
+<div class="container">
+    <div>
+        <h2>Thông tin tài khoản</h2>
+    </div>
+    <form asp-action="suasanpham" asp-controller="sanpham" method="POST">
+        @foreach (var item in ViewBag.sanpham as List<Sanpham>)
+        {   <input name="SanPhamId" value="@Html.DisplayFor(modelitem => item.SanPhamId)" hidden/>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="TenSanPham">Tên sản phẩm</label>
+                    <input type="text" class="form-control" id="TenSanPham" name="TenSanPham" value="@Html.DisplayFor(itemModel => item.TenSanPham)" placeholder="Nhập tên sản phẩm">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="GiaBanLe">Giá bán</label>
+                    <input type="number" class="form-control" id="GiaBanLe" name="GiaBanLe" value="@Html.DisplayFor(itemModel => item.GiaBanLe)">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Mota">Mô tả</label>
+                <input type="text" class="form-control w-100" id="Mota" placeholder="Nhập mô tả" name="Mota" value="@Html.DisplayFor(itemModel => item.Mota)">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="TrangThai">Trạng thái</label>
+                    <select name="TrangThai" id="TrangThai">
+                        <option value="1">Còn sản phẩm</option>
+                        <option value="0">Hết sản phẩm</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="PhanLoaiId">Loại sản phẩm</label>
+                    <select name="PhanLoaiId" id="PhanLoaiId">
+                        @foreach (var item2 in ViewBag.phanloai as List<Phanloai>)
+                        {
+                            if(item2.PhanLoaiId==item.PhanLoaiId){
+                                <option value="@item.PhanLoaiId" selected>@Html.DisplayFor(itemModel => item2.TenLoai)</option>
+                            }
+                            else{
+                                <option value="@item.PhanLoaiId">@Html.DisplayFor(itemModel => item2.TenLoai)</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="KhuyenMaiId">Khuyến mãi</label><br>
+                @foreach (var item3 in ViewBag.khuyenmai as List<Khuyenmai>)
+                {
+                    if(item3.KhuyenMaiId == item.KhuyenMaiId){
+                        <input type="radio" value="@Html.DisplayFor(itemmodel => item.KhuyenMaiId)" name="KhuyenMaiId" checked>
+                        <label>@Html.DisplayFor(itemmodel => item3.TenKhuyenMai)</label><br>
+                    }
+                    else{
+                        <input type="radio" value="@Html.DisplayFor(itemmodel => item.KhuyenMaiId)" name="KhuyenMaiId">
+                        <label>@Html.DisplayFor(itemmodel => item3.TenKhuyenMai)</label><br>
+                    }
+                }
+                
+            </div>
+            <div class="hinhAnh">
+                <div class="row">
+                    @foreach (var item5 in ViewBag.hinhanh as List<Hinhanh>)
+                    {
+                        <div class="col-md-3 inputImg">
+                            <label for="TenAnh">Hình ảnh</label>
+                            <input type="file" name="TenAnh" id="TenAnh" value="@Html.DisplayFor(itemmodel => item5.TenFile)">
+                        </div>
+                        <div class="col-md-6 ml-5">
+                            <label for="">Ảnh sản phẩm</label>
+                            <div class="anh border">
+                                <img src="~/images/@Html.DisplayFor(itemmodel => item5.TenFile)" alt="">
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            
+            <div class="kichthuoc">
+                <span>Kích thước</span>
+                <div class="table border border-primary p-5">
+                    <table class="table table-sm table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Tên kích thước</th>
+                                <th>Giá thêm</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            @foreach (var item4 in ViewBag.kichthuoc as List<Kichthuoc>)
+                            {
+                                <tr class="item-kichthuoc">
+                                    <td>
+                                        <select id="tenKichThuoc" class='tenKichThuoc' name="tenKichThuoc">
+                                            <option value="@item4.TenKichThuoc">@Html.DisplayFor(modelItem => item4.TenKichThuoc)</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="number" value="@Html.DisplayFor(modelItem => item4.GiaThem)" min="0" class="giathem"name="giaThem">
+                                    </td>
+                                </tr>
+                            }
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            @if(ViewBag.success!=null){
+                <div class="alert alert-success" role="alert">
+                    @ViewBag.success
+                </div>
+            }
+            @if(ViewBag.error!=null){
+                <div class="alert alert-alert" role="alert">
+                    @ViewBag.error
+                </div>
+            }
+            <input type="submit" value="Cập nhật" id="submit">
+    
+        }
+    </form>    
+</div>

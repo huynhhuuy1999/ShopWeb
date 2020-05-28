@@ -82,6 +82,21 @@ namespace Shop
                 routes.MapRoute(
                     name:"xemthongtinkhachhang",
                     template:"{controller=khachhang}/{action=XemThongTinKhachHang}/{id}");
+                routes.MapRoute(
+                    name:"suasanpham",
+                    template:"{controller=sanpham}/{action=suasanpham}/{id}");
+                routes.MapRoute(
+                    name:"suakhachhang",
+                    template:"{controller=khachhang}/{action=suakhachhang}/{id}");
+                routes.MapRoute(
+                    name:"suanhanvien",
+                    template:"{controller=nhanvien}/{action=suanhanvien}/{id}");
+                routes.MapRoute(
+                    name:"xemchitiethoadon",
+                    template:"{controller=hoadon}/{action=xemchitiethoadon}/{id}");
+                routes.MapRoute(
+                    name:"suakhuyenmai",
+                    template:"{controller=khuyenmai}/{action=suakhuyenmai}/{id}");
             });
         }
     }

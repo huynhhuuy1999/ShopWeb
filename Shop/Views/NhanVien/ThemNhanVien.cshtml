@@ -1,0 +1,52 @@
+@{
+    Layout = "_LayoutAdmin";
+}
+<link rel="stylesheet" href="~/css/Admin/NhanVien/styleThemNhanVien.css">
+<div class="container">
+    <form  asp-controller="NhanVien" asp-action="ThemNhanVien" method="POST">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="HoTen">Họ tên</label>
+                    <input type="text" class="form-control" id="HoTen" placeholder="Nhập họ tên" name="HoTen" autocomplete="off">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Email">Email</label>
+                <input type="email" class="form-control" id="Email" placeholder="Nhập Email" name="Email" autocomplete="off">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="DiaChi">Địa chỉ</label>
+            <input type="text" class="form-control w-100" id="DiaChi" placeholder="Nhập địa chỉ" name="DiaChi" autocomplete="off">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="NgaySinh">Ngày sinh</label>
+                    <input type="date" class="form-control" id="NgaySinh" name="NgaySinh" autocomplete="off">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Sdt">Số điện thoại</label>
+                <input type="number" class="form-control" id="Sdt" name="Sdt" autocomplete="off">
+            </div>
+        </div>
+        <div class="d-flex form">
+            <div class="form-group col-md-6">
+                <label for="Username">Username</label>
+                <input type="text" class="form-control w-100" id="Username" placeholder="Nhập Username" name="Username" autocomplete="off">
+                <label for="Password">Mật khẩu</label>
+                <input type="text" class="form-control w-100" id="Password" placeholder="Nhập mật khẩu" name="Password" autocomplete="off">
+            </div>
+        </div>
+        
+        @if(ViewBag.success!=null){
+            <div class="alert alert-success" role="alert">
+                @ViewBag.success
+            </div>
+        }
+        @if(ViewBag.alert!=null){
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.alert
+            </div>
+        }
+        <input type="submit" class="btn-luu" value="Lưu">
+    </form>
+</div>

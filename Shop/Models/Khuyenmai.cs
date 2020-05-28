@@ -14,8 +14,8 @@ namespace Shop.Models
         public string TenKhuyenMai { get; set; }
         public string MoTa { get; set; }
         public float? PhanTramGiam { get; set; }
-        public DateTime? NgayBatDau { get; set; }
-        public DateTime? NgayKetThuc { get; set; }
+        public DateTime NgayBatDau { get; set; }
+        public DateTime NgayKetThuc { get; set; }
         public int? TrangThai { get; set; }
 
         public ICollection<Sanpham> Sanpham { get; set; }
