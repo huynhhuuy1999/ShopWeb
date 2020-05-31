@@ -2,32 +2,34 @@
     Layout = "_LayoutAdmin";
 }
 <link rel="stylesheet" href="~/css/Admin/NhanVien/styleThemNhanVien.css">
-<div class="container">
+<div class="container parent">
+    <h3 class="mb-4" style="color:red">Thêm nhân viên</h3>
     <form  asp-controller="NhanVien" asp-action="ThemNhanVien" method="POST">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="HoTen">Họ tên</label>
+                <label for="HoTen">1. Họ tên</label>
                     <input type="text" class="form-control" id="HoTen" placeholder="Nhập họ tên" name="HoTen" autocomplete="off">
             </div>
             <div class="form-group col-md-6">
-                <label for="Email">Email</label>
+                <label for="Email">2. Email</label>
                 <input type="email" class="form-control" id="Email" placeholder="Nhập Email" name="Email" autocomplete="off">
             </div>
         </div>
         <div class="form-group">
-            <label for="DiaChi">Địa chỉ</label>
+            <label for="DiaChi">3. Địa chỉ</label>
             <input type="text" class="form-control w-100" id="DiaChi" placeholder="Nhập địa chỉ" name="DiaChi" autocomplete="off">
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="NgaySinh">Ngày sinh</label>
+                <label for="NgaySinh">4. Ngày sinh</label>
                     <input type="date" class="form-control" id="NgaySinh" name="NgaySinh" autocomplete="off">
             </div>
             <div class="form-group col-md-6">
-                <label for="Sdt">Số điện thoại</label>
+                <label for="Sdt">5. Số điện thoại</label>
                 <input type="number" class="form-control" id="Sdt" name="Sdt" autocomplete="off">
             </div>
         </div>
+        <label>6. Tạo tài khoản</label>
         <div class="d-flex form">
             <div class="form-group col-md-6">
                 <label for="Username">Username</label>
@@ -47,6 +49,7 @@
                 @ViewBag.alert
             </div>
         }
-        <input type="submit" class="btn-luu" value="Lưu">
+        <input type="submit" class="btn-submit" value="&nbsp;Thêm">
+        <i class="far fa-plus-circle icon"></i>
     </form>
 </div>

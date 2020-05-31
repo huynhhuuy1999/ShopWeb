@@ -53,3 +53,6 @@ E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\
 E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\HoaDon\XemChiTietHoaDon.g.cshtml.cs
 E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\HoaDon\XemDanhSachHoaDonChuaXuLy.g.cshtml.cs
 E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\KhuyenMai\SuaKhuyenMai.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\HoaDon\ThongTinDonHangCuaKhachHang.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\HoaDon\XemChiTietDonHang.g.cshtml.cs
+E:\XayDungHTTPTrenFramework\New folder\Shop\obj\Debug\netcoreapp2.1\Razor\Views\HoaDon\XemDanhSachHoaDonYeuCauHuy.g.cshtml.cs

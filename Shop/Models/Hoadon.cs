@@ -11,7 +11,7 @@ namespace Shop.Models
         }
 
         public int HoaDonId { get; set; }
-        public DateTime? NgayTao { get; set; }
+        public DateTime NgayTao { get; set; }
         public DateTime? NgayGiao { get; set; }
         public string SoNha { get; set; }
         public string Quan { get; set; }

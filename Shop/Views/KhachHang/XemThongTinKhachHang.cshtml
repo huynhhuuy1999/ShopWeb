@@ -24,7 +24,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="NgaySinh">Ngày sinh</label>
-                        <input type="date" class="form-control" id="NgaySinh" name="NgaySinh" value='@Html.DisplayFor(itemModel => item.NgaySinh)' autocomplete="off">
+                        <input type="date" class="form-control" id="NgaySinh" name="NgaySinh" value="@item.NgaySinh.ToString("yyyy-MM-dd")" autocomplete="off">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="Sdt">Số điện thoại</label>

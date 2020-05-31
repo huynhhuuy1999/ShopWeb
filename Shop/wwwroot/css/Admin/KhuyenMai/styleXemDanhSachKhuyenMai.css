@@ -12,3 +12,6 @@
 .paging_simple_numbers{
 	margin-top: 25px;
 }
+th,td{
+	text-align: center;
+}

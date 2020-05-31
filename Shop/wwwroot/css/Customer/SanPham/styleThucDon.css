@@ -46,9 +46,9 @@ html{
   .sidenav a {font-size: 18px;}
 }
 
-/* .list-menu{
-  justify-content:space-between;
-} */
+.list-menu{
+  justify-content:flex-start ;
+}
 .list-menu .img{
   overflow:hidden;
   position:relative;

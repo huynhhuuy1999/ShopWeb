@@ -497,6 +497,7 @@ namespace Shop.Controllers
                 var user = (from tk in dbContext.Taikhoan
                             join kh in dbContext.Khachhang
                             on tk.TaiKhoanId equals kh.TaiKhoanId
+                            where tk.Username == ss
                             select kh).ToList();
                 ViewBag.ten = user[0].HoTen;
                 ViewBag.sdt = user[0].Sdt;
@@ -566,12 +567,12 @@ namespace Shop.Controllers
                 return RedirectToAction("XacNhanDatHang", "sanpham");
             }
             else
-            {
-                //lay khachhangid
+                {
+                    //lay khachhangid
                 var username = HttpContext.Session.GetString("username");
                 var TKId = (from tk in dbContext.Taikhoan
                             join kh in dbContext.Khachhang
-                            on tk.TaiKhoanId equals kh.KhachHangId
+                            on tk.TaiKhoanId equals kh.TaiKhoanId
                             where tk.Username == username
                             select kh).ToList();
                 int khId = TKId[0].KhachHangId;
@@ -855,6 +856,7 @@ namespace Shop.Controllers
             ViewBag.phanloai = phanloai;
             // lấy danh sách khuyến mãi đang có
             var khuyenmai = (from km in dbContext.Khuyenmai
+                            where km.TrangThai == 1
                             select km).ToList();
             ViewBag.khuyenmai = khuyenmai;
             //lấy hình ảnh của sản phẩm

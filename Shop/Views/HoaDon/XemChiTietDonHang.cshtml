@@ -1,0 +1,98 @@
+<link href="~/css/Customer/styleXemChiTietDonHang.css" rel="stylesheet" />
+<div class="container">
+    @foreach (var hd in ViewBag.hoadon as List<Hoadon>)
+    {
+        <div class="tieude">
+            <h3>Chi tiết đơn hàng @Html.DisplayFor(model => hd.HoaDonId)</h3>
+            <span>Ngày đặt hàng: @hd.NgayTao.ToString("dd/MM/yyyy")</span>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <span>Địa chỉ người nhận</span><br>
+                <div class="info">
+                    <b>@hd.TenNguoiNhan</b>
+                    <span>Địa chỉ: @hd.SoNha ,@hd.Quan</span><br>
+                    <span>Điện thoại: @hd.Sdt</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <span>Hình thức giao hàng</span>
+                <div class="info">
+                    <span>Phí vận chuyển: @hd.PhiShip.ChiPhi đ</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <span>Hình thức thanh toán</span>
+                <div class="info">
+                    <span>Thanh toán tiền mặt khi nhận hàng</span>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="chitiet">
+        <span>Sản phẩm</span><br>
+        <div class="sanpham">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Tên sản phẩm</td>
+                        <td>Hình ảnh</td>
+                        <td>Kích thước</td>
+                        <td>Giá</td>
+                        <td>Số lượng</td>
+                        <td>Tiền giảm</td>
+                        <td>Tạm tính</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.chitiet as List<Chitiethoadon>)
+                    {
+                        <tr>
+                            <td>@item.SanPham.TenSanPham</td>
+                            <td>
+                                <div>
+                                    <img src="~/images/@item.SanPham.HinhAnh.TenFile" alt="">
+                                </div>
+                            </td>
+                            <td>@item.KichThuoc.TenKichThuoc</td>
+                            <td>@item.TongTien</td>
+                            <td>@item.SoLuong</td>
+                            @if(item.TienKhuyenMai==null){
+                                <td>0</td>
+                            }
+                            else{
+                                <td>@item.TienKhuyenMai</td>
+                            }
+                            <td>@item.TongSauKm</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <hr>
+            <div class="summary">
+                <table>
+                    @foreach (var item in @ViewBag.hoadon as List<Hoadon>)
+                    {
+                        <tr>
+                            <td>Tạm tính</td>
+                            <td>@item.TongTienChuaShip</td>
+                        </tr>
+                        <tr>
+                            <td>Phí vận chuyển</td>
+                            <td>@item.PhiShip.ChiPhi</td>
+                        </tr>
+                        <tr>
+                            <td>Giảm giá</td>
+                            <td>@item.TienGiamGia</td>
+                        </tr>
+                        <tr>
+                            <td>Tổng cộng</td>
+                            <td>@item.TongTienThanhToan</td>
+                        </tr>
+                    }
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

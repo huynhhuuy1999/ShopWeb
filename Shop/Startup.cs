@@ -97,6 +97,12 @@ namespace Shop
                 routes.MapRoute(
                     name:"suakhuyenmai",
                     template:"{controller=khuyenmai}/{action=suakhuyenmai}/{id}");
+                routes.MapRoute(
+                    name:"thongtindonhang",
+                    template:"{controller=hoadon}/{action=thongtindonhangcuakhachhang}/{id}");
+                routes.MapRoute(
+                    name:"xemchitietdonhang",
+                    template:"{controller=hoadon}/{action=xemchitietdonhang}/{id}");
             });
         }
     }

@@ -5,33 +5,35 @@
 <link rel="stylesheet" href="~/css/Admin/SanPham/styleThemSanPham.css">
 
 
-<div class="container">
+
+<div class="container parent">
+    <h3 class="mb-4" style="color:red">Thêm sản phẩm</h3>
     <form asp-action="themsanpham" asp-controller="sanpham" method="POST">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="TenSanPham">Tên sản phẩm</label>
+                <label for="TenSanPham">1. Tên sản phẩm</label>
                 <input type="text" class="form-control" id="TenSanPham" name="TenSanPham" placeholder="Nhập tên sản phẩm">
             </div>
             <div class="form-group col-md-6">
-                <label for="GiaBanLe">Giá bán</label>
+                <label for="GiaBanLe">2. Giá bán</label>
                 <input type="number" class="form-control" id="GiaBanLe" name="GiaBanLe">
             </div>
         </div>
         <div class="form-group">
-            <label for="Mota">Mô tả</label>
+            <label for="Mota">3. Mô tả</label>
             <input type="text" class="form-control w-100" id="Mota" placeholder="Nhập mô tả" name="Mota">
         </div>
-        <div class="form-row">
+        <div class="form-row mt-4">
             <div class="form-group col-md-6">
-                <label for="TrangThai">Trạng thái</label>
-                <select name="TrangThai" id="TrangThai">
+                <label for="TrangThai">4. Trạng thái</label>
+                <select name="TrangThai" id="TrangThai" class="p-1 border">
                     <option value="1">Còn sản phẩm</option>
                     <option value="0">Hết sản phẩm</option>
                 </select>
             </div>
             <div class="form-group col-md-6">
-                <label for="PhanLoaiId">Loại sản phẩm</label>
-                <select name="PhanLoaiId" id="PhanLoaiId">
+                <label for="PhanLoaiId">5. Loại sản phẩm</label>
+                <select name="PhanLoaiId" id="PhanLoaiId" class="p-1 border">
                     @foreach (var item in ViewBag.phanloai as List<Phanloai>)
                     {
                         <option value="@item.PhanLoaiId">@Html.DisplayFor(itemModel => item.TenLoai)</option>
@@ -40,7 +42,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="KhuyenMaiId">Khuyến mãi</label><br>
+            <label for="KhuyenMaiId">6. Khuyến mãi</label><br>
             @foreach (var item in ViewBag.khuyenmai as List<Khuyenmai>)
             {
                 <input type="radio" value="@Html.DisplayFor(itemmodel => item.KhuyenMaiId)" name="KhuyenMaiId">
@@ -51,7 +53,7 @@
         <div class="hinhAnh">
             <div class="row">
                 <div class="col-md-3 inputImg">
-                    <label for="TenAnh">Hình ảnh</label>
+                    <label for="TenAnh">7. Hình ảnh</label>
                     <input type="file" name="TenAnh" id="TenAnh">
                 </div>
                 <div class="col-md-6 ml-5">
@@ -64,10 +66,10 @@
         </div>
         
         <div class="kichthuoc">
-            <span>Kích thước</span>
+            <label>8. Kích thước</label>
             <div class="table border border-primary p-5">
                 <input type="button" class="mb-2 btn-them-kichthuoc" value="Thêm">
-                <table class="table table-sm table-bordered table-striped table-hover">
+                <table class="table table-sm table-bordered table-striped table-hover table-size" align="center">
                     <thead>
                         <tr>
                             <th>Tên kích thước</th>
@@ -78,12 +80,12 @@
                     <tbody class="tbody">
                         <tr id="1" class="item-kichthuoc">
                             <td>
-                                <select id="" class='tenKichThuoc' name="tenKichThuoc">
+                                <select id="" class='tenKichThuoc border' name="tenKichThuoc">
                                     <option value="Nhỏ">Nhỏ</option>
                                 </select>
                             </td>
                             <td>
-                                <input type="number" value="0" min="0" class="giathem"name="giaThem">
+                                <input type="number" value="0" min="0" class="giathem border"name="giaThem">
                             </td>
                             <td id="1"></td>
                         </tr>
@@ -101,7 +103,8 @@
                 @ViewBag.error
             </div>
         }
-        <input type="submit" value="Thêm" id="submit">
+        <input type="submit" value="&nbsp; Thêm" id="submit" class="btn-submit">
+        <i class="far fa-plus-circle icon"></i>
     </form>
 </div>
 <script>

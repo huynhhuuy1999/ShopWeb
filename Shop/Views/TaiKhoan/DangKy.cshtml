@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/css/Customer/TaiKhoan/styleDangNhap.css" rel="stylesheet" />
     <link href="~/bootrap4/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/fontawesome-pro-5.12.0-web/css/all.min.css">
 </head>
 <body class="bg-light">
     <div class="header w-100 d-flex">
@@ -21,11 +22,8 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="username">Tên tài khoản</label>
-                    @* <input type="text" class="form-control" id="user" placeholder="Tên tài khoản" name="user" autocomplete="off"> *@
-                    <input type="text" class="form-control" id="username" placeholder="Tên tài khoản" name="username" autocomplete="off">
-                    @* @if(Html.ValidationMessageFor(model=>model.Username)!=null){
-                       <br><span>@Html.ValidationMessageFor(model=>model.Username)</span>
-                    } *@
+                    <input type="text" class="form-control pl-4" id="username" placeholder="Tên tài khoản" name="username" autocomplete="off">
+                    <i class="fas fa-user-alt icon1"></i>
                     @if(ViewBag.errUsername!=null){
                         <span class="ml-2" style="color: red;font-size:14px">@ViewBag.errUsername</span>
                     }
@@ -33,7 +31,8 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="password">Mật khẩu</label>
-                    <input type="password" class="form-control" id="password" placeholder="Mật khẩu" name="password" autocomplete="off">
+                    <input type="password" class="form-control pl-4" id="password" placeholder="Mật khẩu" name="password" autocomplete="off">
+                    <i class="fas fa-key icon2"></i>
                 </div>
             </div>
             <div class="form-group">
@@ -51,7 +50,8 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="Sdt">Số điện thoại</label>
-                    <input type="number" class="form-control" id="Sdt" placeholder="Số điện thoại" autocomplete="off" name="Sdt">
+                    <input type="number" class="form-control pl-4" id="Sdt" placeholder="Số điện thoại" autocomplete="off" name="Sdt">
+                    <i class="fas fa-phone-alt icon3"></i>
                 </div>
             </div>
             <div class="button d-flex">

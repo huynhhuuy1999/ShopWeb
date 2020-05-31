@@ -43,3 +43,11 @@
 .col-md-3 h3{
     font-size:22px;
 }
+.icon-input{
+    padding-left: 15px;
+}
+.icon1,.icon2,.icon3{
+    position: relative;
+    top: -30px;
+    left: 7px;
+}

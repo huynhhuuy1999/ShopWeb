@@ -23,11 +23,11 @@
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.TenSanPham)</td>
                     <td>@Html.DisplayFor(modelItem => item.Mota)</td>
-                    <td>@Html.DisplayFor(modelItem => item.GiaBanLe)</td>
-                    <td>@Html.DisplayFor(modelItem => item.TrangThai)</td>
+                    <td class="giabanle">@Html.DisplayFor(modelItem => item.GiaBanLe)</td>
+                    <td class="trangthai">@Html.DisplayFor(modelItem => item.TrangThai)</td>
                     <td>@Html.DisplayFor(modelItem => item.PhanLoai.TenLoai)</td>
                     <td>@Html.DisplayFor(modelItem => item.KhuyenMai.PhanTramGiam)</td>
-                    <td><div><img src="~/images/@Html.DisplayFor(modelItem => item.HinhAnh.TenFile)" alt=""></div></td>
+                    <td><div class="containImg"><img src="~/images/@Html.DisplayFor(modelItem => item.HinhAnh.TenFile)" alt=""></div></td>
                     <td><a href="/sanpham/suasanpham/@Html.DisplayFor(modelItem => item.SanPhamId)">Sửa</a></td>
                 </tr>
             }
@@ -37,7 +37,7 @@
 <script>
     $(document).ready(function () {
 			$('#verticalScroll').DataTable({
-				"scrollY": "380px",
+				"scrollY": "430px",
 				"scrollCollapse": true,
                 "columnDefs": [
                     {"width":"15%","targets": 0},

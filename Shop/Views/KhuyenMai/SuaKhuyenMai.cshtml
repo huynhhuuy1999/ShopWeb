@@ -4,37 +4,40 @@
 @model Shop.Models.Khuyenmai;
 <link rel="stylesheet" href="~/css/Admin/KhuyenMai/styleSuaKhuyenMai.css">
 
-<div class="content container">
+<div class="parent container">
+    <div class="mb-4">
+        <h2><i class="far fa-edit"></i> Thông tin khuyến mãi</h2>
+    </div>
     <form asp-action="suakhuyenmai" asp-controller="khuyenmai" method="POST">
         @foreach (var item in ViewBag.khuyenmai as List<Khuyenmai>)
         {
             <input type="text" value="@item.KhuyenMaiId" hidden name="KhuyenMaiId">
             <div class="form-group">
-                <label for="TenKhuyenMai">Tên khuyến mãi</label>
+                <label for="TenKhuyenMai">1. Tên khuyến mãi</label>
                 <input type="text" class="form-control w-100" id="TenKhuyenMai" placeholder="Nhập tên khuyến mãi" name="TenKhuyenMai" value="@item.TenKhuyenMai">
             </div>
             <div class="form-group">
-                <label for="MoTa">Mô tả</label>
+                <label for="MoTa">2. Mô tả</label>
                 <input type="text" class="form-control w-100" id="MoTa" placeholder="Nhập mô tả" name="MoTa" value="@item.MoTa">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="NgayBatDau">Ngày bắt đầu</label>
+                    <label for="NgayBatDau">3. Ngày bắt đầu</label>
                     <input type="date" class="form-control" id="NgayBatDau" name="NgayBatDau" value="@ViewBag.ngBD">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="NgayKetThuc">Ngày kết thúc</label>
+                    <label for="NgayKetThuc">4. Ngày kết thúc</label>
                     <input type="date" class="form-control" id="NgayKetThuc" name="NgayKetThuc" value="@ViewBag.ngKT">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="PhanTramGiam">Phần trăm giảm</label>
+                    <label for="PhanTramGiam">5. Phần trăm giảm</label>
                     <input type="number" class="form-control" id="PhanTramGiam" name="PhanTramGiam" value="@item.PhanTramGiam">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="TrangThai">Trạng thái</label>
-                    <select name="TrangThai" id="TrangThai">
+                    <label for="TrangThai">6. Trạng thái</label><br>
+                    <select name="TrangThai" id="TrangThai" class="p-1 border">
                         @if(item.TrangThai == 1){
                             <option value="1" selected>Kích hoạt</option>
                             <option value="0">Chưa kích hoạt</option>
@@ -57,7 +60,8 @@
                     @ViewBag.err
                 </div>
             }
-            <input type="submit" value="Cập nhật">
+            <input type="submit" value="&nbsp; Cập nhật" class="btn-submit">
+            <i class="far fa-pencil-alt icon"></i>
         }
         
     </form>

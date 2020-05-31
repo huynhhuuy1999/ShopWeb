@@ -8,6 +8,7 @@
     <title>Index</title>
     <link href="~/css/Customer/TaiKhoan/styleDangNhap.css" rel="stylesheet" />
     <link href="~/bootrap4/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/fontawesome-pro-5.12.0-web/css/all.min.css">
 </head>
 <body class="bg-light">
     <div class="header w-100 d-flex">
@@ -16,11 +17,11 @@
     <div class="login d-flex">
        <form method="POST" asp-controller="taikhoan" asp-action="dangnhap">
             <div class="form-group">
-                <label for="Username">User</label>
+                <label for="Username"><i class="fas fa-user-alt"></i>&nbsp; User</label>
                 <input type="text" class="form-control" id="Username" placeholder="Tên tài khoản" name="Username" autocomplete="off">
             </div>
             <div class="form-group">
-                <label for="Password">Password</label>
+                <label for="Password"><i class="fas fa-key"></i>&nbsp; Password</label>
                 <input type="password" class="form-control" id="Password" placeholder="Mật khẩu" name="Password">
             </div>
             <div class="button d-flex">

@@ -87,11 +87,31 @@
 .sum .tongcong {
   margin-left: 250px;
 }
+.transport{
+  display: flex;
+}
+#textVanChuyen{
+  margin-left: 18px;
+}
 .transport .phiship {
   margin-left: 215px;
 }
+.giamgia{
+  display: flex;
+  margin-top: 17px;
+  margin-bottom: 10px;
+}
+#textGiamGia{
+  margin-left: 18px;
+}
 .giamgia .span-giamgia{
   margin-left: 235px;
+}
+.order .super-sum{
+  display: flex;
+}
+#textTongCong{
+  margin-left: 18px;
 }
 .order .super-sum .final-sum {
   margin-left: 190px;

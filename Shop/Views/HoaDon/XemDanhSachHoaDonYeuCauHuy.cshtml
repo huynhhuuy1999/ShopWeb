@@ -1,0 +1,73 @@
+@{
+    Layout = "_LayoutAdmin";
+}
+<link rel="stylesheet" href="~/css/Admin/HoaDon/styleXemDanhSachHoaDonYeuCauHuy.css">
+
+<div class="table1 container">
+    <h3 style="color:red">Danh sách yêu cầu hủy</h3>
+    <table id="verticalScroll" class="table table-sm table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Tên khách hàng</th>
+                <th scope="col">Địa chỉ</th>
+                <th scope="col">Ngày đặt</th>
+                <th scope="col">Ngày giao</th>
+                <th scope="col">Tên người nhận</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col">Tiền gói hàng</th>
+                <th scope="col">Phí ship</th>
+                <th scope="col">Tiền giảm giá</th>
+                <th scope="col">Tổng thanh toán</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Chi tiết</th>
+                <th scope="col">Xác nhận</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.dsYeuCauHuy as List<Hoadon>)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.KhachHang.HoTen)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SoNha), @Html.DisplayFor(modelItem => item.Quan)</td>
+                    <td>@item.NgayTao.ToString("dd/MM/yyyy")</td>
+                    @* <td>@item.NgayGiao.ToString("dd/MM/yyyy")</td> *@
+                    
+                    <td>@Html.DisplayFor(modelItem => item.NgayGiao)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TenNguoiNhan)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Sdt)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TongTienChuaShip)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PhiShip.ChiPhi)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TienGiamGia)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TongTienThanhToan)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TrangThai)</td>
+                    <td><a href="/hoadon/xemchitiethoadon/@Html.DisplayFor(modelItem => item.HoaDonId)"><i>Chi tiết</i></a></td>
+                    <td><i class="huy" id="@item.HoaDonId">Xác nhận hủy</i></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+			$('#verticalScroll').DataTable({
+				"scrollY": "380px",
+				"scrollCollapse": true
+			});
+			$('.dataTables_length').addClass('bs-select');
+
+            $(".huy").click(()=>{
+                let id = event.target.id;
+                $.ajax({
+                    type:"POST",
+                    url:"@Url.Action("XacNhanHuyDonHang")",
+                    data:{mahd:id},
+                    success:(data)=>{
+                        $("#"+id).text("Đã xác nhận");
+                    },
+                    error:(err)=>{
+                        alert(err);
+                    }
+                });
+            });
+		});
+</script>

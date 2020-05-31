@@ -73,22 +73,22 @@
                 <p>Cộng</p>
                 <span class="tongcong" id=@ViewBag.tongtien>@ViewBag.tongtien ₫</span>
             </div>
-            <div class="transport d-flex">
-                <p>Vận chuyển</p>
+            <div class="transport">
+                <span id="textVanChuyen">Vận chuyển</span>
             </div>
-            <div class="giamgia d-flex">
-                <p>Giảm giá</p>
+            <div class="giamgia">
+                <span id="textGiamGia">Giảm giá</span>
                 <span class="span-giamgia">0</span>
             </div>
-            @* <form asp-controller="sanpham" asp-action="xacnhandathang" method="POST" id="myform" class="d-flex"> *@
+            
             <div class="d-flex">
                 <input class="w-75 input-giamgia pl-3" type="text" name="GiamGia" form="myform" placeholder="Nhập mã giảm giá tại đây">
                 <input class="w-25 btn-cart apdung" value="Áp dụng" type="button">
             </div>
-            @* </form> *@
+            
         </div><hr>
-        <div class="super-sum d-flex">
-            <span>Tổng cộng</span>
+        <div class="super-sum">
+            <span id="textTongCong">Tổng cộng</span>
         </div>
     </div>
 </div>

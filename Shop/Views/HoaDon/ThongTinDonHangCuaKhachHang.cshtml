@@ -1,0 +1,74 @@
+<link href="~/css/Customer/styleThongTinDonHangCuaKhachHang.css" rel="stylesheet" />
+<div class="container">
+    <div class="tieude">
+        <h3>Đơn hàng của tôi</h3>
+    </div>
+    <div class="thongtin">
+        <table align="center" class="table table-sm table-bordered table-striped table-hover w-65">
+            <thead>
+                <tr>
+                    <td>Mã đơn hàng</td>
+                    <td>Ngày mua</td>
+                    <td>Tiền giảm giá</td>
+                    <td>Tổng tiền</td>
+                    <td>Trạng thái</td>
+                    <td>Hủy đơn hàng</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.hoadon as List<Hoadon>)
+                {
+                    <tr>
+                        <td><a href="/hoadon/xemchitietdonhang/@item.HoaDonId">@item.HoaDonId</a></td>
+                        <td>@item.NgayTao.ToString("dd/MM/yyyy")</td>
+                        <td>@item.TienGiamGia</td>
+                        <td>@item.TongTienThanhToan</td>
+                        <td>@item.TrangThai</td>
+                        @if(item.TrangThai=="Chờ xử lý"){
+                            <td><i class="huy" id="@item.HoaDonId">Hủy</i></td>
+                        }
+                        @if(item.TrangThai=="Đang giao hàng"){
+                            <td><i class="nhanhang" id="@item.HoaDonId">Xác nhận nhận hàng</i></td>
+                        }
+                        @if(item.TrangThai!="Chờ xử lý" && item.TrangThai!="Đang giao hàng"){
+                            <td><i class="nhanhang" id="@item.HoaDonId">Đã nhận hàng</i></td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(() => {
+        $(".huy").click(() => {
+            let id = event.target.id;
+            $.ajax({
+                type:"POST",
+                url:"@Url.Action("YeuCauHuyDonHang")",
+                data:{mahd:id},
+                success:(data)=>{
+                    $("#"+id).text("Đã yêu cầu hủy");
+                },
+                error:(err)=>{
+                    alert(err);
+                }
+            })
+        });
+
+        $(".nhanhang").click(() => {
+            let id = event.target.id;
+            $.ajax({
+                type:"POST",
+                url:"@Url.Action("XacNhanNhanHang")",
+                data:{mahd:id},
+                success:(data)=>{
+                    $("#"+id).text("Đã nhận hàng");
+                },
+                error:(err)=>{
+                    alert(err);
+                }
+            })
+        });
+    });
+</script>

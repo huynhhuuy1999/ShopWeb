@@ -154,6 +154,7 @@ body {
 }
 .dialog .sanpham {
   border-bottom: 1px solid #aaa;
+  display: flex;
 }
 .dialog .sanpham .img {
   height: 90px;

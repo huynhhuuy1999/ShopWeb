@@ -45,7 +45,6 @@ namespace Shop.Controllers
                     var km = dbContext.Khuyenmai.First(a=>a.KhuyenMaiId == item.KhuyenMaiId);
                     km.TrangThai=1;
                     dbContext.SaveChanges();
-                    dbContext.Dispose();
                 }
                 else{
                     var km = dbContext.Khuyenmai.First(a=>a.KhuyenMaiId == item.KhuyenMaiId);
@@ -61,7 +60,6 @@ namespace Shop.Controllers
                         var ItemSanPham = dbContext.Sanpham.First(a => a.SanPhamId == sp.SanPhamId);
                         ItemSanPham.KhuyenMaiId = null;
                         dbContext.SaveChanges();
-                        dbContext.Dispose();
                     }
                     // var sanpham = dbContext.Sanpham.First(a => a.KhuyenMaiId == item.KhuyenMaiId);
                     // sanpham.KhuyenMaiId = null;
