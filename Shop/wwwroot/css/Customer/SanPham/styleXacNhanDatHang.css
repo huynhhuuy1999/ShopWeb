@@ -85,7 +85,7 @@
   align-items: center;
 }
 .sum .tongcong {
-  margin-left: 250px;
+  margin-left: 220px;
 }
 .transport{
   display: flex;
@@ -94,7 +94,7 @@
   margin-left: 18px;
 }
 .transport .phiship {
-  margin-left: 215px;
+  margin-left: 204px;
 }
 .giamgia{
   display: flex;
@@ -105,7 +105,7 @@
   margin-left: 18px;
 }
 .giamgia .span-giamgia{
-  margin-left: 235px;
+  margin-left: 215px;
 }
 .order .super-sum{
   display: flex;

@@ -1,0 +1,64 @@
+.tieude .ngaydat{
+    float: right;
+    font-size: 16px;
+}
+.contain{
+    background-color: #FFF;
+    border-left: 1px solid black;
+    line-height: 35px;
+}
+.note-parent{
+    margin-top: 100px;
+}
+.note{
+    font-size: 20px;
+    font-weight: bold;
+    color: #EA8025;
+}
+.info-note{
+    font-weight: 500px;
+    font-size: 18px;
+}
+.title-product{
+    font-size: 22px;
+    font-weight: bold;
+    color: #EA8025;
+}
+.td-img{
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+.contain-img{
+    width: 100px;
+    height: 120px;
+}
+.contain-img img{
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: contain;
+}
+.table-product th,.table-product td{
+    text-align: center;
+}
+.table-product th{
+    font-size: 18px;
+}
+.table-product td{
+    font-size: 17px;
+}
+.table-summary{
+    margin-left: 800px;
+    width: 300px;
+}
+.table-summary tr{
+    height: 35px;
+}
+.td-right{
+    text-align: right;
+}
+.title-price{
+    font-size: 18px;
+    font-weight: 500;
+}

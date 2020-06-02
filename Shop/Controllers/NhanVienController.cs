@@ -130,5 +130,81 @@ namespace Shop.Controllers{
             }
             return RedirectToAction("suanhanvien","nhanvien",new{id=model.NhanVienId,err = "Sửa thông tin nhân viên không thành công"});
         }
+
+        public IActionResult XemThongTinNhanVien(string id,string err,string success){
+            var dbContext = new shopContext();
+            var taikhoan = (from tk in dbContext.Taikhoan
+                                where tk.Username == id
+                                select tk).ToList();
+            var nhanvien = ( from nv in dbContext.Nhanvien
+                                where nv.TaiKhoanId == taikhoan[0].TaiKhoanId
+                                select nv).ToList();
+            ViewBag.nv = nhanvien;
+            ViewBag.err=err;
+            ViewBag.success =success;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult LuuThongTinNhanVien(Nhanvien model,string changePassword,string oldpassword,string newPassword){
+            string idSession = HttpContext.Session.GetString("username");
+            if(ModelState.IsValid){
+                
+                var dbContext= new shopContext();
+                var taikhoan = (from tk in dbContext.Taikhoan
+                                    where tk.Username == idSession
+                                    select tk).ToList();
+                //xu ly password
+                if(changePassword == "check"){
+                    
+                    // chuyển mật khẩu cũ nhập vào thành mã băm
+                    MD5 mh = MD5.Create();
+                    byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(oldpassword);
+                    byte[] hash = mh.ComputeHash(inputBytes);
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < hash.Length; i++)
+                    {
+                        sb.Append(hash[i].ToString("x2"));
+                    }
+                    string newOldpassword = sb.ToString();
+                    //kiểm tra mật khẩu cũ nhập vào đúng hay không
+                    if(newOldpassword != taikhoan[0].Password){
+                        string err ="Mật khẩu không đúng";
+                        return RedirectToAction("xemthongtinnhanvien","nhanvien",new{id=idSession,err=err});
+                    }
+                    // lấy tài khoản để cập nhạt mật khẩu
+                    var account = dbContext.Taikhoan.First(a => a.TaiKhoanId == taikhoan[0].TaiKhoanId);
+                    //chuyển mật khẩu mới nhập vào thành mã băm
+                    byte[] inputBytes2 = System.Text.Encoding.ASCII.GetBytes(newPassword);
+                    byte[] hash2 = mh.ComputeHash(inputBytes2);
+                    StringBuilder sb2 = new StringBuilder();
+                    for (int i = 0; i < hash2.Length; i++)
+                    {
+                        sb2.Append(hash2[i].ToString("x2"));
+                    }
+                    string newpass = sb2.ToString();
+                    //cập nhật mật khẩu mới
+                    account.Password = newpass;
+                    dbContext.SaveChanges();
+                }
+                
+               
+
+                var nhanvien = (from nv in dbContext.Nhanvien
+                            where nv.TaiKhoanId == taikhoan[0].TaiKhoanId
+                            select nv).ToList();
+                var nv2 = dbContext.Nhanvien.First(a => a.NhanVienId == nhanvien[0].NhanVienId);
+                nv2.HoTen = model.HoTen;
+                nv2.Email = model.Email;
+                nv2.Sdt = model.Sdt;
+                nv2.NgaySinh = model.NgaySinh;
+                nv2.DiaChi = model.DiaChi;
+                dbContext.SaveChanges();
+
+                string success= "Cập nhật thông tin thành công";
+                return RedirectToAction("xemthongtinnhanvien","nhanvien",new{id=idSession,success=success});
+            }
+            return RedirectToAction("xemthongtinnhanvien","nhanvien",new{id=idSession});
+        }
     }
 }

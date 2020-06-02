@@ -245,6 +245,7 @@ body {
 }
 .list-product-cart .div-sp {
   border-bottom: 1px solid #aaa;
+  cursor: pointer;
 }
 .list-product-cart .gia {
   display: flex;

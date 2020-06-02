@@ -53,11 +53,11 @@
                 @foreach (var item3 in ViewBag.khuyenmai as List<Khuyenmai>)
                 {
                     if(item3.KhuyenMaiId == item.KhuyenMaiId){
-                        <input type="radio" value="@Html.DisplayFor(itemmodel => item.KhuyenMaiId)" name="KhuyenMaiId" checked>
+                        <input type="radio" value="@item3.KhuyenMaiId" name="KhuyenMaiId" checked>
                         <label>@Html.DisplayFor(itemmodel => item3.TenKhuyenMai)</label><br>
                     }
                     else{
-                        <input type="radio" value="@Html.DisplayFor(itemmodel => item.KhuyenMaiId)" name="KhuyenMaiId">
+                        <input type="radio" value="@item3.KhuyenMaiId" name="KhuyenMaiId">
                         <label>@Html.DisplayFor(itemmodel => item3.TenKhuyenMai)</label><br>
                     }
                 }

@@ -189,7 +189,7 @@ namespace Shop.Controllers{
                             join hd in dbContext.Hoadon
                             on kh.KhachHangId equals hd.KhachHangId
                             where tk.Username == id
-                            orderby hd.TrangThai ascending,hd.NgayTao descending
+                            orderby hd.HoaDonId descending
                             select new{
                                 hdId = hd.HoaDonId,
                                 tienGiamGia = hd.TienGiamGia,

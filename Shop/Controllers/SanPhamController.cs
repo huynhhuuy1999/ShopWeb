@@ -682,7 +682,14 @@ namespace Shop.Controllers
                 dbContext.SaveChanges();
 
                 HttpContext.Session.Remove("idSession");
-                HttpContext.Session.SetString("idSession", RandomString(9, true));
+
+                string y = RandomString(9,true);
+                var cartDB = (from c in dbContext.Cart where c.IdSession == y select c).ToList();
+                while(cartDB.Count>0){
+                    y = RandomString(9,true);
+                    cartDB = (from c in dbContext.Cart where c.IdSession == y select c).ToList();
+                }
+                HttpContext.Session.SetString("idSession",y);
                 // return RedirectToAction("DatHangThanhCong","sanpham");
                 ViewBag.maGiamGia = randomMaGiamGia;
                 return RedirectToAction("DatHangThanhCong", "sanpham", new { discountId = randomMaGiamGia });
@@ -897,7 +904,7 @@ namespace Shop.Controllers
                 var anh = (from ha in dbContext.Hinhanh
                            where ha.TenFile == TenAnh
                            select ha).ToList();
-                //thêm sản phẩm
+                //sua sản phẩm
                 var sanpham = dbContext.Sanpham.First(a => a.SanPhamId == model.SanPhamId);
                 sanpham.TenSanPham = model.TenSanPham;
                 sanpham.Mota = model.Mota;

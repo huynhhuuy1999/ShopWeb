@@ -1,47 +1,48 @@
-<link href="~/css/Customer/styleXemChiTietDonHang.css" rel="stylesheet" />
+<link href="~/css/Customer/HoaDon/styleXemChiTietDonHang.css" rel="stylesheet" />
 <div class="container">
     @foreach (var hd in ViewBag.hoadon as List<Hoadon>)
     {
         <div class="tieude">
             <h3>Chi tiết đơn hàng @Html.DisplayFor(model => hd.HoaDonId)</h3>
-            <span>Ngày đặt hàng: @hd.NgayTao.ToString("dd/MM/yyyy")</span>
+            <p class="ngaydat"><i>Ngày đặt hàng: @hd.NgayTao.ToString("dd/MM/yyyy")</i></p>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <span>Địa chỉ người nhận</span><br>
+        <div class="row note-parent">
+            <div class="col-md-4 contain p-3">
+                <span class="note">Địa chỉ người nhận</span><br>
                 <div class="info">
-                    <b>@hd.TenNguoiNhan</b>
-                    <span>Địa chỉ: @hd.SoNha ,@hd.Quan</span><br>
-                    <span>Điện thoại: @hd.Sdt</span>
+                    <b>@hd.TenNguoiNhan</b><br>
+                    <span class="info-note">Địa chỉ: @hd.SoNha ,@hd.Quan</span><br>
+                    <span class="info-note">Điện thoại: @hd.Sdt</span>
                 </div>
             </div>
-            <div class="col-md-4">
-                <span>Hình thức giao hàng</span>
+            <div class="col-md-4 contain p-3">
+                <span class="note">Hình thức giao hàng</span>
                 <div class="info">
-                    <span>Phí vận chuyển: @hd.PhiShip.ChiPhi đ</span>
+                    <span class="info-note">Phí vận chuyển: @hd.PhiShip.ChiPhi đ</span>
                 </div>
             </div>
-            <div class="col-md-4">
-                <span>Hình thức thanh toán</span>
+            <div class="col-md-4 contain p-3">
+                <span class="note">Hình thức thanh toán</span>
                 <div class="info">
-                    <span>Thanh toán tiền mặt khi nhận hàng</span>
+                    <span class="info-note">Thanh toán tiền mặt khi nhận hàng</span>
                 </div>
             </div>
         </div>
     }
-    <div class="chitiet">
-        <span>Sản phẩm</span><br>
-        <div class="sanpham">
-            <table>
+    <hr class="mt-5">
+    <div class="chitiet mt-5">
+        <span class="title-product">Sản phẩm</span><br>
+        <div class="sanpham mt-3">
+            <table class="table table-sm table-bordered table-striped table-hover w-65 table-product">
                 <thead>
                     <tr>
-                        <td>Tên sản phẩm</td>
-                        <td>Hình ảnh</td>
-                        <td>Kích thước</td>
-                        <td>Giá</td>
-                        <td>Số lượng</td>
-                        <td>Tiền giảm</td>
-                        <td>Tạm tính</td>
+                        <th>Tên sản phẩm</th>
+                        <th>Hình ảnh</th>
+                        <th>Kích thước</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Tiền giảm</th>
+                        <th>Tạm tính</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,8 +50,8 @@
                     {
                         <tr>
                             <td>@item.SanPham.TenSanPham</td>
-                            <td>
-                                <div>
+                            <td class="td-img">
+                                <div class="contain-img">
                                     <img src="~/images/@item.SanPham.HinhAnh.TenFile" alt="">
                                 </div>
                             </td>
@@ -70,24 +71,24 @@
             </table>
             <hr>
             <div class="summary">
-                <table>
+                <table class="table-summary">
                     @foreach (var item in @ViewBag.hoadon as List<Hoadon>)
                     {
                         <tr>
-                            <td>Tạm tính</td>
-                            <td>@item.TongTienChuaShip</td>
+                            <td class="title-price">Tạm tính</td>
+                            <td class="td-right">@item.TongTienChuaShip đ</td>
                         </tr>
                         <tr>
-                            <td>Phí vận chuyển</td>
-                            <td>@item.PhiShip.ChiPhi</td>
+                            <td class="title-price">Phí vận chuyển</td>
+                            <td class="td-right">@item.PhiShip.ChiPhi đ</td>
                         </tr>
                         <tr>
-                            <td>Giảm giá</td>
-                            <td>@item.TienGiamGia</td>
+                            <td class="title-price">Giảm giá</td>
+                            <td class="td-right">@item.TienGiamGia đ</td>
                         </tr>
-                        <tr>
-                            <td>Tổng cộng</td>
-                            <td>@item.TongTienThanhToan</td>
+                        <tr style="border-top: 1px solid #CCC;">
+                            <td class="title-price" >Tổng cộng</td>
+                            <td class="td-right">@item.TongTienThanhToan đ</td>
                         </tr>
                     }
                     

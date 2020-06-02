@@ -35,7 +35,14 @@ namespace Shop.Controllers
         {   
             var dbContext = new shopContext();
             if(HttpContext.Session.GetString("idSession")==null){
-                HttpContext.Session.SetString("idSession",RandomString(9,true));
+                // HttpContext.Session.SetString("idSession",RandomString(9,true));
+                string x = RandomString(9,true);
+                var cart = (from c in dbContext.Cart where c.IdSession == x select c).ToList();
+                while(cart.Count>0){
+                    x = RandomString(9,true);
+                    cart = (from c in dbContext.Cart where c.IdSession == x select c).ToList();
+                }
+                HttpContext.Session.SetString("idSession",x);
             }
             var khuyenmai = (from km in dbContext.Khuyenmai select km).ToList();
             foreach (var item in khuyenmai)
