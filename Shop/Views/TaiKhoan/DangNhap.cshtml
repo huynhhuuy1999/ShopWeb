@@ -18,11 +18,11 @@
        <form method="POST" asp-controller="taikhoan" asp-action="dangnhap">
             <div class="form-group">
                 <label for="Username"><i class="fas fa-user-alt"></i>&nbsp; User</label>
-                <input type="text" class="form-control" id="Username" placeholder="Tên tài khoản" name="Username" autocomplete="off">
+                <input type="text" class="form-control" id="Username" placeholder="Tên tài khoản" name="Username" autocomplete="off" required>
             </div>
             <div class="form-group">
                 <label for="Password"><i class="fas fa-key"></i>&nbsp; Password</label>
-                <input type="password" class="form-control" id="Password" placeholder="Mật khẩu" name="Password">
+                <input type="password" class="form-control" id="Password" placeholder="Mật khẩu" name="Password" required>
             </div>
             <div class="button d-flex">
                 <button type="submit" class="btn">Đăng nhập</button>

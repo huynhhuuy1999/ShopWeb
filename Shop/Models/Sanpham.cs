@@ -7,6 +7,7 @@ namespace Shop.Models
     {
         public Sanpham()
         {
+            Binhluan = new HashSet<Binhluan>();
             Cart = new HashSet<Cart>();
             Chitiethoadon = new HashSet<Chitiethoadon>();
             Kichthuoc = new HashSet<Kichthuoc>();
@@ -25,6 +26,7 @@ namespace Shop.Models
         public Hinhanh HinhAnh { get; set; }
         public Khuyenmai KhuyenMai { get; set; }
         public Phanloai PhanLoai { get; set; }
+        public ICollection<Binhluan> Binhluan { get; set; }
         public ICollection<Cart> Cart { get; set; }
         public ICollection<Chitiethoadon> Chitiethoadon { get; set; }
         public ICollection<Kichthuoc> Kichthuoc { get; set; }

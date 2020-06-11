@@ -9,7 +9,7 @@
     <form asp-action="Themkhuyenmai" asp-controller="khuyenmai" method="POST">
         <div class="form-group">
             <label for="TenKhuyenMai">1. Tên khuyến mãi</label>
-            <input type="text" class="form-control w-100" id="TenKhuyenMai" placeholder="Nhập tên khuyến mãi" name="TenKhuyenMai">
+            <input type="text" class="form-control w-100" id="TenKhuyenMai" placeholder="Nhập tên khuyến mãi" name="TenKhuyenMai" required>
         </div>
         <div class="form-group">
             <label for="MoTa">2. Mô tả</label>
@@ -18,17 +18,17 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="NgayBatDau">3. Ngày bắt đầu</label>
-                <input type="date" class="form-control" id="NgayBatDau" name="NgayBatDau">
+                <input type="date" class="form-control" id="NgayBatDau" name="NgayBatDau" required>
             </div>
             <div class="form-group col-md-6">
                 <label for="NgayKetThuc">4. Ngày kết thúc</label>
-                <input type="date" class="form-control" id="NgayKetThuc" name="NgayKetThuc">
+                <input type="date" class="form-control" id="NgayKetThuc" name="NgayKetThuc" required>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="PhanTramGiam">5. Phần trăm giảm</label>
-                <input type="number" class="form-control" id="PhanTramGiam" name="PhanTramGiam">
+                <input type="number" class="form-control" id="PhanTramGiam" name="PhanTramGiam" required>
             </div>
             <div class="form-group col-md-6">
                 <label for="TrangThai">6. Trạng thái</label><br>

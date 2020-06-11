@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "2d8458a1b29bc7b852dcd9c3573d9b8464e4c935"
+    "signature": "3aa33d111a77cb6c6fd85522d0f154eb87897560"
   },
   "compilationOptions": {
     "defines": [
@@ -29,7 +29,10 @@
           "Microsoft.EntityFrameworkCore.Design": "2.1.2",
           "Microsoft.EntityFrameworkCore.Tools": "2.1.2",
           "Microsoft.NETCore.App": "2.1.0",
-          "Pomelo.EntityFrameworkCore.MySql": "2.1.2"
+          "Pomelo.EntityFrameworkCore.MySql": "2.1.2",
+          "Rotativa.AspNetCore": "1.1.1",
+          "Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core": "18.1.0.52",
+          "Syncfusion.Pdf.Net.Core": "18.1.0.54"
         },
         "runtime": {
           "Shop.dll": {}
@@ -343,6 +346,73 @@
         },
         "compile": {
           "lib/netstandard1.0/Remotion.Linq.dll": {}
+        }
+      },
+      "Rotativa.AspNetCore/1.1.1": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc": "2.1.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Rotativa.AspNetCore.dll": {
+            "assemblyVersion": "1.1.1.0",
+            "fileVersion": "1.1.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Rotativa.AspNetCore.dll": {}
+        }
+      },
+      "Syncfusion.Compression.Net.Core/18.1.0.54": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {
+            "assemblyVersion": "18.1200.0.54",
+            "fileVersion": "18.1200.0.54"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        }
+      },
+      "Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core/18.1.0.52": {
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.HtmlConverter.Portable.dll": {
+            "assemblyVersion": "18.1200.0.52",
+            "fileVersion": "18.1200.0.52"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.HtmlConverter.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Licensing/18.1.0.54": {
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Licensing.dll": {
+            "assemblyVersion": "18.1.0.54",
+            "fileVersion": "18.1.0.54"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Pdf.Net.Core/18.1.0.54": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.3",
+          "Syncfusion.Compression.Net.Core": "18.1.0.54",
+          "Syncfusion.Licensing": "18.1.0.54",
+          "System.Text.Encoding.CodePages": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {
+            "assemblyVersion": "18.1200.0.54",
+            "fileVersion": "18.1200.0.54"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
         }
       },
       "System.Collections.Immutable/1.5.0": {},
@@ -3040,6 +3110,9 @@
           "Microsoft.NETCore.Platforms": "2.1.0",
           "System.Runtime.CompilerServices.Unsafe": "4.5.1"
         },
+        "compile": {
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
+        },
         "compileOnly": true
       },
       "System.Text.Encoding.Extensions/4.3.0": {
@@ -3349,6 +3422,41 @@
       "sha512": "sha512-fK/76UmpC0FXBlGDFVPLJHQlDLYnGC+XY3eoDgCgbtrhi0vzbXDQ3n/IYHhqSKqXQfGw/u04A1drWs7rFVkRjw==",
       "path": "remotion.linq/2.2.0",
       "hashPath": "remotion.linq.2.2.0.nupkg.sha512"
+    },
+    "Rotativa.AspNetCore/1.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LzlleiGJ+r39cDm4ln/gd1s7QEIeFtYOcxS5AIwGcE4kk1+axULj48xMV1MTEr7U+yH73VBl+aUbkJsKAVmzAA==",
+      "path": "rotativa.aspnetcore/1.1.1",
+      "hashPath": "rotativa.aspnetcore.1.1.1.nupkg.sha512"
+    },
+    "Syncfusion.Compression.Net.Core/18.1.0.54": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6a6iGECRNxWB08OC1v77vnCNiah4+Jsq8Yo5x2w/BMmYFaQCmZfR9tgGceRT79A35g5Gmk+42g6FyAdj+NhoWg==",
+      "path": "syncfusion.compression.net.core/18.1.0.54",
+      "hashPath": "syncfusion.compression.net.core.18.1.0.54.nupkg.sha512"
+    },
+    "Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core/18.1.0.52": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TtgIq9y/k5I0H9+fDVPDfdit/+V6eh4coBNIIVItsvy9/r9dk9OvshH00lVbF6ZT17rb4ODBYMpMey6BE4XJYA==",
+      "path": "syncfusion.htmltopdfconverter.qtwebkit.net.core/18.1.0.52",
+      "hashPath": "syncfusion.htmltopdfconverter.qtwebkit.net.core.18.1.0.52.nupkg.sha512"
+    },
+    "Syncfusion.Licensing/18.1.0.54": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oIPt2jg/QtRigkWiYv4X9tB8//ov5xpO1P452RdO4r/3c8wBHZr97rbmGWxt/JwnARU3Rwfq19OeZ0jaOZpGAA==",
+      "path": "syncfusion.licensing/18.1.0.54",
+      "hashPath": "syncfusion.licensing.18.1.0.54.nupkg.sha512"
+    },
+    "Syncfusion.Pdf.Net.Core/18.1.0.54": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8zCK6WDp+lS3PxNCIU+VSEM5lD1DDBtb+STKQM5GKZGzgCT02hfFRpBI1EeNsji0aQib8WFklXh5Sw7XzubXAA==",
+      "path": "syncfusion.pdf.net.core/18.1.0.54",
+      "hashPath": "syncfusion.pdf.net.core.18.1.0.54.nupkg.sha512"
     },
     "System.Collections.Immutable/1.5.0": {
       "type": "package",

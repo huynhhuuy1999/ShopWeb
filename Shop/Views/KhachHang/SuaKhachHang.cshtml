@@ -14,25 +14,25 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="HoTen">1. Họ tên</label>
-                        <input type="text" class="form-control" id="HoTen" placeholder="Nhập họ tên" name="HoTen" value='@Html.DisplayFor(itemModel => item.HoTen)' autocomplete="off">
+                        <input type="text" class="form-control" id="HoTen" placeholder="Nhập họ tên" name="HoTen" value='@Html.DisplayFor(itemModel => item.HoTen)' autocomplete="off" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="Email">2. Email</label>
-                    <input type="email" class="form-control" id="Email" placeholder="Nhập Email" name="Email" value='@Html.DisplayFor(itemModel => item.Email)' autocomplete="off">
+                    <input type="email" class="form-control" id="Email" placeholder="Nhập Email" name="Email" value='@Html.DisplayFor(itemModel => item.Email)' autocomplete="off" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="DiaChi">3. Địa chỉ</label>
-                <input type="text" class="form-control w-100" id="DiaChi" placeholder="Nhập địa chỉ" name="DiaChi" value='@Html.DisplayFor(itemModel => item.DiaChi)' autocomplete="off">
+                <input type="text" class="form-control w-100" id="DiaChi" placeholder="Nhập địa chỉ" name="DiaChi" value='@Html.DisplayFor(itemModel => item.DiaChi)' autocomplete="off" required>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="NgaySinh">4. Ngày sinh</label>
-                        <input type="date" class="form-control" id="NgaySinh" name="NgaySinh" value='@ViewBag.newDate' autocomplete="off">
+                        <input type="date" class="form-control" id="NgaySinh" name="NgaySinh" value='@ViewBag.newDate' autocomplete="off" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="Sdt">5. Số điện thoại</label>
-                    <input type="number" class="form-control" id="Sdt" name="Sdt" value='@Html.DisplayFor(itemModel => item.Sdt)' autocomplete="off">
+                    <input type="number" class="form-control" id="Sdt" name="Sdt" value='@Html.DisplayFor(itemModel => item.Sdt)' autocomplete="off" required>
                 </div>
             </div>
         }

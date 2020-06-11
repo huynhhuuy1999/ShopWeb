@@ -1,0 +1,47 @@
+.content{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 50px;
+}
+.title h3{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color:rgb(206, 125, 33)
+}
+.date{
+    text-align: center;
+    font-style: italic;
+    font-size: 18px;
+}
+.info{
+    margin-top: 20px;
+    padding:10px 15px;
+    border: 1px solid #dee2e6;
+    font-size: 18px;
+    line-height: 28px;
+}
+.name{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.sum{
+    text-align: center;
+}
+.dvt{
+    float: right;
+    font-style: italic;
+}
+/* .signed{
+    display: flex;
+    justify-content: space-around;
+} */
+.note{
+    font-style: italic;
+    font-size: 15px;
+}
+.nguoiMua{
+    float: left;
+}
+.nguoiBan{
+    float: right;
+}

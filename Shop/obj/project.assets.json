@@ -2696,6 +2696,18 @@
           "lib/netstandard1.0/Remotion.Linq.dll": {}
         }
       },
+      "Rotativa.AspNetCore/1.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc": "2.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Rotativa.AspNetCore.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Rotativa.AspNetCore.dll": {}
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -2900,6 +2912,55 @@
             "assetType": "native",
             "rid": "win-x86"
           }
+        }
+      },
+      "Syncfusion.Compression.Net.Core/18.1.0.54": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {}
+        }
+      },
+      "Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core/18.1.0.52": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {},
+          "lib/netstandard2.0/Syncfusion.HtmlConverter.Portable.dll": {},
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {},
+          "lib/netstandard2.0/Syncfusion.HtmlConverter.Portable.dll": {},
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        }
+      },
+      "Syncfusion.Licensing/18.1.0.54": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Licensing.dll": {}
+        }
+      },
+      "Syncfusion.Pdf.Net.Core/18.1.0.54": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "Syncfusion.Compression.Net.Core": "18.1.0.54",
+          "Syncfusion.Licensing": "18.1.0.54",
+          "System.Text.Encoding.CodePages": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
         }
       },
       "System.AppContext/4.3.0": {
@@ -4100,7 +4161,7 @@
           "System.Runtime.CompilerServices.Unsafe": "4.5.0"
         },
         "compile": {
-          "ref/netstandard2.0/_._": {}
+          "ref/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
@@ -7213,6 +7274,18 @@
         "remotion.linq.nuspec"
       ]
     },
+    "Rotativa.AspNetCore/1.1.1": {
+      "sha512": "LzlleiGJ+r39cDm4ln/gd1s7QEIeFtYOcxS5AIwGcE4kk1+axULj48xMV1MTEr7U+yH73VBl+aUbkJsKAVmzAA==",
+      "type": "package",
+      "path": "rotativa.aspnetcore/1.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Rotativa.AspNetCore.dll",
+        "rotativa.aspnetcore.1.1.1.nupkg.sha512",
+        "rotativa.aspnetcore.nuspec"
+      ]
+    },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "sha512": "HdSSp5MnJSsg08KMfZThpuLPJpPwE5hBXvHwoKWosyHHfe8Mh5WKT0ylEOf6yNzX6Ngjxe4Whkafh5q7Ymac4Q==",
       "type": "package",
@@ -7480,6 +7553,202 @@
         "runtimes/win-x86/native/sni.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "Syncfusion.Compression.Net.Core/18.1.0.54": {
+      "sha512": "6a6iGECRNxWB08OC1v77vnCNiah4+Jsq8Yo5x2w/BMmYFaQCmZfR9tgGceRT79A35g5Gmk+42g6FyAdj+NhoWg==",
+      "type": "package",
+      "path": "syncfusion.compression.net.core/18.1.0.54",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard1.2/Syncfusion.Compression.Portable.dll",
+        "lib/netstandard1.2/Syncfusion.Compression.Portable.xml",
+        "lib/netstandard1.4/Syncfusion.Compression.Portable.dll",
+        "lib/netstandard1.4/Syncfusion.Compression.Portable.xml",
+        "lib/netstandard2.0/Syncfusion.Compression.Portable.dll",
+        "lib/netstandard2.0/Syncfusion.Compression.Portable.xml",
+        "syncfusion.compression.net.core.18.1.0.54.nupkg.sha512",
+        "syncfusion.compression.net.core.nuspec"
+      ]
+    },
+    "Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core/18.1.0.52": {
+      "sha512": "TtgIq9y/k5I0H9+fDVPDfdit/+V6eh4coBNIIVItsvy9/r9dk9OvshH00lVbF6ZT17rb4ODBYMpMey6BE4XJYA==",
+      "type": "package",
+      "path": "syncfusion.htmltopdfconverter.qtwebkit.net.core/18.1.0.52",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/QtBinariesLinux/Syncfusion.WebKitWrapper",
+        "lib/QtBinariesLinux/imageformats/libqdds.so",
+        "lib/QtBinariesLinux/imageformats/libqgif.so",
+        "lib/QtBinariesLinux/imageformats/libqicns.so",
+        "lib/QtBinariesLinux/imageformats/libqico.so",
+        "lib/QtBinariesLinux/imageformats/libqjp2.so",
+        "lib/QtBinariesLinux/imageformats/libqjpeg.so",
+        "lib/QtBinariesLinux/imageformats/libqmng.so",
+        "lib/QtBinariesLinux/imageformats/libqsvg.so",
+        "lib/QtBinariesLinux/imageformats/libqtga.so",
+        "lib/QtBinariesLinux/imageformats/libqtiff.so",
+        "lib/QtBinariesLinux/imageformats/libqwbmp.so",
+        "lib/QtBinariesLinux/imageformats/libqwebp.so",
+        "lib/QtBinariesLinux/libGL.so.1",
+        "lib/QtBinariesLinux/libQt5Core.so.5",
+        "lib/QtBinariesLinux/libQt5DBus.so.5",
+        "lib/QtBinariesLinux/libQt5Gui.so.5",
+        "lib/QtBinariesLinux/libQt5Multimedia.so.5",
+        "lib/QtBinariesLinux/libQt5MultimediaWidgets.so.5",
+        "lib/QtBinariesLinux/libQt5Network.so.5",
+        "lib/QtBinariesLinux/libQt5OpenGL.so.5",
+        "lib/QtBinariesLinux/libQt5Positioning.so.5",
+        "lib/QtBinariesLinux/libQt5PrintSupport.so.5",
+        "lib/QtBinariesLinux/libQt5Qml.so.5",
+        "lib/QtBinariesLinux/libQt5Quick.so.5",
+        "lib/QtBinariesLinux/libQt5Sensors.so.5",
+        "lib/QtBinariesLinux/libQt5Sql.so.5",
+        "lib/QtBinariesLinux/libQt5Svg.so.5",
+        "lib/QtBinariesLinux/libQt5WebChannel.so.5",
+        "lib/QtBinariesLinux/libQt5WebKit.so.5",
+        "lib/QtBinariesLinux/libQt5WebKitWidgets.so.5",
+        "lib/QtBinariesLinux/libQt5Widgets.so.5",
+        "lib/QtBinariesLinux/libQt5XcbQpa.so.5",
+        "lib/QtBinariesLinux/libicudata.so.55",
+        "lib/QtBinariesLinux/libicui18n.so.55",
+        "lib/QtBinariesLinux/libicuuc.so.55",
+        "lib/QtBinariesLinux/libjpeg.so.8",
+        "lib/QtBinariesLinux/libpng12.so.0",
+        "lib/QtBinariesLinux/libsqlite3.so.0",
+        "lib/QtBinariesLinux/libstdc++.so.6",
+        "lib/QtBinariesLinux/platforms/libqminimal.so",
+        "lib/QtBinariesLinux/platforms/libqoffscreen.so",
+        "lib/QtBinariesLinux/platforms/libqxcb.so",
+        "lib/QtBinariesMac/Syncfusion.WebKitWrapper",
+        "lib/QtBinariesMac/imageformats/libqdds.dylib",
+        "lib/QtBinariesMac/imageformats/libqgif.dylib",
+        "lib/QtBinariesMac/imageformats/libqicns.dylib",
+        "lib/QtBinariesMac/imageformats/libqico.dylib",
+        "lib/QtBinariesMac/imageformats/libqjp2.dylib",
+        "lib/QtBinariesMac/imageformats/libqjpeg.dylib",
+        "lib/QtBinariesMac/imageformats/libqmng.dylib",
+        "lib/QtBinariesMac/imageformats/libqsvg.dylib",
+        "lib/QtBinariesMac/imageformats/libqtga.dylib",
+        "lib/QtBinariesMac/imageformats/libqtiff.dylib",
+        "lib/QtBinariesMac/imageformats/libqwbmp.dylib",
+        "lib/QtBinariesMac/imageformats/libqwebp.dylib",
+        "lib/QtBinariesMac/libQt5Core.5.dylib",
+        "lib/QtBinariesMac/libQt5DBus.5.dylib",
+        "lib/QtBinariesMac/libQt5Gui.5.dylib",
+        "lib/QtBinariesMac/libQt5Multimedia.5.dylib",
+        "lib/QtBinariesMac/libQt5MultimediaWidgets.5.dylib",
+        "lib/QtBinariesMac/libQt5Network.5.dylib",
+        "lib/QtBinariesMac/libQt5OpenGL.5.dylib",
+        "lib/QtBinariesMac/libQt5Positioning.5.dylib",
+        "lib/QtBinariesMac/libQt5PrintSupport.5.dylib",
+        "lib/QtBinariesMac/libQt5Qml.5.dylib",
+        "lib/QtBinariesMac/libQt5Quick.5.dylib",
+        "lib/QtBinariesMac/libQt5Sensors.5.dylib",
+        "lib/QtBinariesMac/libQt5Sql.5.dylib",
+        "lib/QtBinariesMac/libQt5Svg.5.dylib",
+        "lib/QtBinariesMac/libQt5WebChannel.5.dylib",
+        "lib/QtBinariesMac/libQt5WebKit.5.dylib",
+        "lib/QtBinariesMac/libQt5WebKitWidgets.5.dylib",
+        "lib/QtBinariesMac/libQt5Widgets.5.dylib",
+        "lib/QtBinariesMac/libcrypto.1.0.0.dylib",
+        "lib/QtBinariesMac/libssl.1.0.0.dylib",
+        "lib/QtBinariesMac/platforms/libqcocoa.dylib",
+        "lib/QtBinariesMac/platforms/libqminimal.dylib",
+        "lib/QtBinariesMac/platforms/libqoffscreen.dylib",
+        "lib/QtBinariesWindows/Qt5Core.dll",
+        "lib/QtBinariesWindows/Qt5Gui.dll",
+        "lib/QtBinariesWindows/Qt5Multimedia.dll",
+        "lib/QtBinariesWindows/Qt5MultimediaWidgets.dll",
+        "lib/QtBinariesWindows/Qt5Network.dll",
+        "lib/QtBinariesWindows/Qt5OpenGL.dll",
+        "lib/QtBinariesWindows/Qt5Positioning.dll",
+        "lib/QtBinariesWindows/Qt5PrintSupport.dll",
+        "lib/QtBinariesWindows/Qt5Qml.dll",
+        "lib/QtBinariesWindows/Qt5Quick.dll",
+        "lib/QtBinariesWindows/Qt5Sensors.dll",
+        "lib/QtBinariesWindows/Qt5Sql.dll",
+        "lib/QtBinariesWindows/Qt5Svg.dll",
+        "lib/QtBinariesWindows/Qt5WebChannel.dll",
+        "lib/QtBinariesWindows/Qt5WebKit.dll",
+        "lib/QtBinariesWindows/Qt5WebKitWidgets.dll",
+        "lib/QtBinariesWindows/Qt5Widgets.dll",
+        "lib/QtBinariesWindows/Syncfusion.WebKitWrapper",
+        "lib/QtBinariesWindows/icudt49.dll",
+        "lib/QtBinariesWindows/icuin49.dll",
+        "lib/QtBinariesWindows/icuuc49.dll",
+        "lib/QtBinariesWindows/imageformats/qdds.dll",
+        "lib/QtBinariesWindows/imageformats/qgif.dll",
+        "lib/QtBinariesWindows/imageformats/qicns.dll",
+        "lib/QtBinariesWindows/imageformats/qico.dll",
+        "lib/QtBinariesWindows/imageformats/qjp2.dll",
+        "lib/QtBinariesWindows/imageformats/qjpeg.dll",
+        "lib/QtBinariesWindows/imageformats/qmng.dll",
+        "lib/QtBinariesWindows/imageformats/qsvg.dll",
+        "lib/QtBinariesWindows/imageformats/qtga.dll",
+        "lib/QtBinariesWindows/imageformats/qtiff.dll",
+        "lib/QtBinariesWindows/imageformats/qwbmp.dll",
+        "lib/QtBinariesWindows/imageformats/qwebp.dll",
+        "lib/QtBinariesWindows/libEGL.dll",
+        "lib/QtBinariesWindows/libGLESv2.dll",
+        "lib/QtBinariesWindows/platforms/qminimal.dll",
+        "lib/QtBinariesWindows/platforms/qoffscreen.dll",
+        "lib/QtBinariesWindows/platforms/qwindows.dll",
+        "lib/QtBinariesWindows/zlib1.dll",
+        "lib/netstandard2.0/Syncfusion.Compression.Portable.dll",
+        "lib/netstandard2.0/Syncfusion.Compression.Portable.xml",
+        "lib/netstandard2.0/Syncfusion.HtmlConverter.Portable.dll",
+        "lib/netstandard2.0/Syncfusion.HtmlConverter.Portable.xml",
+        "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll",
+        "lib/netstandard2.0/Syncfusion.Pdf.Portable.xml",
+        "syncfusion.htmltopdfconverter.qtwebkit.net.core.18.1.0.52.nupkg.sha512",
+        "syncfusion.htmltopdfconverter.qtwebkit.net.core.nuspec"
+      ]
+    },
+    "Syncfusion.Licensing/18.1.0.54": {
+      "sha512": "oIPt2jg/QtRigkWiYv4X9tB8//ov5xpO1P452RdO4r/3c8wBHZr97rbmGWxt/JwnARU3Rwfq19OeZ0jaOZpGAA==",
+      "type": "package",
+      "path": "syncfusion.licensing/18.1.0.54",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10/Syncfusion.Licensing.dll",
+        "lib/Xamarin.Mac/Syncfusion.Licensing.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Licensing.dll",
+        "lib/net20/Syncfusion.Licensing.dll",
+        "lib/net35/Syncfusion.Licensing.dll",
+        "lib/net40/Syncfusion.Licensing.dll",
+        "lib/net45/Syncfusion.Licensing.dll",
+        "lib/net451/Syncfusion.Licensing.dll",
+        "lib/net46/Syncfusion.Licensing.dll",
+        "lib/netcoreapp3.0/Syncfusion.Licensing.dll",
+        "lib/netstandard1.0/Syncfusion.Licensing.dll",
+        "lib/netstandard1.2/Syncfusion.Licensing.dll",
+        "lib/netstandard1.4/Syncfusion.Licensing.dll",
+        "lib/netstandard2.0/Syncfusion.Licensing.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Licensing.dll",
+        "lib/uap10.0/Syncfusion.Licensing.dll",
+        "syncfusion.licensing.18.1.0.54.nupkg.sha512",
+        "syncfusion.licensing.nuspec"
+      ]
+    },
+    "Syncfusion.Pdf.Net.Core/18.1.0.54": {
+      "sha512": "8zCK6WDp+lS3PxNCIU+VSEM5lD1DDBtb+STKQM5GKZGzgCT02hfFRpBI1EeNsji0aQib8WFklXh5Sw7XzubXAA==",
+      "type": "package",
+      "path": "syncfusion.pdf.net.core/18.1.0.54",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard1.2/Syncfusion.Pdf.Portable.dll",
+        "lib/netstandard1.2/Syncfusion.Pdf.Portable.xml",
+        "lib/netstandard1.4/Syncfusion.Pdf.Portable.dll",
+        "lib/netstandard1.4/Syncfusion.Pdf.Portable.xml",
+        "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll",
+        "lib/netstandard2.0/Syncfusion.Pdf.Portable.xml",
+        "syncfusion.pdf.net.core.18.1.0.54.nupkg.sha512",
+        "syncfusion.pdf.net.core.nuspec"
       ]
     },
     "System.AppContext/4.3.0": {
@@ -11878,7 +12147,10 @@
       "Microsoft.EntityFrameworkCore.Design >= 2.1.2",
       "Microsoft.EntityFrameworkCore.Tools >= 2.1.2",
       "Microsoft.NETCore.App >= 2.1.0",
-      "Pomelo.EntityFrameworkCore.MySql >= 2.1.2"
+      "Pomelo.EntityFrameworkCore.MySql >= 2.1.2",
+      "Rotativa.AspNetCore >= 1.1.1",
+      "Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core >= 18.1.0.52",
+      "Syncfusion.Pdf.Net.Core >= 18.1.0.54"
     ]
   },
   "packageFolders": {
@@ -11888,11 +12160,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\XayDungHTTPTrenFramework\\New folder\\Shop\\Shop.csproj",
+      "projectUniqueName": "E:\\XayDungHTTPTrenFramework\\New folder\\shop\\Shop.csproj",
       "projectName": "Shop",
-      "projectPath": "E:\\XayDungHTTPTrenFramework\\New folder\\Shop\\Shop.csproj",
+      "projectPath": "E:\\XayDungHTTPTrenFramework\\New folder\\shop\\Shop.csproj",
       "packagesPath": "C:\\Users\\huynh\\.nuget\\packages\\",
-      "outputPath": "E:\\XayDungHTTPTrenFramework\\New folder\\Shop\\obj\\",
+      "outputPath": "E:\\XayDungHTTPTrenFramework\\New folder\\shop\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -11951,6 +12223,18 @@
           "Pomelo.EntityFrameworkCore.MySql": {
             "target": "Package",
             "version": "[2.1.2, )"
+          },
+          "Rotativa.AspNetCore": {
+            "target": "Package",
+            "version": "[1.1.1, )"
+          },
+          "Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core": {
+            "target": "Package",
+            "version": "[18.1.0.52, )"
+          },
+          "Syncfusion.Pdf.Net.Core": {
+            "target": "Package",
+            "version": "[18.1.0.54, )"
           }
         },
         "imports": [

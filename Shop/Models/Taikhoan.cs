@@ -8,6 +8,7 @@ namespace Shop.Models
         public Taikhoan()
         {
             Admin = new HashSet<Admin>();
+            Binhluan = new HashSet<Binhluan>();
             Khachhang = new HashSet<Khachhang>();
             Nhanvien = new HashSet<Nhanvien>();
         }
@@ -21,6 +22,7 @@ namespace Shop.Models
 
         public Loaitaikhoan LoaiTaiKhoan { get; set; }
         public ICollection<Admin> Admin { get; set; }
+        public ICollection<Binhluan> Binhluan { get; set; }
         public ICollection<Khachhang> Khachhang { get; set; }
         public ICollection<Nhanvien> Nhanvien { get; set; }
     }

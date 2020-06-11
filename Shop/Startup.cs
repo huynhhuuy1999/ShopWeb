@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Rotativa.AspNetCore;
 
 namespace Shop
 {
@@ -49,6 +50,8 @@ namespace Shop
                 app.UseHsts();
             }
             app.UseSession();
+            app.UseAuthentication();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -103,7 +106,17 @@ namespace Shop
                 routes.MapRoute(
                     name:"xemchitietdonhang",
                     template:"{controller=hoadon}/{action=xemchitietdonhang}/{id}");
+                routes.MapRoute(
+                    name:"inhoadon",
+                    template:"{controller=hoadon}/{action=InHoaDon}/{id}");
+                routes.MapRoute(
+                    name:"thembinhluan",
+                    template:"{controller=binhluan}/{action=Thembinhluan}/{id}");
+                routes.MapRoute(
+                    name:"xoabinhluan",
+                    template:"{controller=binhluan}/{action=xoabinhluan}/{id}");
             });
+            RotativaConfiguration.Setup(env);
         }
     }
 }

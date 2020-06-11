@@ -2,15 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Models;
 using Microsoft.AspNetCore.Http;
-using System.Text;
+using Microsoft.AspNetCore.Hosting;
+using Rotativa.AspNetCore;
 
 namespace Shop.Controllers{
+    
     public class HoaDonController : Controller
     {
+        // private readonly IHostingEnvironment _hostingEnvironment;
+        // public HoaDonController(IHostingEnvironment hostingEnvironment){
+        //     _hostingEnvironment = hostingEnvironment;
+        // }
         public IActionResult XemDanhSachHoaDon(){
             var dbContext = new shopContext();
             // lấy thông tin trong bảng hóa đơn
@@ -107,6 +112,7 @@ namespace Shop.Controllers{
                 dsChiTiet.Add(ct);
             }
             ViewBag.chitiet = dsChiTiet;
+            ViewBag.idHoaDon = id;
             return View();
         }
         public IActionResult XemDanhSachHoaDonChuaXuLy(){
@@ -394,6 +400,96 @@ namespace Shop.Controllers{
             hoadon.NgayGiao=DateTime.Now;
             dbContext.SaveChanges();
             dbContext.Dispose();
+        }
+        public IActionResult InHoaDon(int id){
+            var dbContext = new shopContext();
+            var hoadon =(from hd in dbContext.Hoadon
+                        join ps in dbContext.Phiship
+                        on hd.PhiShipId equals ps.PhiShipId
+                        join kh in dbContext.Khachhang
+                        on hd.KhachHangId equals kh.KhachHangId
+                        join nv in dbContext.Nhanvien
+                        on hd.NhanVienId equals nv.NhanVienId
+                        where hd.HoaDonId == id 
+                        select new{
+                            idhd = hd.HoaDonId,
+                            TenKhachHang = kh.HoTen,
+                            quan = hd.Quan,
+                            ngaytao = hd.NgayTao,
+                            TenNguoiNhan = hd.TenNguoiNhan,
+                            soNha = hd.SoNha,
+                            sdt = hd.Sdt,
+                            phiship = ps.ChiPhi,
+                            tienkhuyenmai = hd.TienGiamGia,
+                            TongTienChuaShip = hd.TongTienChuaShip,
+                            tongcong = hd.TongTienThanhToan
+                        }).ToList();
+            List<Hoadon> DSHoaDon = new List<Hoadon>();
+            foreach (var item in hoadon)
+            {
+                Hoadon hd =new Hoadon();
+                hd.HoaDonId = item.idhd;
+                hd.NgayTao = item.ngaytao;
+                hd.TenNguoiNhan = item.TenNguoiNhan;
+                hd.SoNha = item.soNha;
+                hd.Sdt = item.sdt;
+                hd.TienGiamGia= item.tienkhuyenmai;
+                hd.TongTienChuaShip = item.TongTienChuaShip;
+                hd.TongTienThanhToan = item.tongcong;
+                hd.Quan = item.quan;
+                Phiship ps = new Phiship();
+                ps.ChiPhi =  item.phiship;
+                Khachhang kh  = new Khachhang();
+                kh.HoTen = item.TenKhachHang;
+                hd.KhachHang= kh;
+                hd.PhiShip = ps;
+                DSHoaDon.Add(hd);
+            }
+            // ViewBag.hoadon = DSHoaDon;
+            var chitiet = (from ct in dbContext.Chitiethoadon
+                            join hd in dbContext.Hoadon
+                            on ct.HoaDonId equals hd.HoaDonId
+                            join sp in dbContext.Sanpham
+                            on ct.SanPhamId equals sp.SanPhamId
+                            join kt in dbContext.Kichthuoc
+                            on ct.KichThuocId equals kt.KichThuocid
+                            join ha in dbContext.Hinhanh
+                            on sp.HinhAnhId equals ha.HinhAnhId
+                            join km in dbContext.Khuyenmai
+                            on sp.KhuyenMaiId equals km.KhuyenMaiId into x
+                            from subnv in x.DefaultIfEmpty()
+                            where hd.HoaDonId == id
+                            select new{
+                                tensp = sp.TenSanPham,
+                                hinhanh = ha.TenFile,
+                                gia = ct.TongTien,
+                                soluong = ct.SoLuong,
+                                giam = subnv.PhanTramGiam * sp.GiaBanLe,
+                                tamtinh = ct.TongSauKm,
+                                tenKichThuoc = kt.TenKichThuoc
+                            }).ToList();
+            List<Chitiethoadon> DSChiTiet = new List<Chitiethoadon>();
+            foreach (var item in chitiet)
+            {
+                Sanpham sp = new Sanpham();
+                Chitiethoadon ct = new Chitiethoadon();
+                Hinhanh ha = new Hinhanh();
+                Kichthuoc kt = new Kichthuoc();
+                sp.TenSanPham = item.tensp;
+                ha.TenFile = item.hinhanh;
+                ct.TongTien = item.gia;
+                ct.SoLuong = item.soluong;
+                ct.TienKhuyenMai = item.giam;
+                ct.TongSauKm = item.tamtinh;
+                kt.TenKichThuoc = item.tenKichThuoc;
+                sp.HinhAnh=ha;
+                ct.SanPham= sp;
+                ct.KichThuoc = kt;
+                DSChiTiet.Add(ct);
+            }
+
+            var hoadon_cthd = new Tuple<List<Hoadon>, List<Chitiethoadon>>(DSHoaDon, DSChiTiet);
+            return new ViewAsPdf(hoadon_cthd);
         }
     }
 }

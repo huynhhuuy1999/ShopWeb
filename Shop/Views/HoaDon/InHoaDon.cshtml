@@ -1,0 +1,92 @@
+@model Tuple<List<Hoadon>, List<Chitiethoadon>>;
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/bootrap4/css/bootstrap.min.css">
+    <link href="~/css/Admin/HoaDon/styleInHoaDon.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="title">
+                <h3>HÓA ĐƠN</h3>
+            </div>
+            @foreach(var item in Model.Item1){
+                <div class="date">
+                    <span>Ngày @item.NgayTao.Day, tháng @item.NgayTao.Month, năm @item.NgayTao.Year</span>
+                </div>
+                <div class="info">
+                    <span>Họ tên người mua: <span class="name">@item.KhachHang.HoTen</span> </span><br>
+                    <span>Họ tên người nhận: <span class="name">@item.TenNguoiNhan</span></span><br>
+                    <span>Số điện thoại: @item.Sdt</span><br>
+                    <span>Địa chỉ: @item.SoNha , @item.Quan</span><br>
+                </div>
+            }
+            <div class="cover-table mt-4">
+                <span class="dvt">Đơn vị tính (đ)</span>
+                <table class="table table-sm table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Kích thước</th>
+                            <th>Giá</th>
+                            <th>Tiền giảm</th>
+                            <th>Tạm tính</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model.Item2){
+                            <tr>
+                                <td>@item.SanPham.TenSanPham</td>
+                                <td>@item.SoLuong</td>
+                                <td>@item.KichThuoc.TenKichThuoc</td>
+                                <td>@item.TongTien</td>
+                                <td>@item.TienKhuyenMai</td>
+                                <td>@item.TongSauKm</td>
+                            </tr>
+                        }
+                        @foreach(var item in Model.Item1){
+                            <tr>
+                                <td colspan="5" class="sum">Tổng tiền tạm tính</td>
+                                <td>@item.TongTienChuaShip</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" class="sum">Phí vận chuyển</td>
+                                <td>@item.PhiShip.ChiPhi</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" class="sum">Tiền giảm voucher</td>
+                                <td>@item.TienGiamGia</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" class="sum">Tổng tiền thanh toán</td>
+                                <td>@item.TongTienThanhToan</td>
+                            </tr>
+                        }
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="signed">
+                <div class="nguoiMua ml-5">
+                    <span>Người mua hàng</span><br>
+                    <span class="note">(Ký ghi rõ họ tên)</span>
+                </div>
+                <div class="nguoiBan mr-5">
+                    <span>Người bán hàng</span><br>
+                    <span class="note">(Ký ghi rõ họ tên)</span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</body>
+</html>

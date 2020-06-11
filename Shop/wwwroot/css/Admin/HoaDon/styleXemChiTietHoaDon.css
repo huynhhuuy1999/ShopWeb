@@ -23,3 +23,8 @@ td div img{
     background-position: center;
     background-size: cover;
 }
+.inHoaDon{
+    float: right;
+    color:#111;
+    font-weight: 500;
+}

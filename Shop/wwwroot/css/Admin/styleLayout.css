@@ -42,6 +42,10 @@
 .menu{
     border-bottom: 1px solid;
 }
+.menu:hover{
+    color:#CCC;
+    text-decoration: none;
+}
 .openbtn{
     background-color: #6d7fcc;
     border: none;

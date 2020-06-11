@@ -16,6 +16,7 @@ namespace Shop.Models
         }
 
         public virtual DbSet<Admin> Admin { get; set; }
+        public virtual DbSet<Binhluan> Binhluan { get; set; }
         public virtual DbSet<Cart> Cart { get; set; }
         public virtual DbSet<Chitiethoadon> Chitiethoadon { get; set; }
         public virtual DbSet<Hinhanh> Hinhanh { get; set; }
@@ -68,6 +69,35 @@ namespace Shop.Models
                     .WithMany(p => p.Admin)
                     .HasForeignKey(d => d.TaiKhoanId)
                     .HasConstraintName("FK_TaiKhoan_Admin");
+            });
+
+            modelBuilder.Entity<Binhluan>(entity =>
+            {
+                entity.ToTable("binhluan");
+
+                entity.HasIndex(e => e.SanPhamId)
+                    .HasName("FK_BinhLuan_SanPham");
+
+                entity.HasIndex(e => e.TaiKhoanId)
+                    .HasName("FK_BinhLuan_TaiKhoan");
+
+                entity.Property(e => e.BinhLuanId).HasColumnType("int(11)");
+
+                entity.Property(e => e.NoiDung).HasColumnType("varchar(200)");
+
+                entity.Property(e => e.SanPhamId).HasColumnType("int(11)");
+
+                entity.Property(e => e.TaiKhoanId).HasColumnType("int(11)");
+
+                entity.HasOne(d => d.SanPham)
+                    .WithMany(p => p.Binhluan)
+                    .HasForeignKey(d => d.SanPhamId)
+                    .HasConstraintName("FK_BinhLuan_SanPham");
+
+                entity.HasOne(d => d.TaiKhoan)
+                    .WithMany(p => p.Binhluan)
+                    .HasForeignKey(d => d.TaiKhoanId)
+                    .HasConstraintName("FK_BinhLuan_TaiKhoan");
             });
 
             modelBuilder.Entity<Cart>(entity =>

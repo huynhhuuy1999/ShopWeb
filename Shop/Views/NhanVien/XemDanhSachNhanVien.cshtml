@@ -3,6 +3,7 @@
 }
 <link rel="stylesheet" href="~/css/Admin/NhanVien/styleXemDanhSachNhanVien.css">
 <div class="table1 container">
+    <a href="/nhanvien/themnhanvien"><button type="button" class="btn btn-primary btn-add">Thêm nhân viên</button></a>
     <table id="verticalScroll" class="table table-sm table-bordered table-striped table-hover">
         <thead>
             <tr>
@@ -24,7 +25,7 @@
                     <td>@Html.DisplayFor(modelItem => item.Email)</td>
                     <td>@Html.DisplayFor(modelItem => item.Sdt)</td>
                     <td>@Html.DisplayFor(modelItem => item.DiaChi)</td>
-                    <td><a href="/nhanvien/suanhanvien/@Html.DisplayFor(modelItem => item.NhanVienId)">Sửa</a></td>
+                    <td class="text-center"><a href="/nhanvien/suanhanvien/@Html.DisplayFor(modelItem => item.NhanVienId)"><i class="fad fa-edit"></i></a></td>
                 </tr>
             }
         </tbody>

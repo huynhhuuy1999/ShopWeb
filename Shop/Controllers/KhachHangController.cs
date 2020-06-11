@@ -9,6 +9,13 @@ using Microsoft.AspNetCore.Http;
 using System.Security.Cryptography;
 using System.Text;
 
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Graphics;
+using Syncfusion.Drawing;
+using System.IO;
+using Syncfusion.Pdf.Grid;
+using System.Data;
+
 namespace Shop.Controllers
 {
     public class KhachHangController : Controller{
@@ -132,6 +139,86 @@ namespace Shop.Controllers
                 return RedirectToAction("suakhachhang","khachhang",new{id=model.KhachHangId,success = "Sửa thông tin khách hàng thành công"});
             }
             return RedirectToAction("suakhachhang","khachhang",new{id=model.KhachHangId,err = "Sửa thông tin khách hàng không thành công"});
+        }
+
+        public IActionResult xuatpdf(){
+            var dbContext = new shopContext();
+            //Create a new PDF document
+            PdfDocument doc = new PdfDocument();
+//Add a page.
+            PdfPage page = doc.Pages.Add();
+            //Create a PdfGrid.
+            PdfGrid pdfGrid = new PdfGrid();
+
+            // create a graphics
+            PdfGraphics graphics = page.Graphics;
+            //Add values to list
+
+            // List<object> data = new List<object>();
+            // Object row1 = new { ID = "E01", Name = "Clay" };
+            // Object row2 = new { ID = "E02", Name = "Thomas" };
+            // Object row3 = new { ID = "E03", Name = "Andrew" };
+            // Object row4 = new { ID = "E04", Name = "Paul" };
+            // Object row5 = new { ID = "E05", Name = "Gray" };
+            // data.Add(row1);
+            // data.Add(row2);
+            // data.Add(row3);
+            // data.Add(row4);
+            // data.Add(row5);
+
+            //Add list to IEnumerable
+
+            var data = (from d in dbContext.Sanpham select d).ToList();
+            IEnumerable<object> dataTable = data;
+            //Assign data source.
+            pdfGrid.DataSource = dataTable;
+            //Draw grid to the page of PDF document.
+            pdfGrid.Draw(page, new Syncfusion.Drawing.PointF(10, 10));
+
+
+            RectangleF bounds = new RectangleF(176, 0, 390, 130);
+            PdfBrush solidBrush = new PdfSolidBrush(new PdfColor(126, 151, 173));
+            bounds = new RectangleF(0,bounds.Bottom + 90, graphics.ClientSize.Width, 30);
+            //Draws a rectangle to place the heading in that region.
+            graphics.DrawRectangle(solidBrush, bounds);
+            //Creates a font for adding the heading in the page
+            PdfFont subHeadingFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 14);
+            //Creates a text element to add the invoice number
+            PdfTextElement element = new PdfTextElement("INVOICE " + "ok baby", subHeadingFont);
+            element.Brush = PdfBrushes.White;
+
+            PdfLayoutResult result = element.Draw(page, new PointF(10, bounds.Top + 8));
+            string currentDate = "DATE " + DateTime.Now.ToString("MM/dd/yyyy");
+            //Measures the width of the text to place it in the correct location
+            SizeF textSize = subHeadingFont.MeasureString(currentDate);
+            PointF textPosition = new PointF(graphics.ClientSize.Width - textSize.Width - 10, result.Bounds.Y);
+            //Draws the date by using DrawString method
+            graphics.DrawString(currentDate, subHeadingFont, element.Brush, textPosition);
+            PdfFont timesRoman = new PdfStandardFont(PdfFontFamily.TimesRoman, 10);
+            //Creates text elements to add the address and draw it to the page.
+            element = new PdfTextElement("BILL TO ", timesRoman);
+            element.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
+            result = element.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
+            PdfPen linePen = new PdfPen(new PdfColor(126, 151, 173), 0.70f);
+            PointF startPoint = new PointF(0, result.Bounds.Bottom + 3);
+            PointF endPoint = new PointF(graphics.ClientSize.Width, result.Bounds.Bottom + 3);
+            //Draws a line at the bottom of the address
+            graphics.DrawLine(linePen, startPoint, endPoint);
+
+          
+            //Save the PDF document to stream
+            MemoryStream stream = new MemoryStream();
+            doc.Save(stream);
+            //If the position is not set to '0' then the PDF will be empty.
+            stream.Position = 0;
+            //Close the document.
+            doc.Close(true);
+            //Defining the ContentType for pdf file.
+            string contentType = "application/pdf";
+            //Define the file name.
+            string fileName = "Output.pdf";
+            //Creates a FileContentResult object by using the file contents, content type, and file name.
+            return File(stream, contentType, fileName);
         }
     }
 }

@@ -59,6 +59,35 @@ namespace Shop.Controllers
                 List.Add(sanPham);
             }
             ViewData["sanpham"] = List;
+
+            // hiển thị danh sách bình luận
+            var binhLuan = (from bl in dbContext.Binhluan
+                            join tk in dbContext.Taikhoan
+                            on bl.TaiKhoanId equals tk.TaiKhoanId
+                            
+                            where bl.SanPhamId == id
+                            select new {
+                                binhluanId = bl.BinhLuanId,
+                                noidung = bl.NoiDung,
+                                username = tk.Username
+                            }).ToList();
+            List<Binhluan> DSBinhLuan = new List<Binhluan>();
+            foreach(var item in binhLuan){
+                Binhluan bl = new Binhluan();
+                Taikhoan tk = new Taikhoan();
+                bl.BinhLuanId = item.binhluanId;
+                bl.NoiDung = item.noidung;
+                string Str1 = item.username.Substring(0,1);
+                tk.Username = Str1;
+                tk.Password = item.username;
+                bl.TaiKhoan = tk;
+                
+                DSBinhLuan.Add(bl);
+            }
+            if(DSBinhLuan.Count==0){
+                ViewBag.empty = "Không có bình luận cho sản phẩm này";
+            }
+            ViewBag.binhluan = DSBinhLuan;
             return View();
         }
 

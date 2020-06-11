@@ -10,31 +10,31 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="HoTen">Họ tên</label>
-                        <input type="text" class="form-control" id="HoTen" placeholder="Nhập họ tên" name="HoTen" value='@Html.DisplayFor(itemModel => item.HoTen)' autocomplete="off">
+                        <input type="text" class="form-control" id="HoTen" placeholder="Nhập họ tên" name="HoTen" value='@Html.DisplayFor(itemModel => item.HoTen)' autocomplete="off" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="Email">Email</label>
-                    <input type="email" class="form-control" id="Email" placeholder="Nhập Email" name="Email" value='@Html.DisplayFor(itemModel => item.Email)' autocomplete="off">
+                    <input type="email" class="form-control" id="Email" placeholder="Nhập Email" name="Email" value='@Html.DisplayFor(itemModel => item.Email)' autocomplete="off"> required
                 </div>
             </div>
             <div class="form-group">
                 <label for="DiaChi">Địa chỉ</label>
-                <input type="text" class="form-control w-100" id="DiaChi" placeholder="Nhập địa chỉ" name="DiaChi" value='@Html.DisplayFor(itemModel => item.DiaChi)' autocomplete="off">
+                <input type="text" class="form-control w-100" id="DiaChi" placeholder="Nhập địa chỉ" name="DiaChi" value='@Html.DisplayFor(itemModel => item.DiaChi)' autocomplete="off" required>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="NgaySinh">Ngày sinh</label>
-                        <input type="date" class="form-control" id="NgaySinh" name="NgaySinh" value="@item.NgaySinh.ToString("yyyy-MM-dd")" autocomplete="off">
+                        <input type="date" class="form-control" id="NgaySinh" name="NgaySinh" value="@item.NgaySinh.ToString("yyyy-MM-dd")" autocomplete="off" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="Sdt">Số điện thoại</label>
-                    <input type="number" class="form-control" id="Sdt" name="Sdt" value='@Html.DisplayFor(itemModel => item.Sdt)' autocomplete="off">
+                    <input type="number" class="form-control" id="Sdt" name="Sdt" value='@Html.DisplayFor(itemModel => item.Sdt)' autocomplete="off" required>
                 </div>
             </div>
             <label for="changePass">Đổi mật khẩu: </label><input type="checkbox" class="ml-2" value="check" name="changePassword"><br>
             <div class="form-group">
                 <label for="oldpassword">Mật khẩu cũ</label>
-                <input type="password" class="form-control w-100" id="oldpassword" placeholder="Nhập mật khẩu cũ" name="oldpassword" autocomplete="off" disabled="">
+                <input type="password" class="form-control w-100" id="oldpassword" placeholder="Nhập mật khẩu cũ" name="oldpassword" autocomplete="off" disabled="" required>
                 @if(ViewBag.err!=null){
                     <div class="alert alert-danger mt-2" role="alert">
                         @ViewBag.err
@@ -43,7 +43,7 @@
             </div>
             <div class="form-group">
                 <label for="newPass">Mật khẩu mới</label>
-                <input type="password" class="form-control w-100" id="newPass" placeholder="Nhập mật khẩu mới" name="newPassword" autocomplete="off" disabled="">
+                <input type="password" class="form-control w-100" id="newPass" placeholder="Nhập mật khẩu mới" name="newPassword" autocomplete="off" disabled="" required>
             </div>
         }
         @if(ViewBag.success!=null){

@@ -1,6 +1,6 @@
 <link href="~/css/Customer/SanPham/styleChitiet.css" rel="stylesheet" />
 @using Microsoft.AspNetCore.Http;
-
+@model Shop.Models.Binhluan;
 <div class="container mb-5">
     @foreach (var item in ViewData["sanpham"] as List<Sanpham>)
     {
@@ -22,6 +22,45 @@
                 </div>
             </div>
         </div>
-    }
     
+
+        <div class="comment mt-5 ml-5">
+            <span class="title">Bình luận</span><br>
+            @if(@Context.Session.GetString("username")==null){
+                <span style="color:red;font-size:13px">Yêu cầu đăng nhập</span><br>
+            }
+            <form asp-action="thembinhluan" asp-controller="binhluan" method="POST">
+                <div class="cover-form">
+                    <div class="comment-input mt-3">
+                        <input type="text" hidden name="SanPhamId" value="@item.SanPhamId">
+                        <input type="text" placeholder="Nhập bình luận" class="bg-light" name="NoiDung" >
+                    </div>
+                    <input type="submit" name="Nhập" hidden>
+                </div>
+                
+            </form>
+            <div class="list-comment mt-4">
+                @if(ViewBag.empty!=null){
+                    <span>@ViewBag.empty</span>
+                }
+                @foreach(var item2 in ViewBag.binhluan as List<Binhluan>){
+                    <div class="comment-item mt-4">
+                        <div class="avatar">
+                            <span class="text-uppercase">@item2.TaiKhoan.Username</span>
+                        </div>
+                        <div class="content-comment ml-3">
+                            <span class="font-weight-bold">@item2.TaiKhoan.Password</span><br>
+                            <span>@item2.NoiDung</span><br>
+                            @if(@Context.Session.GetString("username")!=null && String.Compare(item2.TaiKhoan.Password,@Context.Session.GetString("username"))==0){
+                                <span><a href="/binhluan/xoabinhluan/@item2.BinhLuanId">Xóa</a></span>
+                            }
+                            
+                        </div>
+                    </div>
+                    
+                }
+                
+            </div>
+        </div>
+    }
 </div>

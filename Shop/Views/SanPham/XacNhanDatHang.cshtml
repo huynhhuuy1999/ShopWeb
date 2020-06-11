@@ -12,7 +12,7 @@
             <i class="far fa-map-marker-alt"></i>
             <input type="text" id="SoNha" name="SoNha"><br>
             <label for="PhiShipId">Quận</label><br>
-            <select name="PhiShipId" id="PhiShipId">
+            <select name="PhiShipId" id="PhiShipId" required>
                 <option value="" disabled selected></option>
                 <option value="8">Thủ Đức</option>
                 <option value="1">Quận 1</option>
@@ -26,18 +26,18 @@
             <label for="TenNguoiNhan">Tên người nhận</label><br>
             <i class="fas fa-user"></i>
             @if(@Context.Session.GetString("username")!=null){
-                <input type="text" id="TenNguoiNhan" name="TenNguoiNhan" value="@ViewBag.ten"><br>
+                <input type="text" id="TenNguoiNhan" name="TenNguoiNhan" value="@ViewBag.ten" required><br>
             }
             else{
-                <input type="text" id="TenNguoiNhan" name="TenNguoiNhan"><br>
+                <input type="text" id="TenNguoiNhan" name="TenNguoiNhan" required><br>
             }
             <label for="Sdt">Số điện thoại</label><br>
             <i class="fas fa-phone-alt"></i>
             @if(@Context.Session.GetString("username")!=null){
-                <input type="text" id="Sdt" name="Sdt" value="@ViewBag.sdt"><br>
+                <input type="text" id="Sdt" name="Sdt" value="@ViewBag.sdt" required><br>
             }
             else{
-                <input type="text" id="Sdt" name="Sdt"><br>
+                <input type="text" id="Sdt" name="Sdt" required><br>
             }
             @if(ViewBag.error!=null){
                 <div class="alert alert-danger" role="alert">
