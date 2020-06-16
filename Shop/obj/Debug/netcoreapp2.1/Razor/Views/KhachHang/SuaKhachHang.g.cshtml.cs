@@ -63,7 +63,7 @@ using Shop.Models;
 #line default
 #line hidden
             BeginContext(68, 76, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "88084d31062642eca2f19cc05590f2cc", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "bd5c093baa564847898a5eb81d6d4302", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -82,7 +82,7 @@ using Shop.Models;
             WriteLiteral("\r\n<div class=\"container mb-5 parent\">\r\n    <div class=\"mb-4\">\r\n        <h2><i class=\"far fa-edit\"></i> Thông tin khách hàng</h2>\r\n    </div>\r\n    ");
             EndContext();
             BeginContext(290, 2369, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b528a84c9ad74d22bc9a717effbdbeb8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "96679ddac92a4de2b6aeeadccb491496", async() => {
                 BeginContext(364, 2, true);
                 WriteLiteral("\r\n");
                 EndContext();

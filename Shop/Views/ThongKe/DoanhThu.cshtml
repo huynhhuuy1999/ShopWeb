@@ -1,0 +1,57 @@
+@{
+    Layout = "_LayoutAdmin";
+}
+@model IEnumerable<Shop.Models.Thongke>
+<link href="~/css/Admin/ThongKe/styleDoanhThu.css" rel="stylesheet" />
+<div class="container table1">
+    @* <a href="/thongke/inthongke"><button class="btn btn-warning float-right text-white">In thống kê</button></a> *@
+    <h2>Thống kê doanh thu</h2>
+    <form method="POST">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="TuNgay">Từ ngày</label>
+                <input type="date" name="TuNgay" id="TuNgay" class="form-control" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="DenNgay">Đến ngày</label>
+                <input type="date" name="DenNgay" id="DenNgay" class="form-control" required>
+            </div>
+        </div>
+        <input type="button" name="ThongKe" value="Thong Ke" class="btn btn-warning text-white" id="thongke">
+    </form>
+    
+    <table class="table table-sm table-bordered table-striped table-hover mt-3">
+        <thead>
+            <tr class="text-center">
+                <th>Năm</th>
+                <th>Tháng</th>
+                <th>Doanh thu</th>
+            </tr>
+        </thead>
+        <tbody class="content-thongke text-center">
+            
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+		$("#thongke").click(()=>{
+            let TuNgay = $("#TuNgay").val();
+            let DenNgay = $("#DenNgay").val();
+            $.ajax({
+                type:"POST",
+                url:"@Url.Action("ThongKe")",
+                data:{tungay:TuNgay, denngay:DenNgay},
+                success:function(data){
+                    for(let i = 0; i< data.length;i++){
+                        $(".content-thongke").append("<tr><td>"+data[i].nam+"</td>\
+                                        <td>"+data[i].thang+"</td><td>"+data[i].doanhThu+"</td></tr>");
+                    }
+                },
+                error:function(err){
+                    alert(err);
+                }
+            })
+        });
+	});
+</script>

@@ -27,11 +27,19 @@
 	list-style-type: none;
 	display: inline-block;
 	position: relative;
-	margin-left: 0;
+    margin-left: 0;
+    font-family: 'Playfair Display', serif;
+    transition: background-color 0.5s;
 }
 .menu li:hover {
     color:red;
     background-color: #ea8025;
+}
+.menu li:hover a{
+    transform: translateY(5px);
+}
+.menu li a{
+    transition: transform 0.5s;
 }
 .footer {
     background-color: #000;

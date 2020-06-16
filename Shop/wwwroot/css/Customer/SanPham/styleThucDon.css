@@ -19,6 +19,7 @@ html{
 .sidenav ul li{
   list-style-type: none;
   margin:25px 0px;
+  transition: transform 0.5s;
 }
 
 .sidenav a {
@@ -27,8 +28,12 @@ html{
   color:black;
   text-transform: uppercase;
   font-weight: bold;
+  
 }
-
+.sidenav ul li:hover{
+  transform: translateX(15px);
+  border-bottom: 1px solid #EA8025;
+}
 
 .main {
   position: relative;

@@ -3,6 +3,11 @@
     align-items: center;
     background-color: #CCC;
     position: fixed;
+    z-index: 99999;
+}
+.header span{
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
 }
 .login{
     justify-content: center;

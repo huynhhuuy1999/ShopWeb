@@ -17,10 +17,13 @@ body {
   padding-top: 10px;
   padding-bottom: 25px;
 }
-
+.listCategory li:hover{
+  transform: translateY(5px);
+}
 .listCategory ul li {
   margin-top: 20px;
   list-style-type: none;
+  transition: transform 0.5s;
 }
 .listCategory ul li a {
   color: #aaa;
@@ -53,15 +56,6 @@ body {
   }
 }
 
-/* .order {
-    width: 430px;
-    position: sticky;
-    z-index: 1;
-    top: 100px;
-    left: 1040px;
-    background: #eee;
-    margin-top:-150px;
-} */
 .order {
   width: 430px;
   /* max-height: 500px; */

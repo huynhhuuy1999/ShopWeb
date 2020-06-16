@@ -4,6 +4,10 @@
     background-color: #CCC;
     position: fixed;
 }
+.header span{
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+}
 .login{
     justify-content: center;
     flex-grow: 1;
