@@ -3,6 +3,7 @@
 }
 @model IEnumerable<Shop.Models.Thongke>
 <link href="~/css/Admin/ThongKe/styleDoanhThu.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <div class="container table1">
     @* <a href="/thongke/inthongke"><button class="btn btn-warning float-right text-white">In thống kê</button></a> *@
     <h2>Thống kê doanh thu</h2>
@@ -17,41 +18,118 @@
                 <input type="date" name="DenNgay" id="DenNgay" class="form-control" required>
             </div>
         </div>
-        <input type="button" name="ThongKe" value="Thong Ke" class="btn btn-warning text-white" id="thongke">
+        <div class="d-flex">
+            <input type="button" name="ThongKe" value="Thống kê" class="btn btn-warning text-white m-3" id="thongke">
+            <input type="button" name="BieuDo" value="Biểu đồ" class="btn btn-success text-white m-3" id="bieudo">
+        </div>
     </form>
+    <div class="cover-chart" style="width:700px;height: 700px;margin-left: 200px;">
+        <canvas id="bar-chart" width="500" height="500"></canvas>
+    </div>
+    <div class="table-thongke">
+        <table class="table table-sm table-bordered table-striped table-hover mt-3 ">
+            <thead>
+                <tr class="text-center">
+                    <th>Năm</th>
+                    <th>Tháng</th>
+                    <th>Doanh thu</th>
+                </tr>
+            </thead>
+            <tbody class="content-thongke text-center">
+                
+            </tbody>
+        </table>
+    </div>
     
-    <table class="table table-sm table-bordered table-striped table-hover mt-3">
-        <thead>
-            <tr class="text-center">
-                <th>Năm</th>
-                <th>Tháng</th>
-                <th>Doanh thu</th>
-            </tr>
-        </thead>
-        <tbody class="content-thongke text-center">
-            
-        </tbody>
-    </table>
 </div>
 <script>
     $(document).ready(function () {
+        $(".table-thongke").css("display","none");
+        $(".cover-chart").css("display","none");
 		$("#thongke").click(()=>{
             let TuNgay = $("#TuNgay").val();
             let DenNgay = $("#DenNgay").val();
-            $.ajax({
-                type:"POST",
-                url:"@Url.Action("ThongKe")",
-                data:{tungay:TuNgay, denngay:DenNgay},
-                success:function(data){
-                    for(let i = 0; i< data.length;i++){
-                        $(".content-thongke").append("<tr><td>"+data[i].nam+"</td>\
-                                        <td>"+data[i].thang+"</td><td>"+data[i].doanhThu+"</td></tr>");
+            if(TuNgay=="" || DenNgay==""){
+                alert("Bạn chưa chọn thời gian thống kê");
+            }
+            else{
+                $(".cover-chart").css("display","none");
+                $(".table-thongke").css("display","block");
+                $(".content-thongke").children().remove();
+                $.ajax({
+                    type:"POST",
+                    url:"@Url.Action("ThongKe")",
+                    data:{tungay:TuNgay, denngay:DenNgay},
+                    success:function(data){
+                        for(let i = 0; i< data.length;i++){
+                            $(".content-thongke").append("<tr><td>"+data[i].nam+"</td>\
+                                            <td>"+data[i].thang+"</td><td>"+data[i].doanhThu+"</td></tr>");
+                        }
+                    },
+                    error:function(err){
+                        alert(err);
                     }
-                },
-                error:function(err){
-                    alert(err);
-                }
-            })
+                });
+            };
+        });
+            
+
+        $("#bieudo").click(()=>{
+            let TuNgay = $("#TuNgay").val();
+            let DenNgay = $("#DenNgay").val();
+            if(TuNgay=="" || DenNgay==""){
+                alert("Bạn chưa chọn thời gian thống kê");
+            }
+            else{
+                $(".cover-chart").css("display","block");
+                $(".table-thongke").css("display","none");
+                
+                $.ajax({
+                    type:"POST",
+                    url: "@Url.Action("ThongKe")",
+                    data:{tungay:TuNgay, denngay:DenNgay},
+                    success:(data)=>{
+                        let thang = [];
+                        let doanhThu =[];
+                        for(let i =0 ;i < data.length;i++){
+                            thang.push(data[i].thang);
+                            doanhThu.push(data[i].doanhThu);
+                        }
+                        new Chart(document.getElementById("bar-chart"), {
+                                type: 'bar',
+                                data: {
+                                    labels: thang,
+                                    datasets: [
+                                        {
+                                            label: "Doanh thu",
+                                            backgroundColor: ["#e1bc10"],
+                                            data: doanhThu
+                                        }
+                                    ]
+                                },
+                                options: {
+                                    legend: { display: false },
+                                    title: {
+                                        display: true,
+                                        text: 'Thống kê doanh thu'
+                                    },
+                                    responsive:true,
+                                    scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero: true
+                                                }
+                                            }]
+                                        }
+                                }
+                            });
+                    },
+                    error:(err)=>{
+                        alert(err);
+                    }
+                });
+            }
+            
         });
 	});
 </script>

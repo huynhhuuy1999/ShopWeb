@@ -14,27 +14,6 @@ namespace Shop.Controllers
     public class ThongKeController : Controller
     {
         public IActionResult DoanhThu(){
-
-            // var dbContext = new shopContext();
-            // var doanhthu = dbContext.Hoadon
-            //                 .GroupBy(x=> new {
-            //                     x.NgayTao.Month,
-            //                     x.NgayTao.Year})
-            //                 .Select(g => new {
-            //                     thang = g.Key.Month,
-            //                     nam = g.Key.Year,
-            //                     tong = g.Sum(x=>x.TongTienThanhToan).ToString()
-            //                 }).ToList();
-            // List<Thongke> DSThongKe = new List<Thongke>();
-            // foreach (var item in doanhthu)
-            // {
-            //     Thongke tk = new Thongke();
-            //     tk.Nam = item.nam;
-            //     tk.Thang = item.thang;
-            //     tk.DoanhThu =item.tong;
-            //     DSThongKe.Add(tk);
-            // }
-            // ViewBag.doanhthu = DSThongKe;
             return View();
         }
         public List<Thongke> ThongKe(DateTime tungay, DateTime denngay){
@@ -60,27 +39,8 @@ namespace Shop.Controllers
             }
             return DSThongKe;
         }
-        // public IActionResult InThongKe(){
-        //     var dbContext = new shopContext();
-        //     var doanhthu = dbContext.Hoadon
-        //                     .GroupBy(x=> new {
-        //                         x.NgayTao.Month,
-        //                         x.NgayTao.Year})
-        //                     .Select(g => new {
-        //                         thang = g.Key.Month,
-        //                         nam = g.Key.Year,
-        //                         tong = g.Sum(x=>x.TongTienThanhToan).ToString()
-        //                     }).ToList();
-        //     List<Thongke> DSThongKe = new List<Thongke>();
-        //     foreach (var item in doanhthu)
-        //     {
-        //         Thongke tk = new Thongke();
-        //         tk.Nam = item.nam;
-        //         tk.Thang = item.thang;
-        //         tk.DoanhThu =item.tong;
-        //         DSThongKe.Add(tk);
-        //     }
-        //     return new ViewAsPdf("DoanhThu",DSThongKe);
+        // public List<Thongke> BieuDo(DateTime tungay, DateTime denngay){
+
         // }
     }
 }

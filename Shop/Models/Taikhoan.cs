@@ -11,6 +11,7 @@ namespace Shop.Models
             Binhluan = new HashSet<Binhluan>();
             Khachhang = new HashSet<Khachhang>();
             Nhanvien = new HashSet<Nhanvien>();
+            Phanhoi = new HashSet<Phanhoi>();
         }
 
         public int TaiKhoanId { get; set; }
@@ -25,5 +26,6 @@ namespace Shop.Models
         public ICollection<Binhluan> Binhluan { get; set; }
         public ICollection<Khachhang> Khachhang { get; set; }
         public ICollection<Nhanvien> Nhanvien { get; set; }
+        public ICollection<Phanhoi> Phanhoi { get; set; }
     }
 }

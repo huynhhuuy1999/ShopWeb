@@ -84,10 +84,37 @@ namespace Shop.Controllers
                 
                 DSBinhLuan.Add(bl);
             }
+            
             if(DSBinhLuan.Count==0){
                 ViewBag.empty = "Không có bình luận cho sản phẩm này";
             }
             ViewBag.binhluan = DSBinhLuan;
+            //hien thi danh sach phan hoi
+            var DSPhanHoi = (from ph in dbContext.Phanhoi
+                                join tk in dbContext.Taikhoan
+                                on ph.TaiKhoanId equals tk.TaiKhoanId
+                                orderby ph.PhanHoiId descending
+                                select new {
+                                    PhanHoiId = ph.PhanHoiId,
+                                    BinhLuanId = ph.BinhLuanId,
+                                    NoiDung = ph.NoiDung,
+                                    userName = tk.Username
+                                }).ToList();
+            List<Phanhoi> ListPhanHoi = new List<Phanhoi>();
+            foreach (var item in DSPhanHoi)
+            {
+                Phanhoi ph = new Phanhoi();
+                ph.PhanHoiId = item.PhanHoiId;
+                ph.BinhLuanId = item.BinhLuanId;
+                ph.NoiDung = item.NoiDung;
+                Taikhoan tk = new Taikhoan();
+                string Str1 = item.userName.Substring(0,1);
+                tk.Password = Str1;
+                tk.Username = item.userName;
+                ph.TaiKhoan = tk;
+                ListPhanHoi.Add(ph);
+            }
+            ViewBag.phanhoi = ListPhanHoi;
             return View();
         }
 

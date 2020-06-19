@@ -52,15 +52,84 @@
                             <span class="font-weight-bold">@item2.TaiKhoan.Password</span><br>
                             <span>@item2.NoiDung</span><br>
                             @if(@Context.Session.GetString("username")!=null && String.Compare(item2.TaiKhoan.Password,@Context.Session.GetString("username"))==0){
-                                <span><a href="/binhluan/xoabinhluan/@item2.BinhLuanId">Xóa</a></span>
+                                <span class="mr-3"><a href="/binhluan/xoabinhluan/@item2.BinhLuanId">Xóa</a></span>
                             }
-                            
+                            @if(@Context.Session.GetString("username")!=null){
+                                <span class="responsive " id="@item2.BinhLuanId">Trả lời</span>
+                                <div class="@item2.BinhLuanId"></div>
+                            }
+                            <div id="x-@item2.BinhLuanId">
+                                @foreach(var item3 in ViewBag.phanhoi as List<Phanhoi>){
+                                    if(item3.BinhLuanId == item2.BinhLuanId){
+                                        <div class="comment-item mt-4">
+                                            <div class="avatar">
+                                                <span class="text-uppercase">@item3.TaiKhoan.Password</span>
+                                            </div>
+                                            <div class="content-comment ml-3">
+                                                <span class="font-weight-bold">@item3.TaiKhoan.Username</span><br>
+                                                <span>@item3.NoiDung</span><br>
+                                                @if(@Context.Session.GetString("username")!=null && String.Compare(item3.TaiKhoan.Username,@Context.Session.GetString("username"))==0){
+                                                    <span class="mr-3"><a href="/binhluan/xoaphanhoi/@item3.PhanHoiId">Xóa</a></span>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
                         </div>
                     </div>
-                    
                 }
                 
             </div>
         </div>
     }
 </div>
+<script>
+    $(document).on('click',".responsive",function(event){
+        let id = event.target.id;
+        // let sliceId = id.slice(11);
+        $('.'+id).append("<input type='text' name='phanhoi' id='input"+id+"' class='input-respond bg-light' placeholder='Nhập phản hồi'>\
+                    <button id='btn"+id+"' class='btn-phanhoi btn btn-secondary'>Gửi</button>");
+    });
+    $(document).on('click','.btn-phanhoi',function(event){
+        // lay id cua nut gui
+        let idBtn = event.target.id;
+        let sliceIdBtn = idBtn.slice(3);
+        //  lay id cua input
+        let idInputText ="input"+sliceIdBtn;
+        // lay class name cua the chua cac phan hoi
+        let coverRespond = "x-"+sliceIdBtn;
+        // lay gia tri cua input phan hoi
+        let contentRespond = $("#"+idInputText).val();
+        if(contentRespond!=""){
+            $.ajax({
+                type:"POST",
+                url:"/binhluan/themphanhoi",
+                data:{BinhLuanId:sliceIdBtn,NoiDung:contentRespond},
+                success:function(data){
+                    $("#"+coverRespond).children().remove();
+                    $("#"+idBtn).remove();
+                    $("#"+idInputText).remove();
+                    for(let i =0 ; i<data.length;i++){
+                        let username = data[i].taiKhoan.username;
+                        let firstCharacter = username.slice(0,1);
+                        $("#"+coverRespond).append("<div class='comment-item mt-4'>\
+                            <div class='avatar'><span class='text-uppercase'>"+firstCharacter+"</span></div>\
+                            <div class='content-comment ml-3'>\
+                                <span class='font-weight-bold'>"+username+"</span><br>\
+                                <span>"+data[i].noiDung+"</span><br>\
+                            </div>\
+                            </div>");
+                    }
+                    
+                },
+                error:function(err){
+                    alert(err);
+                }
+            });
+        }
+        else{
+            alert("Không có nội dung phản hồi");
+        }
+    });
+</script>

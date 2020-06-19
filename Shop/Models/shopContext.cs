@@ -27,6 +27,7 @@ namespace Shop.Models
         public virtual DbSet<Loaitaikhoan> Loaitaikhoan { get; set; }
         public virtual DbSet<Magiamgia> Magiamgia { get; set; }
         public virtual DbSet<Nhanvien> Nhanvien { get; set; }
+        public virtual DbSet<Phanhoi> Phanhoi { get; set; }
         public virtual DbSet<Phanloai> Phanloai { get; set; }
         public virtual DbSet<Phiship> Phiship { get; set; }
         public virtual DbSet<Sanpham> Sanpham { get; set; }
@@ -354,6 +355,35 @@ namespace Shop.Models
                     .WithMany(p => p.Nhanvien)
                     .HasForeignKey(d => d.TaiKhoanId)
                     .HasConstraintName("FK_TaiKhoan_NhanVien");
+            });
+
+            modelBuilder.Entity<Phanhoi>(entity =>
+            {
+                entity.ToTable("phanhoi");
+
+                entity.HasIndex(e => e.BinhLuanId)
+                    .HasName("FK_PhanHoi_BinhLuan");
+
+                entity.HasIndex(e => e.TaiKhoanId)
+                    .HasName("FK_PhanHoi_TaiKhoan");
+
+                entity.Property(e => e.PhanHoiId).HasColumnType("int(11)");
+
+                entity.Property(e => e.BinhLuanId).HasColumnType("int(11)");
+
+                entity.Property(e => e.NoiDung).HasColumnType("varchar(200)");
+
+                entity.Property(e => e.TaiKhoanId).HasColumnType("int(11)");
+
+                entity.HasOne(d => d.BinhLuan)
+                    .WithMany(p => p.Phanhoi)
+                    .HasForeignKey(d => d.BinhLuanId)
+                    .HasConstraintName("FK_PhanHoi_BinhLuan");
+
+                entity.HasOne(d => d.TaiKhoan)
+                    .WithMany(p => p.Phanhoi)
+                    .HasForeignKey(d => d.TaiKhoanId)
+                    .HasConstraintName("FK_PhanHoi_TaiKhoan");
             });
 
             modelBuilder.Entity<Phanloai>(entity =>

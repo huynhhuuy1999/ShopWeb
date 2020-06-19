@@ -103,5 +103,20 @@ body{
 }
 .comment-item{
     display: flex;
-
+}
+.responsive{
+    color:#007bff;
+    cursor: pointer;
+}
+.responsive:hover{
+    color:#086edb;
+    text-decoration: underline;
+}
+.input-respond{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid gray;
+    width: 700px;
+    padding-bottom: 5px;
+    padding-left: 5px;
 }
