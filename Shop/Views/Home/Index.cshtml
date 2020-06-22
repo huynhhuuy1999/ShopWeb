@@ -15,7 +15,7 @@
         <div class="list-menu flex-wrap d-flex w-100 ">
             @foreach (var item in ViewData["x"] as List<Sanpham>)
             {
-                <div class="item-menu mb-5">
+                <div class="item-menu mb-4 bg-white">
                     <div class="img">
                         <a href='/SanPham/ChiTietSanPham/@Html.DisplayFor(modelItem => item.SanPhamId)'>
                              <img src="~/images/@Html.DisplayFor(modelItem => item.HinhAnh.TenFile)" alt="Alternate Text" class="img-responsive" />
@@ -34,7 +34,7 @@
                             <p class="price-Item">@Html.DisplayFor(modelItem => item.GiaBanLe) Đ</p>
                         }
                         
-                        <div class="info-product">
+                        <div class="info-product mb-2">
                             <a href="/sanpham/dathang/@Html.DisplayFor(modelItem => item.SanPhamId)"><button class="buy-now">mua ngay</button></a>
                             <a href="/sanpham/chitietsanpham/@Html.DisplayFor(modelItem => item.SanPhamId)"><button class="more-inf ml-3">tìm hiểu thêm</button></a>
                         </div>

@@ -14,7 +14,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="TenSanPham">1. Tên sản phẩm</label>
-                    <input type="text" class="form-control" id="TenSanPham" name="TenSanPham" value="@Html.DisplayFor(itemModel => item.TenSanPham)" placeholder="Nhập tên sản phẩm" required>
+                    <input type="text" class="form-control" id="TenSanPham" name="TenSanPham" value="@Html.DisplayFor(itemModel => item.TenSanPham)" autocomplete="off" placeholder="Nhập tên sản phẩm" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="GiaBanLe">2. Giá bán</label>
@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label for="Mota">3. Mô tả</label>
-                <input type="text" class="form-control w-100" id="Mota" placeholder="Nhập mô tả" name="Mota" value="@Html.DisplayFor(itemModel => item.Mota)">
+                <input type="text" class="form-control w-100" id="Mota" placeholder="Nhập mô tả" name="Mota" value="@Html.DisplayFor(itemModel => item.Mota)" autocomplete="off">
             </div>
             <div class="form-row mt-4">
                 <div class="form-group col-md-6">

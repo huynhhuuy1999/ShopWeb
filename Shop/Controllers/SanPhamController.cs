@@ -60,6 +60,32 @@ namespace Shop.Controllers
             }
             ViewData["sanpham"] = List;
 
+            //hiển thị danh sách sản phẩm khuyến mãi
+            // var DSKhuyenMai = (from spkm in dbContext.Sanpham
+            //                     join ha in dbContext.Hinhanh
+            //                     on spkm.HinhAnhId equals ha.HinhAnhId
+            //                     // where spkm.KhuyenMaiId == null
+            //                     select new{
+            //                         SanPhamId = spkm.SanPhamId,
+            //                         TenSanPham = spkm.TenSanPham,
+            //                         Mota = spkm.Mota,
+            //                         GiaBanLe = spkm.GiaBanLe,
+            //                         TenFile = ha.TenFile
+            //                     }).ToList();
+            // List<Sanpham> ListSanPhamKhuyenMai = new List<Sanpham>();
+            // foreach(var item in DSKhuyenMai){
+            //     Sanpham sp = new Sanpham();
+            //     Hinhanh ha = new Hinhanh();
+            //     sp.SanPhamId = item.SanPhamId;
+            //     sp.TenSanPham = item.TenSanPham;
+            //     sp.Mota = item.Mota;
+            //     sp.GiaBanLe = item.GiaBanLe;
+            //     ha.TenFile = item.TenFile;
+            //     sp.HinhAnh = ha;
+            //     List.Add(sp);
+            // }
+            // ViewBag.DSSPKhuyenMai = ListSanPhamKhuyenMai;
+
             // hiển thị danh sách bình luận
             var binhLuan = (from bl in dbContext.Binhluan
                             join tk in dbContext.Taikhoan
@@ -161,6 +187,43 @@ namespace Shop.Controllers
                 List.Add(sp);
             }
             ViewData["listSP"] = List;
+            // hiển thị danh sách sản phẩm khuyến mãi
+            List<Sanpham> ListKM = new List<Sanpham>();
+            var ListSPKM = (from sp in dbContext.Sanpham
+                          join h in dbContext.Hinhanh
+                          on sp.HinhAnhId equals h.HinhAnhId
+                          join km in dbContext.Khuyenmai
+                            on sp.KhuyenMaiId equals km.KhuyenMaiId into x
+                          from subkm in x.DefaultIfEmpty()
+                          where sp.TrangThai == 1
+                          select new
+                          {
+                              PhanLoaiId = sp.PhanLoaiId,
+                              SanPhamId = sp.SanPhamId,
+                              TenSanPham = sp.TenSanPham,
+                              GiaBanLe = sp.GiaBanLe,
+                              HinhAnh = h.TenFile,
+                              KhuyenMaiId = sp.KhuyenMaiId,
+                              PhanTramGiam = subkm.PhanTramGiam
+                          });
+            foreach (var item in ListSPKM)
+            {
+                var sp = new Sanpham();
+                var h = new Hinhanh();
+                var k = new Khuyenmai();
+                sp.PhanLoaiId = item.PhanLoaiId;
+                sp.SanPhamId = item.SanPhamId;
+                sp.TenSanPham = item.TenSanPham;
+                sp.GiaBanLe = item.GiaBanLe;
+                h.TenFile = item.HinhAnh;
+                sp.KhuyenMaiId = item.KhuyenMaiId;
+                k.PhanTramGiam = item.PhanTramGiam * 100;
+                sp.KhuyenMai = k;
+                sp.GiaGoc = item.GiaBanLe - item.GiaBanLe * item.PhanTramGiam;
+                sp.HinhAnh = h;
+                ListKM.Add(sp);
+            }
+            ViewBag.ListKM = ListKM;
             return View(PhanLoai);
         }
 

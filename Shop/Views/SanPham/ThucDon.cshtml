@@ -9,20 +9,49 @@
   <div class="container">
     <div class="sidenav bg-white">
       <ul>
+        <li><a href="#100">Sản phẩm khuyến mãi</a></li>
       @foreach(var item in Model){
         <li><a href="#@Html.DisplayFor(itemModel => item.PhanLoaiId)">@Html.DisplayFor(itemModel => item.TenLoai)</a></li>
       }
       </ul>
     </div>
     <div class="main">
+      
+        @if(ViewBag.ListKM!=null){
+          <h2 class="mb-4 name-category" id="100">Sản phẩm khuyến mãi</h2>
+          <div class="list-menu flex-wrap d-flex mb-5">
+          @foreach(var item3 in ViewBag.ListKM as List<Sanpham>){
+            @if(item3.KhuyenMaiId!=null){
+              <div class="item-menu mb-4 bg-white">
+                <div class="img">
+                  <a href='/sanpham/chitietsanpham/@Html.DisplayFor(modelItem=>item3.SanPhamId)'>
+                    <img src="~/images/@Html.DisplayFor(modelItem => item3.HinhAnh.TenFile)" alt="Alternate Text" class="img-responsive" />
+                  </a>
+                    <div class="khuyenmai p-2"><span>-@Html.DisplayFor(itemModel => item3.KhuyenMai.PhanTramGiam)%</span></div>
+                </div>
+                <div class="info">
+                  <p class="name-Item">@Html.DisplayFor(modelItem =>item3.TenSanPham)</p>
+                    <p class="price-Item"><del>@Html.DisplayFor(modelItem => item3.GiaBanLe) Đ</del>&ensp;@Html.DisplayFor(modelItem => item3.GiaGoc) Đ</p>
+                  <div class="mb-2">
+                    <a href="/sanpham/dathang/@Html.DisplayFor(itemData => item3.SanPhamId)"><button class="buy-now">mua ngay</button></a>
+                  </div>
+                </div>
+              </div>
+            }
+          }
+          </div>
+        }
+        
+      
+      
       @foreach (var item in Model)
       {
           <h2 class="mb-4 name-category" id="@Html.DisplayFor(itemModel => item.PhanLoaiId)">@Html.DisplayFor(itemModel => item.TenLoai)</h2>
-          <div class="list-menu flex-wrap d-flex w-70 mb-5">
+          <div class="list-menu flex-wrap d-flex mb-5">
             @foreach (var item2 in ViewData["listSP"] as List<Sanpham>)
             {
                 if(item.PhanLoaiId==item2.PhanLoaiId){
-                    <div class="item-menu">
+                    <div class="item-menu mb-4 bg-white">
                       <div class="img">
                           <a href='/sanpham/chitietsanpham/@Html.DisplayFor(modelItem=>item2.SanPhamId)'>
                               <img src="~/images/@Html.DisplayFor(modelItem => item2.HinhAnh.TenFile)" alt="Alternate Text" class="img-responsive" />
@@ -42,7 +71,7 @@
                           }
                           
                           @* <div class="d-flex"> *@
-                           <div>
+                           <div class="mb-2">
                               <a href="/sanpham/dathang/@Html.DisplayFor(itemData => item2.SanPhamId)"><button class="buy-now">mua ngay</button></a>
                           </div>
                       </div>

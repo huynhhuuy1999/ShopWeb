@@ -44,7 +44,7 @@
     overflow:hidden;
     position:relative;
     width:350px;
-    height:400px;
+    height:350px;
 }
 .list-menu .img:hover img{
     transform:scale(1.1);
@@ -68,7 +68,7 @@
 }
 .price-Item {
     color: #EA8025;
-    font-size:23px;
+    font-size:20px;
     font-weight:bold;
 }
 .info button{
