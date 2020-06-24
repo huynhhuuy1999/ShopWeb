@@ -367,9 +367,7 @@ namespace Shop.Controllers{
             var hoadon = (from hd in dbContext.Hoadon
                             where hd.HoaDonId == mahd
                             select hd).ToList();
-            // lay sessionid cua hoadon
-            var sessionId =  hoadon[0].SessionId;
-
+            
             //lay chi tiet hoa don cua hoa don xac nhan huy
             var cthd =(from ct in dbContext.Chitiethoadon
                         where ct.HoaDonId == mahd
@@ -385,11 +383,7 @@ namespace Shop.Controllers{
             var hdon = dbContext.Hoadon.First(a => a.HoaDonId == hoadon[0].HoaDonId);
             dbContext.Hoadon.Remove(hdon);
             dbContext.SaveChanges();
-            //xoa cart co sessionId trong hoadon
-            var cart = (from c in dbContext.Cart where c.IdSession == sessionId select c).ToList();
-            var cart2 = dbContext.Cart.First(a => a.CartId == cart[0].CartId);
-            dbContext.Cart.Remove(cart2);
-            dbContext.SaveChanges();
+            
             dbContext.Dispose();
         }
 

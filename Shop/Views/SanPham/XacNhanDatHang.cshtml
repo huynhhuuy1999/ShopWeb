@@ -57,17 +57,20 @@
         </div>
         <div class="cart"><hr>
             <div class="list-product-cart">
-                @foreach(var item in ViewBag.listCart as List<Cart>){
-                <div class='d-flex div-sp' id="@Html.DisplayFor(itemModel => item.SanPhamId)">
-                    <div class='sl rounded-circle'>@Html.DisplayFor(itemModel => item.Soluong)</div>
-                    <div class='inf ml-3'>
-                    <span class='name'>@Html.DisplayFor(itemModel => item.SanPham.TenSanPham)</span><br>
-                    <span class='kichthuoc'>@Html.DisplayFor(itemModel => item.Kichthuoc.TenKichThuoc)<span></div>
-                    <div class='gia' id="@Html.DisplayFor(itemModel => item.SanPham.GiaBanLe)">
-                        <span>@Html.DisplayFor(itemModel => item.Tongtien) ₫</span>
-                    </div>
-                </div>
+                @if(ViewBag.listCart!= null){
+                    @foreach(var item in ViewBag.listCart as List<Chitiethoadon>){
+                        <div class='d-flex div-sp' id="@Html.DisplayFor(itemModel => item.SanPhamId)">
+                            <div class='sl rounded-circle'>@Html.DisplayFor(itemModel => item.SoLuong)</div>
+                            <div class='inf ml-3'>
+                            <span class='name'>@Html.DisplayFor(itemModel => item.SanPham.TenSanPham)</span><br>
+                            <span class='kichthuoc'>@Html.DisplayFor(itemModel => item.KichThuoc.TenKichThuoc)<span></div>
+                            <div class='gia' id="@Html.DisplayFor(itemModel => item.SanPham.GiaBanLe)">
+                                <span>@Html.DisplayFor(itemModel => item.TongTien) ₫</span>
+                            </div>
+                        </div>
+                    }
                 }
+                
             </div>
             <div class="sum d-flex">
                 <p>Cộng</p>

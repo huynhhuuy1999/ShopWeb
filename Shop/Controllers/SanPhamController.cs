@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.Models;
 using Microsoft.AspNetCore.Http;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Shop.Controllers
 {
@@ -59,32 +60,6 @@ namespace Shop.Controllers
                 List.Add(sanPham);
             }
             ViewData["sanpham"] = List;
-
-            //hiển thị danh sách sản phẩm khuyến mãi
-            // var DSKhuyenMai = (from spkm in dbContext.Sanpham
-            //                     join ha in dbContext.Hinhanh
-            //                     on spkm.HinhAnhId equals ha.HinhAnhId
-            //                     // where spkm.KhuyenMaiId == null
-            //                     select new{
-            //                         SanPhamId = spkm.SanPhamId,
-            //                         TenSanPham = spkm.TenSanPham,
-            //                         Mota = spkm.Mota,
-            //                         GiaBanLe = spkm.GiaBanLe,
-            //                         TenFile = ha.TenFile
-            //                     }).ToList();
-            // List<Sanpham> ListSanPhamKhuyenMai = new List<Sanpham>();
-            // foreach(var item in DSKhuyenMai){
-            //     Sanpham sp = new Sanpham();
-            //     Hinhanh ha = new Hinhanh();
-            //     sp.SanPhamId = item.SanPhamId;
-            //     sp.TenSanPham = item.TenSanPham;
-            //     sp.Mota = item.Mota;
-            //     sp.GiaBanLe = item.GiaBanLe;
-            //     ha.TenFile = item.TenFile;
-            //     sp.HinhAnh = ha;
-            //     List.Add(sp);
-            // }
-            // ViewBag.DSSPKhuyenMai = ListSanPhamKhuyenMai;
 
             // hiển thị danh sách bình luận
             var binhLuan = (from bl in dbContext.Binhluan
@@ -246,7 +221,6 @@ namespace Shop.Controllers
                               TenSanPham = sp.TenSanPham,
                               GiaBanLe = sp.GiaBanLe,
                               HinhAnh = h.TenFile,
-
                               PhanTramGiam = subkm.PhanTramGiam,
                               KhuyenmaiId = sp.KhuyenMaiId
                           });
@@ -293,82 +267,115 @@ namespace Shop.Controllers
                 phantramKM = km[0].PhanTramGiam;
             }
 
-            // if(sanpham[0].KhuyenMai.PhanTramGiam == null){phantramKM=0;}
-            // else{phantramKM = (int)sanpham[0].KhuyenMai.PhanTramGiam;}
-
-            // lay phan tram khuyen mai
-
-            //lưu thông tin sản phẩm mới click vào giỏ hàng
-            string idSession = HttpContext.Session.GetString("idSession");
-
-            var spham = (from spp in dbContext.Kichthuoc
-                         where spp.SanPhamId == id
-                         select spp).ToList();
-            var giohang = (from x in dbContext.Cart
-                           where x.SanPhamId == id && x.IdSession == idSession
-                           select x).ToList();
-            if (giohang.Count == 0)
-            {
-                int maKichThuoc = 0;
-                foreach (var item in spham)
-                {
-                    if (item.TenKichThuoc == "Nhỏ")
-                    {
-                        maKichThuoc = item.KichThuocid;
+            
+//--------------------------
+            
+            var gioHangSession = HttpContext.Session.GetString("gioHangSession");
+            
+            if(gioHangSession == null){
+                //chưa có giỏ hàng (khởi tạo)
+                var KichThuoc = (from kt in dbContext.Kichthuoc where kt.SanPhamId == id select kt).ToList();
+                var ktId = 0;
+                foreach(var item in KichThuoc){
+                    if(item.TenKichThuoc == "Nhỏ"){
+                        ktId = item.KichThuocid;
                     }
                 }
-                var Cart = new Cart()
-                {
-                    IdSession = idSession,
-                    SanPhamId = id,
-                    KichthuocId = maKichThuoc,
-                    Soluong = 1,
-                    Tongtien = sanpham[0].GiaBanLe * 1 - sanpham[0].GiaBanLe * phantramKM
-                };
-                dbContext.Cart.Add(Cart);
-                dbContext.SaveChanges();
+                List<Chitiethoadon> ListChiTietHoaDon = new List<Chitiethoadon>();
+                Chitiethoadon chitiethoadon = new Chitiethoadon();
+                chitiethoadon.SanPhamId = id;
+                chitiethoadon.SoLuong = 1;
+                chitiethoadon.KichThuocId = ktId;
+                chitiethoadon.TongTien = (float)(sanpham[0].GiaBanLe*1 - sanpham[0].GiaBanLe*phantramKM);
+                ListChiTietHoaDon.Add(chitiethoadon);
+                HttpContext.Session.SetString("gioHangSession", JsonConvert.SerializeObject(ListChiTietHoaDon));
+                
             }
+            else{
+                // nếu đã có giỏ hàng sẵn
+                List<Chitiethoadon> listCart = JsonConvert.DeserializeObject<List<Chitiethoadon>>(HttpContext.Session.GetString("gioHangSession"));
+                // kiểm tra sản phẩm thêm vào có tồn tại trong giỏ hàng chưa
+                int flag = 0;
+                for(int i =0; i< listCart.Count;i++){
+                    if(listCart[i].SanPhamId == id){
+                        // listCart.RemoveAt(i);
+                        flag = 1;
+                    }
+                }
+                if(flag == 0){// giỏ hàng chưa có sản phẩm này
+                    var KichThuoc = (from kt in dbContext.Kichthuoc where kt.SanPhamId == id select kt).ToList();
+                    var ktId = 0;
+                    foreach(var item in KichThuoc){
+                        if(item.TenKichThuoc == "Nhỏ"){
+                            ktId = item.KichThuocid;
+                        }
+                    }
+                    
+                    Chitiethoadon chitiethoadon = new Chitiethoadon();
+                    chitiethoadon.SanPhamId = id;
+                    chitiethoadon.SoLuong = 1;
+                    chitiethoadon.KichThuocId = ktId;
+                    chitiethoadon.TongTien = (float)(sanpham[0].GiaBanLe*1 - sanpham[0].GiaBanLe*phantramKM);
+                    listCart.Add(chitiethoadon);
+                    
+                    HttpContext.Session.SetString("gioHangSession", JsonConvert.SerializeObject(listCart));
+                }
+                else{// giỏ hàng đã có sản phẩm
+                    // nếu có rồi thì giữ nguyên như cũ
+                }
+                
+            }
+            
+//---------------------------
             //hiển thị giỏ hàng
-            var gh = (from sp in dbContext.Sanpham
-                      join c in dbContext.Cart
-                      on sp.SanPhamId equals c.SanPhamId
-                      join kt in dbContext.Kichthuoc
-                      on c.KichthuocId equals kt.KichThuocid
-                      where c.IdSession == idSession
-                      select new
-                      {
-                          masp = sp.SanPhamId,
-                          tensp = sp.TenSanPham,
-                          GiaBanLe = sp.GiaBanLe,
-                          kichThuocId = kt.KichThuocid,
-                          TenKichThuoc = kt.TenKichThuoc,
-                          GiaThem = kt.GiaThem,
-                          soluong = c.Soluong,
-                          tongtien = c.Tongtien
-                      });
-            List<Cart> cart = new List<Cart>();
-            float? tongtien = 0;// bién lấy giá trị tổng tiền của giỏ hàng
-            foreach (var item in gh)
-            {
-                Kichthuoc kt = new Kichthuoc();
-                Sanpham sp = new Sanpham();
-                Cart c = new Cart();
-                kt.KichThuocid = item.kichThuocId;
-                kt.TenKichThuoc = item.TenKichThuoc;
-                kt.GiaThem = item.GiaThem;
-                sp.SanPhamId = item.masp;
-                sp.TenSanPham = item.tensp;
-                sp.GiaBanLe = item.GiaBanLe;
-                c.Soluong = item.soluong;
-                c.SanPham = sp;
-                // c.Tongtien = item.GiaBanLe * item.soluong + item.soluong * item.GiaThem;
-                c.Tongtien = item.tongtien;
-                c.Kichthuoc = kt;
-                tongtien = tongtien + c.Tongtien;
-                cart.Add(c);
+//-----------------------------
+            float? TongTien =0;
+            List<Chitiethoadon> chiTietHoaDonss = JsonConvert.DeserializeObject<List<Chitiethoadon>>(HttpContext.Session.GetString("gioHangSession"));
+            List<Chitiethoadon> ListSanPhamCart = new List<Chitiethoadon>();
+            
+
+            
+            for(int i =0 ;i<chiTietHoaDonss.Count();i++){
+                var gh = (from sp in dbContext.Sanpham
+                        join kt in dbContext.Kichthuoc
+                        on sp.SanPhamId equals kt.SanPhamId
+                        where kt.KichThuocid == chiTietHoaDonss[i].KichThuocId
+                        select new {
+                            masp = sp.SanPhamId,
+                            tensp = sp.TenSanPham.ToString(),
+                            GiaBanLe = sp.GiaBanLe,
+                            kichThuocId = kt.KichThuocid,
+                            TenKichThuoc = kt.TenKichThuoc.ToString(),
+                            GiaThem = kt.GiaThem,
+                            soluong = chiTietHoaDonss[i].SoLuong,
+                            tongtien = chiTietHoaDonss[i].TongTien.ToString()
+                        }
+                      ).ToList();
+                      
+                foreach(var x in gh){
+                    Chitiethoadon ct = new Chitiethoadon();
+                    Sanpham sp = new Sanpham();
+                    Kichthuoc kt = new Kichthuoc();
+                    ct.KichThuocId = x.kichThuocId;
+                    kt.TenKichThuoc = x.TenKichThuoc;
+                    kt.GiaThem= x.GiaThem;
+                    ct.SanPhamId = x.masp;
+                    sp.TenSanPham = x.tensp;
+                    sp.GiaBanLe = x.GiaBanLe;
+                    ct.SoLuong = x.soluong;
+                    float tong = float.Parse(x.tongtien);
+                    ct.TongTien = tong;
+                    TongTien = TongTien + ct.TongTien;
+                    ct.SanPham = sp;
+                    ct.KichThuoc = kt;
+                    ListSanPhamCart.Add(ct);
+                }
             }
-            ViewBag.listCart = cart;
-            ViewBag.tongtien = tongtien;
+            HttpContext.Session.SetString("gioHangSession", JsonConvert.SerializeObject(ListSanPhamCart));
+            ViewBag.tongtien = TongTien;
+            ViewBag.gioHang = ListSanPhamCart;
+//---------------------------------
+    // ViewBag.gioHang = new List<Chitiethoadon>();
             return View(sanpham);
         }
         public List<Sanpham> ThemGioHang(int maspp)
@@ -492,32 +499,42 @@ namespace Shop.Controllers
             return List;
         }
 
-        public List<Cart> LuuGioHang(int maspp, int soluong, int kichthuocId)
+        public List<Chitiethoadon> LuuGioHang(int maspp, int soluong, int kichthuocId)
         {
             var dbContext = new shopContext();
-            string idSession = HttpContext.Session.GetString("idSession");
+            // string idSession = HttpContext.Session.GetString("idSession");
             var sanPham = (from sp in dbContext.Sanpham
                            where sp.SanPhamId == maspp
                            select sp).ToList();
-            var giohang = (from sp in dbContext.Cart
-                           where sp.IdSession == idSession && sp.SanPhamId == maspp
-                           select sp).ToList();
+            
+            List<Chitiethoadon> chiTietHoaDons = JsonConvert.DeserializeObject<List<Chitiethoadon>>(HttpContext.Session.GetString("gioHangSession"));
+            // nếu số lượng là 0 thì hủy sản phẩm trong giỏ hàng
+            
             if (soluong == 0)
             {
-                foreach (var item in giohang)
-                {
-                    var cart = dbContext.Cart.First(a => a.CartId == item.CartId);
-                    dbContext.Cart.Remove(cart);
-                    dbContext.SaveChanges();
+                
+                for(int i = 0;i<chiTietHoaDons.Count();i++){
+                    if(chiTietHoaDons[i].SanPhamId == maspp){
+                        
+                        chiTietHoaDons.RemoveAt(i);
+                    }
                 }
+                HttpContext.Session.SetString("gioHangSession", JsonConvert.SerializeObject(chiTietHoaDons));
             }
             else
             {
                 // lay gia them khi thay doi kich thuoc
                 var kichthuoc = (from kt in dbContext.Kichthuoc where kt.KichThuocid == kichthuocId select kt).ToList();
+                // kiem tra gio hang co ton tai san pham nay chua
+                int flag=0;
+                for(int i =0;i<chiTietHoaDons.Count();i++){
+                    if(chiTietHoaDons[i].SanPhamId == maspp){
+                        flag=1;
+                    }
+                }
+                
                 //neu gio hang chua co san pham nay
-                if (giohang.Count == 0)
-                {
+                if(flag == 0){
                     float? phanTramGiam = 0;
                     if (sanPham[0].KhuyenMaiId != null)
                     {
@@ -527,79 +544,81 @@ namespace Shop.Controllers
                         phanTramGiam = km[0].PhanTramGiam;
                         // phanTramGiam = sanPham[0].KhuyenMai.PhanTramGiam;
                     }
-                    var Cart = new Cart()
-                    {
-                        IdSession = idSession,
-                        SanPhamId = maspp,
-                        KichthuocId = kichthuocId,
-                        Soluong = soluong,
-                        Tongtien = sanPham[0].GiaBanLe * soluong - soluong * phanTramGiam * sanPham[0].GiaBanLe + soluong * kichthuoc[0].GiaThem
-                    };
-                    dbContext.Cart.Add(Cart);
-                    dbContext.SaveChanges();
+                    Chitiethoadon cthd = new Chitiethoadon();
+                    cthd.SanPhamId = maspp;
+                    cthd.SoLuong = soluong;
+                    cthd.KichThuocId = kichthuocId;
+                    cthd.TongTien = sanPham[0].GiaBanLe * soluong - soluong * phanTramGiam * sanPham[0].GiaBanLe + soluong * kichthuoc[0].GiaThem;
+                    chiTietHoaDons.Add(cthd);
+                    HttpContext.Session.SetString("gioHangSession", JsonConvert.SerializeObject(chiTietHoaDons));
                 }
                 // neu gio hang da ton tai san pham nay
                 else
                 {
-                    foreach (var item in giohang)
-                    {
-                        var cart = dbContext.Cart.First(a => a.CartId == item.CartId);
-                        float? phanTramGiam = 0;
-                        if (sanPham[0].KhuyenMaiId != null)
-                        {
-                            // phanTramGiam = sanPham[0].KhuyenMai.PhanTramGiam;
-                            var km = (from x in dbContext.Khuyenmai
-                                      where x.KhuyenMaiId == sanPham[0].KhuyenMaiId
-                                      select x).ToList();
-                            phanTramGiam = km[0].PhanTramGiam;
+                    
+                    for(int i =0; i<chiTietHoaDons.Count();i++){
+                        if(chiTietHoaDons[i].SanPhamId == maspp){
+                            float? phanTramGiam = 0;
+                            if (sanPham[0].KhuyenMaiId != null)
+                            {
+                                // phanTramGiam = sanPham[0].KhuyenMai.PhanTramGiam;
+                                var km = (from x in dbContext.Khuyenmai
+                                        where x.KhuyenMaiId == sanPham[0].KhuyenMaiId
+                                        select x).ToList();
+                                phanTramGiam = km[0].PhanTramGiam;
+                            }
+                            chiTietHoaDons[i].KichThuocId = kichthuocId;
+                            chiTietHoaDons[i].SoLuong = soluong;
+                            chiTietHoaDons[i].TongTien = soluong * sanPham[0].GiaBanLe - soluong * phanTramGiam * sanPham[0].GiaBanLe + soluong * kichthuoc[0].GiaThem;
+                            HttpContext.Session.SetString("gioHangSession", JsonConvert.SerializeObject(chiTietHoaDons));
                         }
-                        cart.KichthuocId = kichthuocId;
-                        cart.Soluong = soluong;
-                        cart.Tongtien = soluong * sanPham[0].GiaBanLe - soluong * phanTramGiam * sanPham[0].GiaBanLe + soluong * kichthuoc[0].GiaThem;
-                        dbContext.SaveChanges();
                     }
                 }
             }
-            var gh = (from sp in dbContext.Sanpham
-                      join c in dbContext.Cart
-                      on sp.SanPhamId equals c.SanPhamId
-                      join kt in dbContext.Kichthuoc
-                      on c.KichthuocId equals kt.KichThuocid
-                      where c.IdSession == idSession
-                      select new
-                      {
-                          masp = sp.SanPhamId,
-                          tensp = sp.TenSanPham,
-                          GiaBanLe = sp.GiaBanLe,
-                          kichThuocId = kt.KichThuocid,
-                          TenKichThuoc = kt.TenKichThuoc,
-                          GiaThem = kt.GiaThem,
-                          soluong = c.Soluong,
-                          tongtien = c.Tongtien
-                      });
-            List<Cart> Listcart = new List<Cart>();
-            float? tongtien = 0;// bién lấy giá trị tổng tiền của giỏ hàng
-            foreach (var item in gh)
-            {
-                Kichthuoc kt = new Kichthuoc();
-                Sanpham sp = new Sanpham();
-                Cart c = new Cart();
-                kt.KichThuocid = item.kichThuocId;
-                kt.TenKichThuoc = item.TenKichThuoc;
-                kt.GiaThem = item.GiaThem;
-                sp.TenSanPham = item.tensp;
-                sp.GiaBanLe = item.GiaBanLe;
-                sp.SanPhamId = item.masp;
-                c.Soluong = item.soluong;
-                c.SanPham = sp;
-                // c.Tongtien = item.GiaBanLe * item.soluong + item.soluong * item.GiaThem;
-                c.Tongtien = item.tongtien;
-                c.Kichthuoc = kt;
-                tongtien = tongtien + c.Tongtien;
-                Listcart.Add(c);
+            
+            // hiển thị giỏ hàng
+            float? TongTien=0;
+            List<Chitiethoadon> listGioHang = JsonConvert.DeserializeObject<List<Chitiethoadon>>(HttpContext.Session.GetString("gioHangSession"));
+            System.Console.WriteLine(HttpContext.Session.GetString("gioHangSession"));
+            List<Chitiethoadon> ListSanPhamCart = new List<Chitiethoadon>();
+            for(int i =0 ;i<listGioHang.Count();i++){
+                var gh = (from sp in dbContext.Sanpham
+                        join kt in dbContext.Kichthuoc
+                        on sp.SanPhamId equals kt.SanPhamId
+                        where kt.KichThuocid == listGioHang[i].KichThuocId
+                        select new {
+                            masp = sp.SanPhamId,
+                            tensp = sp.TenSanPham.ToString(),
+                            GiaBanLe = sp.GiaBanLe,
+                            kichThuocId = kt.KichThuocid,
+                            TenKichThuoc = kt.TenKichThuoc.ToString(),
+                            GiaThem = kt.GiaThem,
+                            soluong = listGioHang[i].SoLuong,
+                            tongtien = listGioHang[i].TongTien.ToString()
+                        }
+                      ).ToList();
+                     
+                foreach(var x in gh){
+                    Chitiethoadon ct = new Chitiethoadon();
+                    Sanpham sp = new Sanpham();
+                    Kichthuoc kt = new Kichthuoc();
+                    ct.KichThuocId = x.kichThuocId;
+                    kt.TenKichThuoc = x.TenKichThuoc;
+                    kt.GiaThem= x.GiaThem;
+                    ct.SanPhamId = x.masp;
+                    sp.TenSanPham = x.tensp;
+                    sp.GiaBanLe = x.GiaBanLe;
+                    ct.SoLuong = x.soluong;
+                    float tong = float.Parse(x.tongtien);
+                    ct.TongTien = tong;
+                    TongTien = TongTien + ct.TongTien;
+                    ct.SanPham = sp;
+                    ct.KichThuoc = kt;
+                    ListSanPhamCart.Add(ct);
+                }
             }
-
-            return Listcart;
+            
+            return ListSanPhamCart;
         }
 
         public IActionResult XacNhanDatHang()
@@ -624,52 +643,40 @@ namespace Shop.Controllers
 
 
 
-            string idSession = HttpContext.Session.GetString("idSession");
-            var sanpham = (from sp in dbContext.Sanpham
-                           join c in dbContext.Cart
-                           on sp.SanPhamId equals c.SanPhamId
-                           join kt in dbContext.Kichthuoc
-                           on c.KichthuocId equals kt.KichThuocid
-                           where c.IdSession == idSession
-                           select new
-                           {
-                               masp = sp.SanPhamId,
-                               tensp = sp.TenSanPham,
-                               GiaBanLe = sp.GiaBanLe,
-                               kichThuocId = kt.KichThuocid,
-                               TenKichThuoc = kt.TenKichThuoc,
-                               GiaThem = kt.GiaThem,
-                               soluong = c.Soluong,
-                               tongtien = c.Tongtien
-                           }).ToList();
-            //kiem tra gio hang co san pham hay khong
-            if (sanpham.Count == 0)
-            {
-                ViewBag.errorCart = "Giỏ hàng của bạn chưa có sản phẩm";
+            // string idSession = HttpContext.Session.GetString("idSession");
+            // var sanpham = (from sp in dbContext.Sanpham
+            //                join c in dbContext.Cart
+            //                on sp.SanPhamId equals c.SanPhamId
+            //                join kt in dbContext.Kichthuoc
+            //                on c.KichthuocId equals kt.KichThuocid
+            //                where c.IdSession == idSession
+            //                select new
+            //                {
+            //                    masp = sp.SanPhamId,
+            //                    tensp = sp.TenSanPham,
+            //                    GiaBanLe = sp.GiaBanLe,
+            //                    kichThuocId = kt.KichThuocid,
+            //                    TenKichThuoc = kt.TenKichThuoc,
+            //                    GiaThem = kt.GiaThem,
+            //                    soluong = c.Soluong,
+            //                    tongtien = c.Tongtien
+            //                }).ToList();
+            if(HttpContext.Session.GetString("gioHangSession")!=null){
+                List<Chitiethoadon> listGioHang = JsonConvert.DeserializeObject<List<Chitiethoadon>>(HttpContext.Session.GetString("gioHangSession"));
+                //kiem tra gio hang co san pham hay khong
+                if (listGioHang.Count == 0)
+                {
+                    ViewBag.errorCart = "Giỏ hàng của bạn chưa có sản phẩm";
+                }
+                float? tongtien = 0;
+                foreach(var item in listGioHang){
+                    tongtien = tongtien + item.TongTien;
+                }
+                
+                ViewBag.listCart = listGioHang;
+                ViewBag.tongtien = tongtien;
             }
-
-            List<Cart> cart = new List<Cart>();
-            float? tongtien = 0;// bién lấy giá trị tổng tiền của giỏ hàng
-            foreach (var item in sanpham)
-            {
-                Kichthuoc kt = new Kichthuoc();
-                Sanpham sp = new Sanpham();
-                Cart c = new Cart();
-                kt.KichThuocid = item.kichThuocId;
-                kt.TenKichThuoc = item.TenKichThuoc;
-                kt.GiaThem = item.GiaThem;
-                sp.TenSanPham = item.tensp;
-                sp.GiaBanLe = item.GiaBanLe;
-                c.Soluong = item.soluong;
-                c.SanPham = sp;
-                // c.Tongtien = item.GiaBanLe * item.soluong + item.soluong * item.GiaThem;
-                c.Tongtien = item.tongtien;
-                c.Kichthuoc = kt;
-                tongtien = tongtien + c.Tongtien;
-                cart.Add(c);
-            }
-            ViewBag.listCart = cart;
-            ViewBag.tongtien = tongtien;
+           
             return View();
         }
 
@@ -677,11 +684,9 @@ namespace Shop.Controllers
         public IActionResult XacNhanDatHang(Hoadon model, string GiamGia)
         {
             var dbContext = new shopContext();
-            var sessionId = HttpContext.Session.GetString("idSession");
-            var cart = (from c in dbContext.Cart
-                        where c.IdSession == sessionId
-                        select c).ToList();
-            if (HttpContext.Session.GetString("username") == null || cart.Count == 0)
+            
+            List<Chitiethoadon> ListChiTietHoaDon = JsonConvert.DeserializeObject<List<Chitiethoadon>>(HttpContext.Session.GetString("gioHangSession"));
+            if (HttpContext.Session.GetString("username") == null || ListChiTietHoaDon.Count == 0)
             {
                 return RedirectToAction("XacNhanDatHang", "sanpham");
             }
@@ -704,14 +709,11 @@ namespace Shop.Controllers
                 var TenQuan = quan[0].Quan;
                 // lay tien ship
                 var tienShip = quan[0].ChiPhi;
-                //lay tong tien chua ship
-                // var cart = (from c in dbContext.Cart
-                //             where c.IdSession == sessionId
-                //             select c).ToList();
+                
                 float? tongTienChuaShip = 0;
-                foreach (var item in cart)
-                {
-                    tongTienChuaShip = tongTienChuaShip + item.Tongtien;
+                
+                foreach(Chitiethoadon ct in ListChiTietHoaDon){
+                    tongTienChuaShip = tongTienChuaShip + ct.TongTien;
                 }
                 //lay tien giam gia
                 float? TienGiamGia = 0;
@@ -749,47 +751,54 @@ namespace Shop.Controllers
                     TenNguoiNhan = model.TenNguoiNhan,
                     Sdt = model.Sdt,
                     TongTienChuaShip = tongTienChuaShip,
-                    TienGiamGia = TienGiamGia,
-                    SessionId = sessionId
+                    TienGiamGia = TienGiamGia
+                    // SessionId = sessionId
                 };
                 dbContext.Hoadon.Add(HoaDon);
                 dbContext.SaveChanges();
 
                 // lay mahoadon 
                 var hd = (from h in dbContext.Hoadon
-                          where h.SessionId == sessionId
-                          select h).ToList();
+                            orderby h.HoaDonId descending
+                            select h).ToList();
                 var hoadonId = hd[0].HoaDonId;
                 //insert chitiethoadon
-                foreach (var item in cart)
+                foreach (var item in ListChiTietHoaDon)
                 {
                     //lay phan tram giam gia cua san pham
                     float? phanTramGiam = 0;
                     var sp = (from x in dbContext.Sanpham
-                              where x.SanPhamId == item.SanPhamId
-                              select x).ToList();
-                    if (sp[0].KhuyenMaiId != null)
-                    {
-                        phanTramGiam = sp[0].KhuyenMai.PhanTramGiam;
+                                join km in dbContext.Khuyenmai
+                                on x.KhuyenMaiId equals km.KhuyenMaiId
+                                where x.SanPhamId == item.SanPhamId
+                                select new{
+                                    khuyenmaiid = x.KhuyenMaiId,
+                                    phantram = km.PhanTramGiam
+                                }).ToList();
+                    if(sp.Count!=0){
+                        phanTramGiam = sp[0].phantram;
                     }
+                    
                     // lay gia them cua moi kich thuoc san pham
                     var kt = (from k in dbContext.Kichthuoc
-                              where k.KichThuocid == item.KichthuocId
+                              where k.KichThuocid == item.KichThuocId
                               select k).ToList();
                     float? GiaThem = kt[0].GiaThem;
                     var cthd = new Chitiethoadon()
                     {
                         HoaDonId = hoadonId,
                         SanPhamId = item.SanPhamId,
-                        SoLuong = item.Soluong,
-                        TienKhuyenMai = phanTramGiam * item.SanPham.GiaBanLe * item.Soluong,
-                        TongTien = item.SanPham.GiaBanLe * item.Soluong + item.Soluong * GiaThem,
-                        TongSauKm = item.Tongtien,
-                        KichThuocId = item.KichthuocId
+                        SoLuong = item.SoLuong,
+                        TienKhuyenMai = phanTramGiam * item.SanPham.GiaBanLe * item.SoLuong,
+                        TongTien = item.SanPham.GiaBanLe * item.SoLuong + item.SoLuong * GiaThem,
+                        TongSauKm = item.TongTien,
+                        KichThuocId = item.KichThuocId
                     };
                     dbContext.Chitiethoadon.Add(cthd);
                     dbContext.SaveChanges();
                 }
+
+
                 // tạo mã giảm giá sau khi mua hàng
                 string randomMaGiamGia = RandomString(6, true);
                 var MaGiamGia = new Magiamgia()
@@ -800,16 +809,8 @@ namespace Shop.Controllers
                 dbContext.Magiamgia.Add(MaGiamGia);
                 dbContext.SaveChanges();
 
-                HttpContext.Session.Remove("idSession");
-
-                string y = RandomString(9,true);
-                var cartDB = (from c in dbContext.Cart where c.IdSession == y select c).ToList();
-                while(cartDB.Count>0){
-                    y = RandomString(9,true);
-                    cartDB = (from c in dbContext.Cart where c.IdSession == y select c).ToList();
-                }
-                HttpContext.Session.SetString("idSession",y);
-                // return RedirectToAction("DatHangThanhCong","sanpham");
+                // HttpContext.Session.Remove("idSession");
+                HttpContext.Session.Remove("gioHangSession");
                 ViewBag.maGiamGia = randomMaGiamGia;
                 return RedirectToAction("DatHangThanhCong", "sanpham", new { discountId = randomMaGiamGia });
             }
@@ -828,14 +829,11 @@ namespace Shop.Controllers
         public float? KiemTraMaGiamGia(string magiamgia)
         {
             var dbContext = new shopContext();
-            string idSession = HttpContext.Session.GetString("idSession");
-            var cart = (from c in dbContext.Cart
-                        where c.IdSession == idSession
-                        select c).ToList();
+            List<Chitiethoadon> listChiTietHoaDon = JsonConvert.DeserializeObject<List<Chitiethoadon>>(HttpContext.Session.GetString("gioHangSession"));
             float? tong = 0;
-            foreach (var item in cart)
+            foreach (var item in listChiTietHoaDon)
             {
-                tong = tong + item.Tongtien;
+                tong = tong + item.TongTien;
             }
             var giamgia = (from gg in dbContext.Magiamgia
                            where gg.MaGiamGia1 == magiamgia

@@ -17,7 +17,6 @@ namespace Shop.Models
 
         public virtual DbSet<Admin> Admin { get; set; }
         public virtual DbSet<Binhluan> Binhluan { get; set; }
-        public virtual DbSet<Cart> Cart { get; set; }
         public virtual DbSet<Chitiethoadon> Chitiethoadon { get; set; }
         public virtual DbSet<Hinhanh> Hinhanh { get; set; }
         public virtual DbSet<Hoadon> Hoadon { get; set; }
@@ -101,47 +100,6 @@ namespace Shop.Models
                     .HasConstraintName("FK_BinhLuan_TaiKhoan");
             });
 
-            modelBuilder.Entity<Cart>(entity =>
-            {
-                entity.ToTable("cart");
-
-                entity.HasIndex(e => e.KichthuocId)
-                    .HasName("FK_Cart_KichThuoc");
-
-                entity.HasIndex(e => e.SanPhamId)
-                    .HasName("FK_Cart_SanPham");
-
-                entity.Property(e => e.CartId).HasColumnType("int(11)");
-
-                entity.Property(e => e.IdSession)
-                    .HasColumnName("idSession")
-                    .HasColumnType("varchar(50)");
-
-                entity.Property(e => e.KichthuocId)
-                    .HasColumnName("kichthuocId")
-                    .HasColumnType("int(11)");
-
-                entity.Property(e => e.SanPhamId)
-                    .HasColumnName("sanPhamId")
-                    .HasColumnType("int(11)");
-
-                entity.Property(e => e.Soluong)
-                    .HasColumnName("soluong")
-                    .HasColumnType("int(11)");
-
-                entity.Property(e => e.Tongtien).HasColumnName("tongtien");
-
-                entity.HasOne(d => d.Kichthuoc)
-                    .WithMany(p => p.Cart)
-                    .HasForeignKey(d => d.KichthuocId)
-                    .HasConstraintName("FK_Cart_KichThuoc");
-
-                entity.HasOne(d => d.SanPham)
-                    .WithMany(p => p.Cart)
-                    .HasForeignKey(d => d.SanPhamId)
-                    .HasConstraintName("FK_Cart_SanPham");
-            });
-
             modelBuilder.Entity<Chitiethoadon>(entity =>
             {
                 entity.ToTable("chitiethoadon");
@@ -220,10 +178,6 @@ namespace Shop.Models
                 entity.Property(e => e.Quan).HasColumnType("varchar(20)");
 
                 entity.Property(e => e.Sdt).HasColumnType("varchar(11)");
-
-                entity.Property(e => e.SessionId)
-                    .HasColumnName("sessionId")
-                    .HasColumnType("varchar(50)");
 
                 entity.Property(e => e.SoNha).HasColumnType("varchar(50)");
 

@@ -24,7 +24,6 @@ namespace Shop.Models
         public string Sdt { get; set; }
         public float? TongTienChuaShip { get; set; }
         public float? TienGiamGia { get; set; }
-        public string SessionId { get; set; }
 
         public Khachhang KhachHang { get; set; }
         public Nhanvien NhanVien { get; set; }

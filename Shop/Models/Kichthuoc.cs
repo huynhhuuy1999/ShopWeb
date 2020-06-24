@@ -7,7 +7,6 @@ namespace Shop.Models
     {
         public Kichthuoc()
         {
-            Cart = new HashSet<Cart>();
             Chitiethoadon = new HashSet<Chitiethoadon>();
         }
 
@@ -17,7 +16,6 @@ namespace Shop.Models
         public float? GiaThem { get; set; }
 
         public Sanpham SanPham { get; set; }
-        public ICollection<Cart> Cart { get; set; }
         public ICollection<Chitiethoadon> Chitiethoadon { get; set; }
     }
 }

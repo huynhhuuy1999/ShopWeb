@@ -12160,11 +12160,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\XayDungHTTPTrenFramework\\New folder\\shop\\Shop.csproj",
+      "projectUniqueName": "E:\\XayDungHTTPTrenFramework\\New folder\\Shop\\Shop.csproj",
       "projectName": "Shop",
-      "projectPath": "E:\\XayDungHTTPTrenFramework\\New folder\\shop\\Shop.csproj",
+      "projectPath": "E:\\XayDungHTTPTrenFramework\\New folder\\Shop\\Shop.csproj",
       "packagesPath": "C:\\Users\\huynh\\.nuget\\packages\\",
-      "outputPath": "E:\\XayDungHTTPTrenFramework\\New folder\\shop\\obj\\",
+      "outputPath": "E:\\XayDungHTTPTrenFramework\\New folder\\Shop\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
