@@ -104,6 +104,7 @@ namespace Shop.Controllers
             return RedirectToAction("xemthongtinkhachhang","khachhang",new{id=idSession});
         }
 
+        
         public IActionResult DanhSachKhachHang(){
             var dbContext = new shopContext();
             var khachhang = (from kh in dbContext.Khachhang

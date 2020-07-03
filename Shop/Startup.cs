@@ -32,6 +32,8 @@ namespace Shop
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddDistributedMemoryCache();
+
+            
             services.AddSession();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
@@ -52,6 +54,7 @@ namespace Shop
             app.UseSession();
             app.UseAuthentication();
 
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

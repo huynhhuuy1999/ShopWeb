@@ -92,7 +92,7 @@
                         let thang = [];
                         let doanhThu =[];
                         for(let i =0 ;i < data.length;i++){
-                            thang.push(data[i].thang);
+                            thang.push("Tháng "+ data[i].thang);
                             doanhThu.push(data[i].doanhThu);
                         }
                         new Chart(document.getElementById("bar-chart"), {
@@ -102,7 +102,7 @@
                                     datasets: [
                                         {
                                             label: "Doanh thu",
-                                            backgroundColor: ["#e1bc10"],
+                                            backgroundColor: "#e1bc10",
                                             data: doanhThu
                                         }
                                     ]
