@@ -22,7 +22,7 @@
             @foreach (var item in ViewBag.sanpham as List<Sanpham>)
             {
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.TenSanPham)</td>
+                    <td style="text-transform:capitalize">@Html.DisplayFor(modelItem => item.TenSanPham)</td>
                     <td>@Html.DisplayFor(modelItem => item.Mota)</td>
                     <td class="giabanle">@Html.DisplayFor(modelItem => item.GiaBanLe)</td>
                     <td class="trangthai">@Html.DisplayFor(modelItem => item.TrangThai)</td>

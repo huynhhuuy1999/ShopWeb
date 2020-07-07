@@ -639,6 +639,7 @@ namespace Shop.Controllers
                             select kh).ToList();
                 ViewBag.ten = user[0].HoTen;
                 ViewBag.sdt = user[0].Sdt;
+                ViewBag.diachi = user[0].DiaChi;
             }
 
 
@@ -1051,5 +1052,7 @@ namespace Shop.Controllers
             }
             return RedirectToAction("Suasanpham", "sanpham", new { id=model.SanPhamId,error = "Sửa sản phẩm không thành công" });
         }
+
+        
     }
 }

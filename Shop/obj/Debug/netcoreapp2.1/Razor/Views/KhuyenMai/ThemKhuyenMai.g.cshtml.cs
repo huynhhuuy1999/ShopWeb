@@ -66,7 +66,7 @@ using Shop.Models;
 #line default
 #line hidden
             BeginContext(68, 75, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "3b32762c71eb4cf3b5c6d53230e4def0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "791bf291099a4fcba7718d75d8999559", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -85,7 +85,7 @@ using Shop.Models;
             WriteLiteral("\r\n\r\n<div class=\"parent container\">\r\n    <h3 class=\"mb-4\" style=\"color:red\">Thêm khuyến mãi</h3>\r\n    ");
             EndContext();
             BeginContext(244, 2034, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11f86a1399854e51878c967497fefea0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fb771ed2a94f4c7fb72c9941528397df", async() => {
                 BeginContext(318, 1504, true);
                 WriteLiteral(@"
         <div class=""form-group"">
@@ -118,7 +118,7 @@ using Shop.Models;
                     ");
                 EndContext();
                 BeginContext(1822, 36, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b7223874ec8e4e6eb64f3d4ead4749ed", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "96072a90f4484549be5e396d44ecc9b3", async() => {
                     BeginContext(1840, 9, true);
                     WriteLiteral("Kích hoạt");
                     EndContext();
@@ -140,7 +140,7 @@ using Shop.Models;
                 WriteLiteral("\r\n                    ");
                 EndContext();
                 BeginContext(1880, 41, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "75702cdf7a9045e8a80850de6f4aca40", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fab275336f584ef294f70ca402bdb1cc", async() => {
                     BeginContext(1898, 14, true);
                     WriteLiteral("Chưa kích hoạt");
                     EndContext();

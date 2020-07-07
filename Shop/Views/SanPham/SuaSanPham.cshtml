@@ -29,8 +29,14 @@
                 <div class="form-group col-md-6">
                     <label for="TrangThai">4. Trạng thái</label>
                     <select name="TrangThai" id="TrangThai" class="p-1 border">
-                        <option value="1">Còn sản phẩm</option>
-                        <option value="0">Hết sản phẩm</option>
+                        @if(ViewBag.sanpham[0].TrangThai==1){
+                            <option value="1" selected>Còn sản phẩm</option>
+                            <option value="0">Hết sản phẩm</option>
+                        }
+                        else{
+                            <option value="1">Còn sản phẩm</option>
+                            <option value="0" selected>Hết sản phẩm</option>
+                        }
                     </select>
                 </div>
                 <div class="form-group col-md-6">

@@ -92,7 +92,7 @@
                         let thang = [];
                         let doanhThu =[];
                         for(let i =0 ;i < data.length;i++){
-                            thang.push("Tháng "+ data[i].thang);
+                            thang.push("Tháng "+ data[i].thang+","+data[i].nam);
                             doanhThu.push(data[i].doanhThu);
                         }
                         new Chart(document.getElementById("bar-chart"), {

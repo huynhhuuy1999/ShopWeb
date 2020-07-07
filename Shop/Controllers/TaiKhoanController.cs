@@ -69,7 +69,7 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
-        public IActionResult DangKy(Taikhoan model,string HoTen,string Email,DateTime NgaySinh,string Sdt)
+        public IActionResult DangKy(Taikhoan model,string HoTen,string Email,String DiaChi,DateTime NgaySinh,string Sdt)
         {
             var dbContext = new shopContext();
             var taikhoan1 = (from tk in dbContext.Taikhoan where tk.Username == model.Username select tk).ToList();
@@ -113,6 +113,7 @@ namespace Shop.Controllers
                 var khachhang= new Khachhang(){
                     HoTen = HoTen,
                     Email = Email,
+                    DiaChi = DiaChi,
                     Sdt = Sdt,
                     NgaySinh =NgaySinh,
                     TaiKhoanId = x.TaiKhoanId

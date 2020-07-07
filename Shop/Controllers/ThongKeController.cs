@@ -23,6 +23,7 @@ namespace Shop.Controllers
                             .GroupBy(x=> new {
                                 x.NgayTao.Month,
                                 x.NgayTao.Year})
+                            .OrderBy(x=>x.Key.Year)
                             .Select(g => new {
                                 thang = g.Key.Month,
                                 nam = g.Key.Year,

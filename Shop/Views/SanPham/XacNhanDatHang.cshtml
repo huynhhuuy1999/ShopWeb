@@ -10,7 +10,7 @@
         <form asp-controller="sanpham" asp-action="xacnhandathang" method="POST" class="ml-5" id="myform">
             <label for="SoNha">Số nhà</label><br>
             <i class="far fa-map-marker-alt"></i>
-            <input type="text" id="SoNha" name="SoNha"><br>
+            <input type="text" id="SoNha" name="SoNha" value="@ViewBag.diachi"><br>
             <label for="PhiShipId">Quận</label><br>
             <select name="PhiShipId" id="PhiShipId" required>
                 <option value="" disabled selected></option>
@@ -20,7 +20,7 @@
                 <option value="3">Quận 3</option>
                 <option value="4">Quận 4</option>
                 <option value="5">Quận 5</option>
-                <option value="6">Quận 6</option>t
+                <option value="6">Quận 6</option>
                 <option value="7">Quận 7</option>
             </select><br>
             <label for="TenNguoiNhan">Tên người nhận</label><br>
