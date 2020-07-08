@@ -61,7 +61,7 @@ using Shop.Models;
 #line default
 #line hidden
             BeginContext(78, 70, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "0a9039d105944d2d96f3c5ef5502014e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "8d10ad41ed434da4893e4c94372ae524", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -83,7 +83,7 @@ using Shop.Models;
             WriteLiteral("    <h2>Thống kê doanh thu</h2>\r\n    ");
             EndContext();
             BeginContext(431, 792, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "511c042ae64d4e9580ba8ecfd3825852", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "68ff9419189d45139d0aa7cf2e1eef4e", async() => {
                 BeginContext(451, 765, true);
                 WriteLiteral(@"
         <div class=""form-row"">

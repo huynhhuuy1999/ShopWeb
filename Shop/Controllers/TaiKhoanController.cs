@@ -45,7 +45,7 @@ namespace Shop.Controllers
                         return RedirectToAction("xacnhandathang","sanpham");
                     }
                     if(item.Username == model.Username && item.Password== pass && item.LoaiTaiKhoanId == 1){
-                        HttpContext.Session.SetString("username", model.Username);
+                        HttpContext.Session.SetString("username1", model.Username);
                         // return RedirectToAction("Index","Home");
                         return RedirectToAction("XemDanhSachSanPham","sanpham");
                     }

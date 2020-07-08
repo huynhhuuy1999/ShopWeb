@@ -67,12 +67,12 @@ using Shop.Models;
             WriteLiteral("<!DOCTYPE html>\r\n<html lang=\"en\">\r\n");
             EndContext();
             BeginContext(114, 263, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7254db9652be47e8ba2e6b0888fc7805", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca48368f9cbc453985d2bf410a8eaec2", async() => {
                 BeginContext(120, 110, true);
                 WriteLiteral("\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    ");
                 EndContext();
                 BeginContext(230, 63, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "ff0fb748bdf1476bbad95ae85f5689cf", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "1c5e492ab66d478393cdd7fd15dfd316", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -91,7 +91,7 @@ using Shop.Models;
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(299, 69, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "77c6bc0b82784499a400ded828d82fbc", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9e3c92ad29f24f6aa743223aae271c96", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -125,7 +125,7 @@ using Shop.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(379, 3464, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f374c7f5de714e4d9ca256203eed3cd3", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "82f482e8b4294bc888c63c26cde0307e", async() => {
                 BeginContext(385, 149, true);
                 WriteLiteral("\r\n    <div class=\"container\">\r\n        <div class=\"content\">\r\n            <div class=\"title\">\r\n                <h3>HÓA ĐƠN</h3>\r\n            </div>\r\n");
                 EndContext();

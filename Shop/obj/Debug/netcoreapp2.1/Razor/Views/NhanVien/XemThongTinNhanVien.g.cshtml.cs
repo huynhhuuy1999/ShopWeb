@@ -63,7 +63,7 @@ using Shop.Models;
 #line default
 #line hidden
             BeginContext(67, 82, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c6a373cd8a074155bf9912f7fe95ad34", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a1b8d34134034c2e8657375f0c8061d7", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -82,7 +82,7 @@ using Shop.Models;
             WriteLiteral("\r\n<div class=\"container mb-5 parent\">\r\n    <div>\r\n        <h2 style=\"color:red\">Thông tin tài khoản</h2>\r\n    </div>\r\n    ");
             EndContext();
             BeginContext(271, 3059, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5cacb394d50340cdb7335fffe4b56983", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "047ebfd50e0d456db7995c24bc23981f", async() => {
                 BeginContext(351, 2, true);
                 WriteLiteral("\r\n");
                 EndContext();

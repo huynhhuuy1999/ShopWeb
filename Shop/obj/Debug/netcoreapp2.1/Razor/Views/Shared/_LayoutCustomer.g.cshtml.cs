@@ -65,7 +65,7 @@ using Microsoft.AspNetCore.Http;
             WriteLiteral("<!DOCTYPE html>\r\n<html>\r\n");
             EndContext();
             BeginContext(60, 794, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3d75a13e76c24eae9d860f3c2d9cb33a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e6229ba29ed743989edb6bc86cebd341", async() => {
                 BeginContext(66, 121, true);
                 WriteLiteral("\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>");
                 EndContext();
@@ -80,7 +80,7 @@ using Microsoft.AspNetCore.Http;
                 WriteLiteral(" - Shop</title>\r\n    ");
                 EndContext();
                 BeginContext(226, 63, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e9e38370e441422980ea2627150fbd8a", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "d0813a4e3ce3434da6ff865a4fd5743d", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -99,7 +99,7 @@ using Microsoft.AspNetCore.Http;
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(295, 65, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "6e4d7821d50a4aac8a3da8e303f0c175", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9d7c6e7c93b64d4fa5877eee8e562892", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -118,7 +118,7 @@ using Microsoft.AspNetCore.Http;
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(366, 77, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "bcf351f13b904340a19a986858433e58", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a07542e7e16b4cda9ddc47c8b08d4524", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -157,7 +157,7 @@ using Microsoft.AspNetCore.Http;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(856, 3219, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0856d9ccebb44bb4b09912d9ffb21d5e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e5708970facc4734adfcbd6874db654e", async() => {
                 BeginContext(874, 230, true);
                 WriteLiteral("\r\n    <div class=\"header\">\r\n        <ul class=\"menu\">\r\n            <li><a href=\"/\">Milk Tea Store</a></li>\r\n            <li><a href=\"/home/index\">Trang chủ</a></li>\r\n            <li><a href=\"/sanpham/thucdon\">Thực đơn</a></li>\r\n\r\n");
                 EndContext();

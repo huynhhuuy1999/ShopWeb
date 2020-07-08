@@ -67,7 +67,7 @@ using Shop.Models;
 #line default
 #line hidden
             BeginContext(66, 71, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "9e482dc7d4484a4683881f545693755d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "5c2bc36a53434f52b0ab77f22a55e5fa", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -86,7 +86,7 @@ using Shop.Models;
             WriteLiteral("\r\n\r\n\r\n\r\n<div class=\"container parent\">\r\n    <h3 class=\"mb-4\" style=\"color:red\">Thêm sản phẩm</h3>\r\n    ");
             EndContext();
             BeginContext(240, 4488, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fd621a8f37944b62a737769ddc61c571", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b315560188054f09a5fe8eb02e9d37bb", async() => {
                 BeginContext(310, 1025, true);
                 WriteLiteral(@"
         <div class=""form-row"">
@@ -111,7 +111,7 @@ using Shop.Models;
                 WriteLiteral(" ");
                 EndContext();
                 BeginContext(1335, 39, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b1baae32c80149f380b72c8d19d9f997", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "aa0e4d772d194373b6dbfeacca8583bc", async() => {
                     BeginContext(1353, 12, true);
                     WriteLiteral("Còn sản phẩm");
                     EndContext();
@@ -133,7 +133,7 @@ using Shop.Models;
                 WriteLiteral("\r\n                    ");
                 EndContext();
                 BeginContext(1396, 39, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "caf1c7b7eb154a27a51ee66c92e3321a", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bae2843d8ee44f70906438e6bd360b4b", async() => {
                     BeginContext(1414, 12, true);
                     WriteLiteral("Hết sản phẩm");
                     EndContext();
@@ -164,7 +164,7 @@ using Shop.Models;
                 WriteLiteral("                        ");
                 EndContext();
                 BeginContext(1802, 85, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4f0b9aec341b4b248fa6c1c2a32950c1", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4ce696696da84b348741a4aac134d48a", async() => {
                     BeginContext(1836, 42, false);
 #line 39 "E:\XayDungHTTPTrenFramework\New folder\Shop\Views\SanPham\ThemSanPham.cshtml"
                                                     Write(Html.DisplayFor(itemModel => item.TenLoai));
@@ -276,7 +276,7 @@ WriteAttributeValue("", 2204, Html.DisplayFor(itemmodel => item.KhuyenMaiId), 22
                                     ");
                 EndContext();
                 BeginContext(3808, 32, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dbefdaccfc4047739b35c645a9c6e077", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6d5fb639919c431092f26c2c753e77ea", async() => {
                     BeginContext(3828, 3, true);
                     WriteLiteral("Nhỏ");
                     EndContext();

@@ -175,7 +175,7 @@ namespace Shop.Controllers{
 
         public void XacNhanHoaDon(int key){
             var dbContext = new shopContext();
-            string username=HttpContext.Session.GetString("username");
+            string username=HttpContext.Session.GetString("username1");
             var taikhoan = (from tk in dbContext.Taikhoan
                             where tk.Username == username
                             select tk).ToList();
@@ -268,9 +268,9 @@ namespace Shop.Controllers{
                             select new{
                                 tensp = sp.TenSanPham,
                                 hinhanh = ha.TenFile,
-                                gia = ct.TongTien,
-                                soluong = ct.SoLuong,
-                                giam = subnv.PhanTramGiam * sp.GiaBanLe,
+                                gia = ct.TongTien ,
+                                soluong = ct.SoLuong ,
+                                giam = Convert.ToSingle(subnv.PhanTramGiam) * sp.GiaBanLe ,
                                 tamtinh = ct.TongSauKm,
                                 tenKichThuoc = kt.TenKichThuoc
                             });
@@ -283,10 +283,10 @@ namespace Shop.Controllers{
                 Kichthuoc kt = new Kichthuoc();
                 sp.TenSanPham = item.tensp;
                 ha.TenFile = item.hinhanh;
-                ct.TongTien = item.gia;
+                ct.TongTien = item.gia ;
                 ct.SoLuong = item.soluong;
-                ct.TienKhuyenMai = item.giam;
-                ct.TongSauKm = item.tamtinh;
+                ct.TienKhuyenMai =item.giam;
+                ct.TongSauKm =item.tamtinh;
                 kt.TenKichThuoc = item.tenKichThuoc;
                 sp.HinhAnh=ha;
                 ct.SanPham= sp;

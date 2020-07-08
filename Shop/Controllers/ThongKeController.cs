@@ -24,6 +24,7 @@ namespace Shop.Controllers
                                 x.NgayTao.Month,
                                 x.NgayTao.Year})
                             .OrderBy(x=>x.Key.Year)
+                            .OrderBy(x=>x.Key.Month)
                             .Select(g => new {
                                 thang = g.Key.Month,
                                 nam = g.Key.Year,
